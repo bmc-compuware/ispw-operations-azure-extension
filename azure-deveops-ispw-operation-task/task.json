@@ -1,0 +1,106 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa7",
+    "name": "operationstask",
+    "friendlyName": "BMC ISPW Operations",
+    "description": "Task 1.2 used for performing ISPW to Git sync functionality and CES operations.",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Mayank Jain BMC Software",
+    "version": {
+        "Major": 1,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "instanceNameFormat": "Echo instanceName",
+    "inputs": [
+        {
+            "name": "connectionId",
+            "type": "pickList",
+            "label": "Host Connection",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "This field specifies the host connection associated with a CES URL. Host connections with CES url can be configured in the Common Configuration Extension."
+        },
+       {
+            "name": "cesSecretToken",
+            "type": "string",
+            "label": "CES secret token",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(variablename)." 
+        },
+		{
+            "name": "action",
+            "type": "pickList",
+            "label": "Action",
+		    "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "ISPW action to be performed",
+            "options": {
+                "addTask": "AddTask",
+                "promoteAssignment": "PromoteAssignment",
+                "promoteRelease": "PromoteRelease",
+                "regressAssignment": "RegressAssignment",
+                "regressRelease": "RegressRelease"
+            }
+        },
+        {
+            "name": "request",
+            "label":"request",
+            "type": "multiLine",
+            "options": {},
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "[Learn more about request details](https://go.microsoft.com/fwlink/?LinkID=613717)"  
+        },
+        {
+            "name": "skipWaitingForSetCompletion",
+            "label": "Skip waiting for the completion of the set if applicable?",
+            "type": "radio",
+            "required": true,
+            "defaultValue": "No",
+            "helpMarkDown": "This allows to turn on / off polling a set to wait for the job finish if it is applicable.",
+            "options": {
+              "Yes": "Yes",
+              "No": "No"
+            }
+        },
+        {
+            "name": "showResponseBodyInConsole",
+            "label": "Response body in console?",
+            "type": "radio",
+            "required": true,
+            "defaultValue": "No",
+            "helpMarkDown": "This allows you to turn off writing the response body to the log.",
+            "options": {
+              "Yes": "Yes",
+              "No": "No"
+            }
+        }
+
+    ],
+	"dataSourceBindings": [
+        {
+            "endpointId": "tfs:teamfoundation",
+            "target": "connectionId",
+            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/RiteshChaudhari/compuware-common-config-extension/Data/Scopes/Default/Current/Collections/%24settings/Documents/hostconnection",
+            "resultSelector": "jsonpath:$.value[*]",
+			"resultTemplate": "{\"Value\":\"{{{host}}}#{{{code_page}}}\",\"DisplayValue\":\"{{{host}}}\"}"
+        },
+        {
+            "endpointId": "tfs:teamfoundation",
+            "target": "cesUrl",
+            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/RiteshChaudhari/compuware-common-config-extension/Data/Scopes/Default/Current/Collections/%24settings/Documents/hostconnection",
+            "resultSelector": "jsonpath:$.value[*]",
+			"resultTemplate": "{\"Value\":\"{{{host}}}#{{{code_page}}}\",\"DisplayValue\":\"{{{host}}}\"}"
+        }
+
+
+    ],
+    "execution": {
+        "Node10": {
+            "target": "index.js"
+        }
+    }
+}

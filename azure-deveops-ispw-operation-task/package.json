@@ -1,0 +1,21 @@
+{
+  "name": "downloadertask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mayank Jain",
+  "license": "ISC",
+  "dependencies": {
+    "azure-pipelines-task-lib": "^4.0.0-preview"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.15",
+    "@types/q": "^1.5.5"
+  }
+}
