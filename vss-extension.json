@@ -2,8 +2,8 @@
     "id": "ispw-operations",
     "name": "BMC ISPW Operations",
     "public": false,
-    "version": "1.1.4",
-    "publisher": "BMCCompuwcldare",
+    "version": "1.1.5",
+    "publisher": "BMC-Compuware",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -42,7 +42,7 @@
     ],
     "files": [
         {
-            "path": "operationstask"
+            "path": "azure-deveops-ispw-operation-task"
         },
         {
             "path": "images",
