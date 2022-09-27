@@ -2,19 +2,19 @@
     "id": "ispw-operations",
     "name": "BMC ISPW Operations",
     "public": false,
-    "version": "1.1.5",
+    "version": "1.1.6",
     "publisher": "BMC-Compuware",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
-    ],    
+    ],
     "description": "Extension updated 1.2 for performing ISPW to Git sync functionality and CES operations.",
     "categories": [
         "Azure Pipelines"
     ],
     "icons": {
-        "default": "images/ISPW_marble.png"        
+        "default": "images/ISPW_marble.png"
     },
     "repository": {
         "type": "git",
@@ -57,7 +57,7 @@
                 "ms.vss-distributed-task.tasks"
             ],
             "properties": {
-                "name": "operationstask"
+                "name": "azure-deveops-ispw-operation-task"
             }
         }
     ]
