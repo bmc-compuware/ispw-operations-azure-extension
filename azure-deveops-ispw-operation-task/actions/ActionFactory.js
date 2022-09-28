@@ -5,7 +5,7 @@ class ActionFactory {
     }
     createObj(type) {
         switch (type) {
-            case 'PromoteAction': return new PromoteAction();
+            case 'PromoteAssignment': return new PromoteAction();
             default: new Error('Action Not supported');
         }
     }

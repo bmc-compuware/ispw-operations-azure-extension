@@ -19,16 +19,17 @@ function isUrlValid(userInput: string) {
 
 
 async function run() {
-    const connectionId: string | undefined = "cw09.compuware.com:47623#1047" //tl.getInput('connectionId', true);
-    const cesUrl: string | undefined = "http://localhost:48080"//tl.getInput('cesUrl', true);
-    const action: any | undefined = "PromoteAction" //tl.getInput("action", true);
-    const payload: string | undefined ="assignmentId=paly0122"; //tl.getInput("request",true);
-    const cesToekn :string|undefined= "a7c35910-8775-4ba7-8b94-ad6822f9296c"//tl.getInput('cesSecretToken');
+    const connectionId: string | undefined = tl.getInput('connectionId', true); //"cw09.compuware.com:47623#1047" 
+    const cesUrl: string | undefined = tl.getInput('cesUrl', true);//"http://localhost:48080"//
+    const action: any | undefined = tl.getInput("action", true);//"PromoteAction" //
+    const payload: string | undefined =tl.getInput("request",true);//"assignmentId=paly0122"; //
+    const cesToekn :string|undefined= tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
+    
     var isValidInput: boolean = connectionId != undefined && cesUrl != undefined && 
     action != undefined && !isEmpty(connectionId) && !isEmpty(cesUrl);
     var ispwActions: IspwActions;
     if (isValidInput) {
-        let connection = connectionId.split('#');
+        let connection = connectionId !=undefined ? connectionId.split('#'):"";
         let codePage = connection[1].trim();
         let conStr = connection[0];
         let hostPortArr = conStr.split(":");

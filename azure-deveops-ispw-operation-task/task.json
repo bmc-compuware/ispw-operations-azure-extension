@@ -9,7 +9,7 @@
     "author": "Mayank Jain BMC Software",
     "version": {
         "Major": 1,
-        "Minor": 1,
+        "Minor": 2,
         "Patch": 0
     },
     "instanceNameFormat": "Echo instanceName",
@@ -47,7 +47,7 @@
             "helpMarkDown": "ISPW action to be performed",
             "options": {
                 "addTask": "Add Task",
-                "promoteAssignment": "Promote Assignment",
+                "PromoteAssignment": "Promote Assignment",
                 "promoteRelease": "Promote Release",
                 "regressAssignment": "Regress Assignment",
                 "regressRelease": "Regress Release"

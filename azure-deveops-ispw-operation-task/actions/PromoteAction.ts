@@ -21,7 +21,7 @@ class PromoteAction extends IspwActions {
         let url= util.getCesUrl(input) + reqTO.path;
         let cmnService = new CommonService();
         console.log("url::"+url);
-        let obj={};
+        let obj={"runtimeConfiguration":"TPTP"};
         let rt=  cmnService.doPostRequest(url,obj,authToken);
     
     }catch(e){

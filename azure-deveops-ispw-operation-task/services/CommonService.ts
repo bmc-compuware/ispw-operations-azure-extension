@@ -15,9 +15,7 @@ class CommonService {
         };
         try {
             let res = await axios.post(url, payload, options)
-            if(!res.ok){
-                console.log("error "+res.data.message);     
-            }
+            console.log("response:::::"+res);
             return res.data;
 
         } catch (error: any) {
