@@ -14,7 +14,8 @@ class CommonService {
             headers: { 'Content-Type': 'application/json', 'Authorization': cesToken }
         };
         try {
-            let res = await axios.post(url, payload, options)
+            let res = await axios.post(url, payload, options);
+            console.log("coomon service"+res);
             return res.data;
         } catch (error: any) {
             if (error.response) {

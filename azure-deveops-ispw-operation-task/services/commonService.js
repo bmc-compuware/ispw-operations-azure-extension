@@ -22,6 +22,7 @@ class CommonService {
             };
             try {
                 let res = yield axios.post(url, payload, options);
+                console.log("coomon service" + res);
                 return res.data;
             }
             catch (error) {

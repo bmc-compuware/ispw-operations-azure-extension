@@ -1,3 +1,4 @@
+import { ok } from 'assert';
 import tl = require('azure-pipelines-task-lib/task');
 const IspwActions = require('./IspwActions') 
 const https = require('https');
@@ -7,8 +8,7 @@ var contextPath ="/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={l
 const restUtis= require('../utils/RestUtils')
 const CommonService = require('../services/CommonService')
 const IspwReqBody = require('../transferObj/IspwReqBody')
-
-
+const SetInfoResponse = require('../transferObj/SetInfoResponse')
 class ReqBodyAttributes extends IspwReqBody{
     constructor(){
         super();
@@ -16,34 +16,34 @@ class ReqBodyAttributes extends IspwReqBody{
     runtimeConfiguration :string="";   
 }
 
-class PromoteAction extends IspwActions {
+
+
+class PromoteAssignmentAction extends IspwActions {
     constructor(){
         super();
        
     }
-    performAction(input:Input){
-       try{
+   async performAction(input:Input):Promise<IspwResponse>{
+        let setInfo:IspwResponse= new SetInfoResponse();
+        try{
         let util = new restUtis();
         let authToken= input.cesToken;
         let reqBody= new ReqBodyAttributes();        
         let reqTO:IspwReqTO= util.getIspwReqTo(input,contextPath,reqBody);
-        //console.log("req.path"+reqTO.path);
         let url= util.getCesUrl(input) + reqTO.path;
         let cmnService = new CommonService();
-        console.log("url::"+url);
-        console.log("reqTo:::"+JSON.stringify(reqTO));
-        let rt=  cmnService.doPostRequest(url,reqTO.reqBody,authToken);
-    
+        let json= await cmnService.doPostRequest(url,reqTO.reqBody,authToken);
+        Object.assign(setInfo,json);  
+        console.log("setInfo"+JSON.stringify(setInfo));  
     }catch(e){
         console.log((<Error>e).message);
 
     }
-
-
+    return setInfo;
 
     }
 }
-module.exports=PromoteAction;
+module.exports=PromoteAssignmentAction;
 
 
 

@@ -9,26 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const PromoteAction = require('./actions/PromoteAction');
+const PromoteAction = require('./actions/PromoteAssignmentAction');
 const IspwActions = require('./actions/IspwActions');
 const ActionFactory = require('./actions/ActionFactory');
 const Input = require('./transferObj/input');
+const IspwResponse = require('./transferObj/ispwResponse');
 function isEmpty(str) {
     return (!str || str.length === 0);
-}
-function isUrlValid(userInput) {
-    var res = userInput.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
-    if (res == null)
-        return false;
-    else
-        return true;
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const connectionId = "cw09.compuware.com:47624#1047"; //tl.getInput('connectionId', true); // 
         const cesUrl = "http://localhost:48080"; //tl.getInput('cesUrl', true);////
         const action = "PromoteAssignment"; //tl.getInput("action", true);//"PromoteAction" //
-        const payload = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\n level=STG1"; //tl.getInput("request",true);//"assignmentId=paly0122"; //
+        const payload = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\n level=DEV1"; //tl.getInput("request",true);//"assignmentId=paly0122"; //
         const cesToekn = "1fa526c3-6be5-4181-a4ff-10abb4c2185a"; //tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
         var isValidInput = connectionId != undefined && cesUrl != undefined &&
             action != undefined && !isEmpty(connectionId) && !isEmpty(cesUrl);
@@ -42,7 +36,8 @@ function run() {
             if (!isEmpty(action)) {
                 ispwActions = actionFactory.createObj(action);
                 let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToekn);
-                ispwActions.performAction(input);
+                let rt = yield ispwActions.performAction(input);
+                console.log("returned data" + JSON.stringify(rt));
             }
         }
     });

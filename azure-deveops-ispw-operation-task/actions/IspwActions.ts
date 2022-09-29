@@ -1,11 +1,5 @@
 const input =  require('../transferObj/input');
-class IspwActions {
-    constructor() {
-
-    }
-    performAction(input:Input) {
-        console.log("ispw  Action ==> start")
-
-    };
+abstract class IspwActions {
+    abstract performAction(input:Input) : Promise<IspwResponse>;
 }
 module.exports = IspwActions;
