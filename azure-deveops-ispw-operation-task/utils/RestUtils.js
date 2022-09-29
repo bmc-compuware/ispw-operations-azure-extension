@@ -13,7 +13,7 @@ class RestUtils {
         } while (m);
         return arr;
     }
-    getIspwReqTo(input, contextPath) {
+    getIspwReqTo(input, contextPath, reqBody) {
         let reqTo = new ispwReqTO();
         reqTo.srcId = input.host + '-' + input.port;
         contextPath = contextPath.replace('{srid}', reqTo.srcId);
@@ -30,7 +30,10 @@ class RestUtils {
             if (indexOfEqualSign != -1) {
                 var name = line.substring(0, indexOfEqualSign).trim();
                 var value = line.substring(indexOfEqualSign + 1, line.length);
-                console.log(name, value);
+                let reqBody1 = reqBody.toPlainObject();
+                if (reqBody1.hasOwnProperty(name)) {
+                    reqTo.reqBody[name] = value;
+                }
                 if (params.indexOf(name) != -1) {
                     contextPath = contextPath.replace('{' + name + '}', value.trim());
                 }

@@ -13,5 +13,6 @@ class IspwReqTO {
     approver: string = "";
     checkout: boolean = false;
     path: string="";
+    reqBody:any={};
 }
 module.exports= IspwReqTO;

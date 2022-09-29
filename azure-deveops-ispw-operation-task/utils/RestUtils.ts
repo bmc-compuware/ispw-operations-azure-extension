@@ -15,7 +15,7 @@ class RestUtils {
         return arr;
     }
 
-    getIspwReqTo(input: Input, contextPath: string) {
+    getIspwReqTo(input: Input, contextPath: string, reqBody: IspwReqBody) {
         let reqTo = new ispwReqTO();
         reqTo.srcId = input.host + '-' + input.port;
         contextPath = contextPath.replace('{srid}', reqTo.srcId)
@@ -32,7 +32,11 @@ class RestUtils {
             if (indexOfEqualSign != -1) {
                 var name: string = line.substring(0, indexOfEqualSign).trim();
                 var value = line.substring(indexOfEqualSign + 1, line.length)
-                console.log(name, value);
+                let reqBody1 = reqBody.toPlainObject();
+                if (reqBody1.hasOwnProperty(name)) {
+                    reqTo.reqBody[name]=value;
+                }
+
                 if (params.indexOf(name) != -1) {
                     contextPath = contextPath.replace('{' + name + '}', value.trim());
                 }
@@ -48,7 +52,7 @@ class RestUtils {
         console.log("contextpath", contextPath);
         let resultPath: string = contextPath;
         let arr = this.lstParm(contextPath);
-        let re = /[&]+/; 
+        let re = /[&]+/;
         contextPath = contextPath.replace("?&", "?");
         let index = contextPath.indexOf("?");
         if (index != -1) {
@@ -59,7 +63,7 @@ class RestUtils {
             }
 
             s2 = s2.replace(re, "&");
-            console.log("s2",s2);
+            console.log("s2", s2);
             if (s2.endsWith("&")) {
                 s2 = s2.substring(0, s2.length - 1);
             }
@@ -74,9 +78,9 @@ class RestUtils {
         }
         let url = new URL(ip.cesUrl);
         let protocol = url.protocol;
-        console.log("protocol::"+protocol);
+        console.log("protocol::" + protocol);
         let host = url.host;
-        console.log("host:::"+host);
+        console.log("host:::" + host);
         let port: number = Number(url.port);
         if (port < 0) {
             if ("http" === protocol.toLowerCase()) {

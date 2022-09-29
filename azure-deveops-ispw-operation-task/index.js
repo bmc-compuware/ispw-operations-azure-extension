@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const tl = require("azure-pipelines-task-lib/task");
 const PromoteAction = require('./actions/PromoteAction');
 const IspwActions = require('./actions/IspwActions');
 const ActionFactory = require('./actions/ActionFactory');
@@ -26,11 +25,11 @@ function isUrlValid(userInput) {
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const connectionId = tl.getInput('connectionId', true); //"cw09.compuware.com:47623#1047" 
-        const cesUrl = tl.getInput('cesUrl', true); //"http://localhost:48080"//
-        const action = tl.getInput("action", true); //"PromoteAction" //
-        const payload = tl.getInput("request", true); //"assignmentId=paly0122"; //
-        const cesToekn = tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
+        const connectionId = "cw09.compuware.com:47624#1047"; //tl.getInput('connectionId', true); // 
+        const cesUrl = "http://localhost:48080"; //tl.getInput('cesUrl', true);////
+        const action = "PromoteAssignment"; //tl.getInput("action", true);//"PromoteAction" //
+        const payload = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\n level=STG1"; //tl.getInput("request",true);//"assignmentId=paly0122"; //
+        const cesToekn = "1fa526c3-6be5-4181-a4ff-10abb4c2185a"; //tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
         var isValidInput = connectionId != undefined && cesUrl != undefined &&
             action != undefined && !isEmpty(connectionId) && !isEmpty(cesUrl);
         var ispwActions;

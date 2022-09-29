@@ -15,6 +15,7 @@ class IspwReqTO {
         this.approver = "";
         this.checkout = false;
         this.path = "";
+        this.reqBody = {};
     }
 }
 module.exports = IspwReqTO;
