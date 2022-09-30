@@ -22,7 +22,6 @@ class CommonService {
             };
             try {
                 let res = yield axios.post(url, payload, options);
-                console.log("coomon service" + res);
                 return res.data;
             }
             catch (error) {
@@ -41,6 +40,22 @@ class CommonService {
                     console.error('Error', error.message);
                 }
                 return error.message;
+            }
+        });
+    }
+    doGetRequest(url, cesToken) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let res = yield axios.get(url, {
+                    headers: {
+                        'Authorization': cesToken
+                    }
+                });
+                console.log("response " + res.data);
+                return res.data;
+            }
+            catch (error) {
+                console.log('Error', error);
             }
         });
     }

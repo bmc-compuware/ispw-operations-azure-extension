@@ -17,7 +17,7 @@ var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={
 const restUtis = require('../utils/RestUtils');
 const CommonService = require('../services/CommonService');
 const IspwReqBody = require('../transferObj/IspwReqBody');
-const SetInfoResponse = require('../transferObj/SetInfoResponse');
+const PromoteActionResponse = require('../transferObj/PromoteActionResponse');
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -30,7 +30,7 @@ class PromoteAssignmentAction extends IspwActions {
     }
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let setInfo = new SetInfoResponse();
+            let prompteActionResponse = new PromoteActionResponse();
             try {
                 let util = new restUtis();
                 let authToken = input.cesToken;
@@ -39,13 +39,14 @@ class PromoteAssignmentAction extends IspwActions {
                 let url = util.getCesUrl(input) + reqTO.path;
                 let cmnService = new CommonService();
                 let json = yield cmnService.doPostRequest(url, reqTO.reqBody, authToken);
-                Object.assign(setInfo, json);
-                console.log("setInfo" + JSON.stringify(setInfo));
+                console.log("json", json);
+                Object.assign(prompteActionResponse, json);
+                console.log("prompteActionResponse " + JSON.stringify(prompteActionResponse));
             }
             catch (e) {
                 console.log(e.message);
             }
-            return setInfo;
+            return prompteActionResponse;
         });
     }
 }
