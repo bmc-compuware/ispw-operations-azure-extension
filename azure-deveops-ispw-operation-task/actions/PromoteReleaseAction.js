@@ -9,44 +9,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const IspwActions = require('./IspwActions');
-const https = require('https');
-const axios = require('axios');
-const input = require('../transferObj/input');
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
+const SetIdResponse = require('../transferObj/SetIdResponse');
+var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
 const restUtis = require('../utils/RestUtils');
 const CommonService = require('../services/CommonService');
 const IspwReqBody = require('../transferObj/IspwReqBody');
-const SetIdResponse = require('../transferObj/SetIdResponse');
+const IspwActions = require('../actions/IspwActions');
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
         this.runtimeConfiguration = "";
     }
 }
-class PromoteAssignmentAction extends IspwActions {
-    constructor() {
-        super();
-    }
+class PromoteReleaseAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
             let prompteActionResponse = new SetIdResponse();
-            try {
-                let util = new restUtis();
-                let authToken = input.cesToken;
-                let reqBody = new ReqBodyAttributes();
-                let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
-                let url = util.getCesUrl(input) + reqTO.path;
-                let cmnService = new CommonService();
-                let json = yield cmnService.doPostRequest(url, reqTO.reqBody, authToken, "Promote Assignemnt", input.showResponseBodyInConsole);
-                console.log("json", json);
-                Object.assign(prompteActionResponse, json);
-            }
-            catch (e) {
-                console.log(e.message);
-            }
+            let restUtilObj = new restUtis();
+            let reqBody = new ReqBodyAttributes();
+            let reqTO = restUtilObj.getIspwReqTo(input, contextPath, reqBody);
+            let url = restUtilObj.getCesUrl(input) + reqTO.path;
+            let cmnService = new CommonService();
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Promote Release", input.showResponseBodyInConsole);
+            Object.assign(prompteActionResponse, json);
             return prompteActionResponse;
         });
     }
 }
-module.exports = PromoteAssignmentAction;
+module.exports = PromoteReleaseAction;

@@ -1,22 +1,40 @@
 import tl = require('azure-pipelines-task-lib/task');
 const PromoteAction = require('./actions/PromoteAssignmentAction');
 const IspwActions = require('./actions/IspwActions');
-const SetInfoAction= require('./actions/SetInfoAction');
+const SetInfoAction = require('./actions/SetInfoAction');
 const ActionFactory = require('./actions/ActionFactory');
 const Input = require('./transferObj/input')
-const PromoteActionResponse = require('./transferObj/PromoteActionResponse')
+const SetIdResponse = require('./transferObj/SetIdResponse')
 const IspwResponse = require('./transferObj/ispwResponse');
+const polling_interval: number = 2000;
+
+const SET_STATE_DISPATCHED: string = "Dispatched";
+const SET_STATE_EXECUTING = "Executing";
+const SET_STATE_COMPLETE = "Complete";
+const SET_STATE_CLOSED = "Closed";
+const SET_STATE_FAILED = "Failed";
+const SET_STATE_HELD = "Held";
+const SET_STATE_RELEASED = "Released";
+const SET_STATE_TERMINATED = "Terminated";
+const SET_STATE_WAITING_APPROVAL = "Waiting-Approval";
+const SET_STATE_WAITING_LOCK = "Waiting-Lock";
+
 function isEmpty(str: string) {
     return (!str || str.length === 0);
 }
 
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function run() {
     const connectionId: string | undefined = "cw09.compuware.com:47624#1047"//tl.getInput('connectionId', true); // 
-    const cesUrl: string | undefined = "http://localhost:48080"//tl.getInput('cesUrl', true);////
-    const action: any | undefined = "PromoteAssignment"//tl.getInput("action", true);//"PromoteAction" //
-    const payload: string | undefined = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\n level=DEV1";//tl.getInput("request",true);//"assignmentId=paly0122"; //
-    const cesToken: string | undefined = "1fa526c3-6be5-4181-a4ff-10abb4c2185a"//tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
-
+    const cesUrl: string | undefined = "http://172.19.173.31:48226"//tl.getInput('cesUrl', true);////
+    const action: any | undefined = "RegressAssignment"//tl.getInput("action", true);//"PromoteAction" //
+    const payload: string | undefined = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\nlevel=STG1";//tl.getInput("request",true);//"assignmentId=paly0122"; //
+    const cesToken: string | undefined = "403601c5-2f2e-4367-8137-daa6cf229dbb"//tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
+    const skipWaitingForSetCompletion: boolean | undefined = false; //tl.getBoolInput("skipWaitingForSetCompletion") ;
+    const showResponseBodyInConsole : boolean | undefined =true; //tl.getBoolInput("showResponseBodyInConsole");
     var isValidInput: boolean = connectionId != undefined && cesUrl != undefined &&
         action != undefined && !isEmpty(connectionId) && !isEmpty(cesUrl);
     var ispwActions: IspwActions;
@@ -28,17 +46,45 @@ async function run() {
         let actionFactory = new ActionFactory();
         if (!isEmpty(action)) {
             ispwActions = actionFactory.createObj(action);
-            let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToken);
+            let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToken,skipWaitingForSetCompletion,showResponseBodyInConsole);
             const obj = await ispwActions.performAction(input);
-            if (obj instanceof PromoteActionResponse) {
-                let obj1 = obj as PromoteActionResponse;
-                if (obj1.setId != undefined) {
-                    input = new Input(hostPortArr[0], hostPortArr[1], codePage, obj1.url, {}, cesToken)
-                    ispwActions= actionFactory.createObj("SetInfo");
-                    const setResponse =await  ispwActions.performAction(input);
-                    console.log(JSON.stringify(setResponse));
-                }
+            if (!skipWaitingForSetCompletion) {
+                if (obj instanceof SetIdResponse) {
+                    let obj1 = obj as SetIdResponse;
+                    if (obj1.setId != undefined) {
+                        input = new Input(hostPortArr[0], hostPortArr[1], codePage, obj1.url, {}, cesToken,skipWaitingForSetCompletion,showResponseBodyInConsole)
+                        ispwActions = actionFactory.createObj("SetInfo");
+                        let i: number = 0;
+                        for (; i < 60; i++) {
+                            await sleep(polling_interval);
+                            const setResponse: IspwResponse = await ispwActions.performAction(input);
+                            let set_obj = setResponse as SetInfoResponse;
+                            console.log("waiting for set to complete");
+                            if (set_obj.state == SET_STATE_FAILED) {
+                                console.log("ISPW: Set " + set_obj.setid + " - action [%s] failed", action);
+                                break;
+                            } else if (set_obj.state == SET_STATE_TERMINATED) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully terminated");
+                                break;
+                            } else if (set_obj.state == SET_STATE_HELD) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully held");
+                                break;
+                            } else if (set_obj.state == SET_STATE_RELEASED || set_obj.state == SET_STATE_WAITING_LOCK) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully released");
+                                break;
+                            } else if (set_obj.state == SET_STATE_CLOSED || set_obj.state == SET_STATE_COMPLETE
+                                || set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                console.log("ISPW: Action " + action + " completed");
+                                break;
+                            }
+                            if (i == 60) {
+                                console.log("max time out reached");
+                            }
 
+                        }
+
+                    }
+                }
 
             }
 

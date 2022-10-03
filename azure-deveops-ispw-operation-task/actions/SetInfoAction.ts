@@ -1,3 +1,4 @@
+export {};
 const setInfoResponse =require('../transferObj/SetInfoResponse');
 const cmnService = require('../services/CommonService');
 const ispwActions = require('./IspwActions');

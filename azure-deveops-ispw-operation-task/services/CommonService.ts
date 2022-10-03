@@ -9,24 +9,29 @@ class CommonService {
   constructor() {
 
   }
-  async doPostRequest(url: string, payload: string, cesToken: string) {
+  async doPostRequest(url: string, payload: string, cesToken: string, action: string, isPrintEnable: boolean) {
     const options = {
       headers: { 'Content-Type': 'application/json', 'Authorization': cesToken }
     };
     try {
+      if (isPrintEnable) {
+        logRequest(url, options.headers, payload, cesToken, action, "POST");
+      }
       let res = await axios.post(url, payload, options);
-      return res.data;
+      let rt = res.data;
+      if (isPrintEnable) {
+        logResponse(rt);
+      }
+
+      return rt;
     } catch (error: any) {
       if (error.response) {
-        // Request made and server responded
         console.error(error.response.data);
         console.error(error.response.status);
         console.error(error.response.headers);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error(error.request);
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error('Error', error.message);
       }
       return error.message;
@@ -39,12 +44,28 @@ class CommonService {
           'Authorization': cesToken
         }
       });
-      console.log("response "+res.data);
+      console.log("response " + res.data);
       return res.data;
     } catch (error) {
-      console.log('Error',error);
+      console.log('Error', error);
     }
   }
 
 }
+
+function logRequest(url: string, header: any, body: string, token: string, action: string, methodType: string) {
+  console.log("### " + action + " - " + "RFC 2616");
+  console.log(methodType + " " + url + " HTTP/1.1");
+  console.log("Content-type: " + "application/json");
+  console.log("Authorization: " + token);
+  console.log("Request Body: " + JSON.stringify(body));
+  console.log("Headers: " + JSON.stringify(header));
+}
+
+function logResponse(response: string) {
+  console.log("response: " + JSON.stringify(response));
+}
+
+
+
 module.exports = CommonService;

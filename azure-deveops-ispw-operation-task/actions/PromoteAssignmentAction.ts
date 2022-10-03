@@ -1,3 +1,4 @@
+export {};
 import { ok } from 'assert';
 import tl = require('azure-pipelines-task-lib/task');
 const IspwActions = require('./IspwActions') 
@@ -8,7 +9,7 @@ var contextPath ="/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={l
 const restUtis= require('../utils/RestUtils')
 const CommonService = require('../services/CommonService')
 const IspwReqBody = require('../transferObj/IspwReqBody')
-const PromoteActionResponse = require('../transferObj/PromoteActionResponse')
+const SetIdResponse = require('../transferObj/SetIdResponse')
 class ReqBodyAttributes extends IspwReqBody{
     constructor(){
         super();
@@ -24,7 +25,7 @@ class PromoteAssignmentAction extends IspwActions {
        
     }
    async performAction(input:Input):Promise<IspwResponse>{
-        let prompteActionResponse:IspwResponse= new PromoteActionResponse();
+        let prompteActionResponse:IspwResponse= new SetIdResponse();
         try{
         let util = new restUtis();
         let authToken= input.cesToken;
@@ -32,10 +33,9 @@ class PromoteAssignmentAction extends IspwActions {
         let reqTO:IspwReqTO= util.getIspwReqTo(input,contextPath,reqBody);
         let url= util.getCesUrl(input) + reqTO.path;
         let cmnService = new CommonService();
-        let json= await cmnService.doPostRequest(url,reqTO.reqBody,authToken);
+        let json= await cmnService.doPostRequest(url,reqTO.reqBody,authToken,"Promote Assignemnt",input.showResponseBodyInConsole);
         console.log("json",json);
         Object.assign(prompteActionResponse,json);  
-        console.log("prompteActionResponse "+JSON.stringify(prompteActionResponse));  
     }catch(e){
         console.log((<Error>e).message);
 

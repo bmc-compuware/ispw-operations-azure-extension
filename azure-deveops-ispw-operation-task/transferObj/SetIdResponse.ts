@@ -1,4 +1,4 @@
-class PromoteActionResponse  implements IspwResponse{
+class SetIdResponse  implements IspwResponse{
     message:string;
     setId:string;
     url:string;
@@ -10,4 +10,4 @@ class PromoteActionResponse  implements IspwResponse{
 
 }
 
-module.exports= PromoteActionResponse;
+module.exports= SetIdResponse;

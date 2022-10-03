@@ -70,8 +70,8 @@
             "defaultValue": "No",
             "helpMarkDown": "This allows to turn on / off polling a set to wait for the job finish if it is applicable.",
             "options": {
-                "Yes": "Yes",
-                "No": "No"
+                "true": "Yes",
+                "false": "No"
             }
         },
         {
@@ -82,8 +82,8 @@
             "defaultValue": "No",
             "helpMarkDown": "This allows you to turn off writing the response body to the log.",
             "options": {
-                "Yes": "Yes",
-                "No": "No"
+                "true": "Yes",
+                "false": "No"
             }
         }
     ],
