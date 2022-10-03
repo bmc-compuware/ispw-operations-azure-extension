@@ -37,8 +37,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const connectionId = "cw09.compuware.com:47624#1047"; //tl.getInput('connectionId', true); // 
         const cesUrl = "http://172.19.173.31:48226"; //tl.getInput('cesUrl', true);////
-        const action = "RegressAssignment"; //tl.getInput("action", true);//"PromoteAction" //
-        const payload = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\nlevel=STG1"; //tl.getInput("request",true);//"assignmentId=paly0122"; //
+        const action = "PromoteRelease"; //tl.getInput("action", true);//"PromoteAction" //
+        const payload = "releaseId=MAYANK_TES\n runtimeConfiguration=TPTP\n level=DEV1"; //tl.getInput("request",true);//"assignmentId=paly0122"; //
         const cesToken = "403601c5-2f2e-4367-8137-daa6cf229dbb"; //tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
         const skipWaitingForSetCompletion = false; //tl.getBoolInput("skipWaitingForSetCompletion") ;
         const showResponseBodyInConsole = true; //tl.getBoolInput("showResponseBodyInConsole");

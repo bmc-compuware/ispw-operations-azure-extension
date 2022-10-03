@@ -6,7 +6,7 @@
     "description": "Task 1.2 used for performing ISPW to Git sync functionality and CES operations.",
     "helpMarkDown": "",
     "category": "Utility",
-    "author": "Mayank Jain BMC Software",
+    "author": "BMC Software",
     "version": {
         "Major": 1,
         "Minor": 2,

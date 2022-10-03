@@ -30,8 +30,8 @@ function sleep(ms: number) {
 async function run() {
     const connectionId: string | undefined = "cw09.compuware.com:47624#1047"//tl.getInput('connectionId', true); // 
     const cesUrl: string | undefined = "http://172.19.173.31:48226"//tl.getInput('cesUrl', true);////
-    const action: any | undefined = "RegressAssignment"//tl.getInput("action", true);//"PromoteAction" //
-    const payload: string | undefined = "assignmentId=HARY008369\n runtimeConfiguration=TPTP\nlevel=STG1";//tl.getInput("request",true);//"assignmentId=paly0122"; //
+    const action: any | undefined = "PromoteRelease"//tl.getInput("action", true);//"PromoteAction" //
+    const payload: string | undefined = "releaseId=MAYANK_TES\n runtimeConfiguration=TPTP\n level=DEV1";//tl.getInput("request",true);//"assignmentId=paly0122"; //
     const cesToken: string | undefined = "403601c5-2f2e-4367-8137-daa6cf229dbb"//tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
     const skipWaitingForSetCompletion: boolean | undefined = false; //tl.getBoolInput("skipWaitingForSetCompletion") ;
     const showResponseBodyInConsole : boolean | undefined =true; //tl.getBoolInput("showResponseBodyInConsole");
