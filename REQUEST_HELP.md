@@ -3,7 +3,7 @@
 
 Required:
 
-|     |     |
+
 | --- | --- |
 | runtimeConfiguration | see ISPW administrator for valid values |
 | assignmentId (PromoteAssignment) or releaseId (PromoteRelease) | The container ID for which you intend to promote tasks. |
@@ -11,7 +11,7 @@ Required:
 
 Optional:
 
-|     |     |
+
 | --- | --- |
 | mname | component with this name in the container will be promoted |
 | mtype | component with this type in the container will be promoted |
@@ -22,7 +22,7 @@ Optional:
 
 Example:
 
-|     |     |
+
 | --- | --- |
 | PromoteAssignment | PromoteRelease |
 | runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |runtimeConfiguration=TPZP  <br>releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB|
@@ -31,7 +31,7 @@ Example:
 **Regress Assignment / Regress Release actions**  
 Required:
 
-|     |     |
+
 | --- | --- |
 | runtimeConfiguration | see ISPW administrator for valid values |
 | assignmentId (RegressAsignment) or releaseId (RegressRelease) | The container for which you intend to regress the tasks |
@@ -39,7 +39,7 @@ Required:
 
 Optional:
 
-|     |     |
+
 | --- | --- |
 | mname | component with this name in the container will be regressed |
 | mtype | component with this type in the container will be regressed |
@@ -48,7 +48,7 @@ Optional:
 
 Example:
 
-|     |     |
+
 | --- | --- |
 | RegressAssignment | RegressRelease |
 | runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB  |runtimeConfiguration=TPZP <br>releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |

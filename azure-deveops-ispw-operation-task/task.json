@@ -9,7 +9,7 @@
     "author": "BMC Software",
     "version": {
         "Major": 1,
-        "Minor": 7,
+        "Minor": 9,
         "Patch": 0
     },
     "instanceNameFormat": "Echo instanceName",
@@ -57,9 +57,9 @@
             "label": "Request",
             "type": "multiLine",
             "options": {},
-            "defaultValue": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/REQUEST_HELP.md)",
+            "defaultValue": "#The following messages are commented out to show how to use the 'Request' field.\n#Click on the help button to the right of the screen for examples of how to populate this field based on 'Action' type\n #\n #For example, if you select GenerateTasksInAssignment for 'Action' field,\n# you may populate the following properties in 'Request' field.\n # The property value should be based on your own container ID and level.\n #\n #assignmentId=PLAY000313\n #level=STG2\n",
             "required": true,
-            "helpMarkDown": ""
+            "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/REQUEST_HELP.md)"
         
         },
         {
