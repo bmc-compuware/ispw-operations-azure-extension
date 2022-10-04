@@ -9,7 +9,7 @@
     "author": "BMC Software",
     "version": {
         "Major": 1,
-        "Minor": 2,
+        "Minor": 6,
         "Patch": 0
     },
     "instanceNameFormat": "Echo instanceName",
@@ -46,11 +46,10 @@
             "required": true,
             "helpMarkDown": "ISPW action to be performed",
             "options": {
-                "addTask": "Add Task",
                 "PromoteAssignment": "Promote Assignment",
-                "promoteRelease": "Promote Release",
-                "regressAssignment": "Regress Assignment",
-                "regressRelease": "Regress Release"
+                "PromoteRelease": "Promote Release",
+                "RegressAssignment": "Regress Assignment",
+                "RegressRelease": "Regress Release"
             }
         },
         {
@@ -60,13 +59,13 @@
             "options": {},
             "defaultValue": "",
             "required": true,
-            "helpMarkDown": "[Learn more about request details](https://go.microsoft.com/fwlink/?LinkID=613717)"
+            "helpMarkDown": "[Learn more about request details](REQUEST_HELP.md)"
         },
         {
             "name": "skipWaitingForSetCompletion",
             "label": "Skip waiting for the completion of the set (if applicable)",
             "type": "boolean",
-            "required": true,
+            "required": false,
             "defaultValue":"false",
             "helpMarkDown": "This allows to turn on / off polling a set to wait for the job finish if it is applicable.",
             "options": {
@@ -78,8 +77,8 @@
             "name": "showResponseBodyInConsole",
             "label": "Show Response body in console",
             "type": "boolean",
-            "required": true,
-            "defaultValue": "false",
+            "required": false,
+            "defaultValue": "true",
             "helpMarkDown": "This allows you to turn off writing the response body to the log.",
             "options": {
                 "true": "Yes",
