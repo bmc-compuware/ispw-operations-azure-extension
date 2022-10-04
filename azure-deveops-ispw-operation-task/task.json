@@ -9,7 +9,7 @@
     "author": "BMC Software",
     "version": {
         "Major": 1,
-        "Minor": 6,
+        "Minor": 7,
         "Patch": 0
     },
     "instanceNameFormat": "Echo instanceName",
@@ -57,9 +57,10 @@
             "label": "Request",
             "type": "multiLine",
             "options": {},
-            "defaultValue": "",
+            "defaultValue": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/REQUEST_HELP.md)",
             "required": true,
-            "helpMarkDown": "[Learn more about request details](REQUEST_HELP.md)"
+            "helpMarkDown": ""
+        
         },
         {
             "name": "skipWaitingForSetCompletion",

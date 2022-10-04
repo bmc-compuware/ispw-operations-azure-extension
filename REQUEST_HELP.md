@@ -1,4 +1,6 @@
-** PromoteAssignment / PromoteRelease actions **  
+
+**Promote Assignment / Promote Release actions** 
+
 Required:
 
 |     |     |
@@ -23,13 +25,10 @@ Example:
 |     |     |
 | --- | --- |
 | PromoteAssignment | PromoteRelease |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB    <br>runtimeConfiguration=TPZP  <br>releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB|
+| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |runtimeConfiguration=TPZP  <br>releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB|
 
 
-
-
-
-**RegressAssignment / RegressRelease actions**  
+**Regress Assignment / Regress Release actions**  
 Required:
 
 |     |     |
@@ -52,4 +51,4 @@ Example:
 |     |     |
 | --- | --- |
 | RegressAssignment | RegressRelease |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB  <br>runtimeConfiguration=TPZP <br>releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |
+| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB  |runtimeConfiguration=TPZP <br>releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |
