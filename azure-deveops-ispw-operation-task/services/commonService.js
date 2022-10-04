@@ -55,7 +55,6 @@ class CommonService {
                         'Authorization': cesToken
                     }
                 });
-                console.log("response " + res.data);
                 return res.data;
             }
             catch (error) {

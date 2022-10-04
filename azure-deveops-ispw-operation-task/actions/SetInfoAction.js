@@ -18,7 +18,6 @@ class SetInfoAction extends ispwActions {
             let setInfoResponseObj = new setInfoResponse();
             let cmnServiceObj = new cmnService();
             let rt = yield cmnServiceObj.doGetRequest(input.cesUrl, input.cesToken);
-            console.log(rt);
             Object.assign(setInfoResponseObj, rt);
             return setInfoResponseObj;
         });

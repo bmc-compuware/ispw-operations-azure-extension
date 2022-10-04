@@ -34,7 +34,6 @@ class PromoteAssignmentAction extends IspwActions {
         let url= util.getCesUrl(input) + reqTO.path;
         let cmnService = new CommonService();
         let json= await cmnService.doPostRequest(url,reqTO.reqBody,authToken,"Promote Assignemnt",input.showResponseBodyInConsole);
-        console.log("json",json);
         Object.assign(prompteActionResponse,json);  
     }catch(e){
         console.log((<Error>e).message);

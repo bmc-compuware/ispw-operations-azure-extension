@@ -18,7 +18,6 @@ class RestUtils {
         reqTo.srcId = input.host + '-' + input.port;
         contextPath = contextPath.replace('{srid}', reqTo.srcId);
         let params = this.lstParm(contextPath);
-        console.log(params);
         let req = input.payload;
         let lineArr = req.split('\n');
         for (var line of lineArr) {
@@ -43,7 +42,6 @@ class RestUtils {
         return reqTo;
     }
     cleanContextPath(contextPath) {
-        console.log("contextpath", contextPath);
         let resultPath = contextPath;
         let arr = this.lstParm(contextPath);
         let re = /[&]+/;
@@ -56,7 +54,6 @@ class RestUtils {
                 s2 = s2.replace(obj + "={" + obj + "}", "");
             }
             s2 = s2.replace(re, "&");
-            console.log("s2", s2);
             if (s2.endsWith("&")) {
                 s2 = s2.substring(0, s2.length - 1);
             }
@@ -70,9 +67,7 @@ class RestUtils {
         }
         let url = new URL(ip.cesUrl);
         let protocol = url.protocol;
-        console.log("protocol::" + protocol);
         let host = url.host;
-        console.log("host:::" + host);
         let port = Number(url.port);
         if (port < 0) {
             if ("http" === protocol.toLowerCase()) {
