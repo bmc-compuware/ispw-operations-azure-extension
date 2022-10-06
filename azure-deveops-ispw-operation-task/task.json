@@ -9,7 +9,7 @@
     "author": "BMC Software",
     "version": {
         "Major": 1,
-        "Minor": 9,
+        "Minor": 19,
         "Patch": 0
     },
     "instanceNameFormat": "Echo instanceName",
@@ -59,14 +59,14 @@
             "options": {},
             "defaultValue": "#The following messages are commented out to show how to use the 'Request' field.\n#Click on the help button to the right of the screen for examples of how to populate this field based on 'Action' type\n #\n #For example, if you select GenerateTasksInAssignment for 'Action' field,\n# you may populate the following properties in 'Request' field.\n # The property value should be based on your own container ID and level.\n #\n #assignmentId=PLAY000313\n #level=STG2\n",
             "required": true,
-            "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/REQUEST_HELP.md)"
+            "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md)"
         
         },
         {
             "name": "skipWaitingForSetCompletion",
             "label": "Skip waiting for the completion of the set (if applicable)",
             "type": "boolean",
-            "required": false,
+            "required": true,
             "defaultValue":"false",
             "helpMarkDown": "This allows to turn on / off polling a set to wait for the job finish if it is applicable.",
             "options": {
@@ -78,7 +78,7 @@
             "name": "showResponseBodyInConsole",
             "label": "Show Response body in console",
             "type": "boolean",
-            "required": false,
+            "required": true,
             "defaultValue": "true",
             "helpMarkDown": "This allows you to turn off writing the response body to the log.",
             "options": {
@@ -110,57 +110,3 @@
     }
 }
 
-
-Promote Assignment / Promote Release actions
-
-Required:
-
-|     |     |
-| --- | --- |
-| runtimeConfiguration | see ISPW administrator for valid values |
-| assignmentId (PromoteAssignment) or releaseId (PromoteRelease) | The container ID for which you intend to promote tasks. |
-| level | All tasks in the release at this level will be generated |
-
-Optional:
-
-|     |     |
-| --- | --- |
-| mname | component with this name in the container will be promoted |
-| mtype | component with this type in the container will be promoted |
-| override | override the higher version if  presented in the next level. Default to no override. |
-| changeType | optional, S for standard, I for incidental, or E for emergency. Default value of S. |
-| executionStatus | I for immediate execution or at start date/time, H to create request in hold |
-| autoDeploy | promotes can be set up to automatically Deploy as well by an option set up by the ISPW. The default is to not use Auto Deploy |
-
-Example:
-
-|     |     |
-| --- | --- |
-| PromoteAssignment | PromoteRelease |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |runtimeConfiguration=TPZP  <br>releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB|
-
-
-**Regress Assignment / Regress Release actions**  
-Required:
-
-|     |     |
-| --- | --- |
-| runtimeConfiguration | see ISPW administrator for valid values |
-| assignmentId (RegressAsignment) or releaseId (RegressRelease) | The container for which you intend to regress the tasks |
-| level | All tasks in the container at this level will be generated |
-
-Optional:
-
-|     |     |
-| --- | --- |
-| mname | component with this name in the container will be regressed |
-| mtype | component with this type in the container will be regressed |
-| changeType | S for standard, I for incidental, or E for emergency. Default value of S |
-| executionStatus | I for immediate execution or at start date/time, H to create request in hold |
-
-Example:
-
-|     |     |
-| --- | --- |
-| RegressAssignment | RegressRelease |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB  |runtimeConfiguration=TPZP <br>releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |

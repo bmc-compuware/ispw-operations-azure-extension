@@ -2,7 +2,7 @@
     "id": "ispw-operations",
     "name": "BMC ISPW Operations",
     "public": false,
-    "version": "2.0.12",
+    "version": "2.0.19",
     "publisher": "BMC-Compuware",
     "targets": [
         {
@@ -24,6 +24,9 @@
         "getstarted": {
             "uri": "https://github.com/bmc-compuware/ispw-operations-azure-extension/master/README.md"
         },
+		"license": {
+            "uri": "https://github.com/bmc-compuware/ispw-operations-azure-extension/master/LICENSE"
+        },
         "support": {
             "uri": "https://support.bmc.com"
         }
@@ -33,7 +36,7 @@
             "path": "README.md"
         },
         "license": {
-            "path": "LICENSE.md"
+            "path": "LICENSE"
         }
     },
     "tags": [
