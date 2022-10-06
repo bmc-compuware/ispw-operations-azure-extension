@@ -18,8 +18,7 @@ Note: This extension version is only supported with local Azure Devops Server, i
 
 ## Installing extensions in a Azure Devops Server Instance
 
-1. Install the BMC common configuration extension and BMC ISPW Source Code Downloader extension according to the Azure Devops instructions for installing extensions. 
-2. Install the Topaz Workbench CLI on the machine in which Azure Devops Server is running that will execute the extension. The Topaz Workbench CLI is available in the Topaz Workbench installation package. If you do not have the installation package, please visit [support.bmc.com](https://support.bmc.com/). 
+1. Install the BMC common configuration extension and BMC ISPW Operation extension according to the Azure Devops instructions for installing extensions. 
 
 ### Configuring Host Connections and CES Tokens
 
