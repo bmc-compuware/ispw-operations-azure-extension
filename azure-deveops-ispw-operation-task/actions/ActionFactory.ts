@@ -1,24 +1,29 @@
-const PromoteAssignmentAction = require('./PromoteAssignmentAction');
-const setInfoAction = require('./SetInfoAction');
-const promoteReleaseAction = require('./PromoteReleaseAction');
-const regressAssignmentAction=require('./RegressAssignmentAction');
-const regressReleaseAction= require('./RegressReleaseAction');
+const AddTaskAction = require("./AddTaskAction");
+const PromoteAssignmentAction = require("./PromoteAssignmentAction");
+const setInfoAction = require("./SetInfoAction");
+const promoteReleaseAction = require("./PromoteReleaseAction");
+const regressAssignmentAction = require("./RegressAssignmentAction");
+const regressReleaseAction = require("./RegressReleaseAction");
 
 class ActionFactory {
-    constructor(){
-        
+  constructor() {}
+  createObj(type: string) {
+    switch (type) {
+      case "AddTask":
+        return new AddTaskAction();
+      case "PromoteAssignment":
+        return new PromoteAssignmentAction();
+      case "SetInfo":
+        return new setInfoAction();
+      case "PromoteRelease":
+        return new promoteReleaseAction();
+      case "RegressAssignment":
+        return new regressAssignmentAction();
+      case "RegressRelease":
+        return new regressReleaseAction();
+      default:
+        new Error("Action Not supported");
     }
-    createObj(type: string) {
-           switch (type) {
-                case 'PromoteAssignment': return new PromoteAssignmentAction();
-                case 'SetInfo': return  new setInfoAction();
-                case 'PromoteRelease' : return new promoteReleaseAction();
-                case 'RegressAssignment': return  new regressAssignmentAction();
-                case 'RegressRelease' : return new regressReleaseAction();
-                default: new Error('Action Not supported');
-
-        }
-
-    }
+  }
 }
 module.exports = ActionFactory;

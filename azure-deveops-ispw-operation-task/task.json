@@ -3,14 +3,14 @@
     "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa7",
     "name": "azure-deveops-ispw-operation-task",
     "friendlyName": "BMC ISPW Operations",
-    "description": "Task 1.2 used for performing ISPW to Git sync functionality and CES operations.",
+    "description": "This task is used for ISPW operations.",
     "helpMarkDown": "",
     "category": "Utility",
     "author": "BMC Software",
     "version": {
-        "Major": 1,
-        "Minor": 19,
-        "Patch": 0
+        "Major": 0,
+        "Minor": 0,
+        "Patch": 2
     },
     "instanceNameFormat": "Echo instanceName",
     "inputs": [
@@ -46,6 +46,7 @@
             "required": true,
             "helpMarkDown": "ISPW action to be performed",
             "options": {
+                "AddTask": "Add Task",
                 "PromoteAssignment": "Promote Assignment",
                 "PromoteRelease": "Promote Release",
                 "RegressAssignment": "Regress Assignment",
@@ -91,14 +92,14 @@
         {
             "endpointId": "tfs:teamfoundation",
             "target": "connectionId",
-            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/RiteshChaudhari/compuware-common-config-extension/Data/Scopes/Default/Current/Collections/%24settings/Documents/hostconnection",
+            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
             "resultSelector": "jsonpath:$.value[*]",
-            "resultTemplate": "{\"Value\":\"{{{host}}}#{{{code_page}}}\",\"DisplayValue\":\"{{{host}}}\"}"
+			"resultTemplate": "{\"Value\":\"{{{host}}}#{{{code_page}}}\",\"DisplayValue\":\"{{{host}}}\"}"
         },
         {
             "endpointId": "tfs:teamfoundation",
             "target": "cesUrl",
-            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/RiteshChaudhari/compuware-common-config-extension/Data/Scopes/Default/Current/Collections/%24settings/Documents/hostconnection",
+            "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
             "resultSelector": "jsonpath:$.value[*]",
             "resultTemplate": "{\"Value\":\"{{{ces_url}}}\",\"DisplayValue\":\"{{{ces_url}}}\"}"
         }

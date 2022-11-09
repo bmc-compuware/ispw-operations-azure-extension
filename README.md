@@ -8,9 +8,8 @@ The BMC ISPW Operations extension allows users to perform ISPW to git Sync funct
 ## Prerequisites
 
 The following are required to use this plugin:
-- Local Azure DevOps Server.
-- BMC common configuration Azure extension.
-- Jenkins Plain Credentials plugin
+- Local Azure DevOps Server
+- [BMC common configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
 - Compuware mainframe ISPW
 - Compuware CES
 

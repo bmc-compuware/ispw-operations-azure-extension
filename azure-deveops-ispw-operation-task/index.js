@@ -10,13 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const tl = require("azure-pipelines-task-lib/task");
-const PromoteAction = require('./actions/PromoteAssignmentAction');
-const IspwActions = require('./actions/IspwActions');
-const SetInfoAction = require('./actions/SetInfoAction');
-const ActionFactory = require('./actions/ActionFactory');
-const Input = require('./transferObj/input');
-const SetIdResponse = require('./transferObj/SetIdResponse');
-const IspwResponse = require('./transferObj/ispwResponse');
+const ActionFactory = require("./actions/ActionFactory");
+const Input = require("./transferObj/input");
+const SetIdResponse = require("./transferObj/SetIdResponse");
+const AddTaskResponse = require("./transferObj/AddTaskResponse");
 const polling_interval = 2000;
 const SET_STATE_DISPATCHED = "Dispatched";
 const SET_STATE_EXECUTING = "Executing";
@@ -29,25 +26,28 @@ const SET_STATE_TERMINATED = "Terminated";
 const SET_STATE_WAITING_APPROVAL = "Waiting-Approval";
 const SET_STATE_WAITING_LOCK = "Waiting-Lock";
 function isEmpty(str) {
-    return (!str || str.length === 0);
+    return !str || str.length === 0;
 }
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
-        const connectionId = tl.getInput('connectionId', true); // 
-        const cesUrl = tl.getInput('cesUrl', true); ////
-        const action = tl.getInput("action", true); //"PromoteAction" //
-        const payload = tl.getInput("request", true); //"assignmentId=paly0122"; //
-        const cesToken = tl.getInput('cesSecretToken'); //"a7c35910-8775-4ba7-8b94-ad6822f9296c"//
+        const connectionId = tl.getInput("connectionId", true);
+        const cesUrl = tl.getInput("cesUrl", true);
+        const action = tl.getInput("action", true);
+        const payload = tl.getInput("request", true);
+        const cesToken = tl.getInput("cesSecretToken");
         const skipWaitingForSetCompletion = tl.getBoolInput("skipWaitingForSetCompletion");
         const showResponseBodyInConsole = tl.getBoolInput("showResponseBodyInConsole");
-        var isValidInput = connectionId != undefined && cesUrl != undefined &&
-            action != undefined && !isEmpty(connectionId) && !isEmpty(cesUrl);
+        var isValidInput = connectionId != undefined &&
+            cesUrl != undefined &&
+            action != undefined &&
+            !isEmpty(connectionId) &&
+            !isEmpty(cesUrl);
         var ispwActions;
         if (isValidInput) {
-            let connection = connectionId != undefined ? connectionId.split('#') : "";
+            let connection = connectionId != undefined ? connectionId.split("#") : "";
             let codePage = connection[1].trim();
             let conStr = connection[0];
             let hostPortArr = conStr.split(":");
@@ -56,6 +56,10 @@ function run() {
                 ispwActions = actionFactory.createObj(action);
                 let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
                 const obj = yield ispwActions.performAction(input);
+                if (obj instanceof AddTaskResponse) {
+                    let taskResponse = obj;
+                    console.log(taskResponse.message);
+                }
                 if (!skipWaitingForSetCompletion) {
                     if (obj instanceof SetIdResponse) {
                         let obj1 = obj;
@@ -80,12 +84,14 @@ function run() {
                                     console.log("ISPW: Set " + set_obj.setid + " - successfully held");
                                     break;
                                 }
-                                else if (set_obj.state == SET_STATE_RELEASED || set_obj.state == SET_STATE_WAITING_LOCK) {
+                                else if (set_obj.state == SET_STATE_RELEASED ||
+                                    set_obj.state == SET_STATE_WAITING_LOCK) {
                                     console.log("ISPW: Set " + set_obj.setid + " - successfully released");
                                     break;
                                 }
-                                else if (set_obj.state == SET_STATE_CLOSED || set_obj.state == SET_STATE_COMPLETE
-                                    || set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                else if (set_obj.state == SET_STATE_CLOSED ||
+                                    set_obj.state == SET_STATE_COMPLETE ||
+                                    set_obj.state == SET_STATE_WAITING_APPROVAL) {
                                     console.log("ISPW: Action " + action + " completed");
                                     break;
                                 }
@@ -95,6 +101,9 @@ function run() {
                             }
                         }
                     }
+                }
+                if (skipWaitingForSetCompletion) {
+                    console.log("Skip waiting for the completion of the set for this job...");
                 }
             }
         }
