@@ -5,7 +5,7 @@ var contextPath =
 const restUtis = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const SetIdResponse = require("../transferObj/SetIdResponse");
+const TaskResponse = require("../transferObj/TaskResponse");
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
     super();
@@ -18,7 +18,7 @@ class PromoteAssignmentAction extends IspwActions {
     super();
   }
   async performAction(input: Input): Promise<IspwResponse> {
-    let prompteActionResponse: IspwResponse = new SetIdResponse();
+    let prompteActionResponse: IspwResponse = new TaskResponse();
     try {
       let util = new restUtis();
       let authToken = input.cesToken;

@@ -1,7 +1,7 @@
 import tl = require("azure-pipelines-task-lib/task");
 const ActionFactory = require("./actions/ActionFactory");
 const Input = require("./transferObj/input");
-const SetIdResponse = require("./transferObj/SetIdResponse");
+const TaskResponse = require("./transferObj/TaskResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
 const polling_interval: number = 2000;
 
@@ -68,8 +68,8 @@ async function run() {
         console.log(taskResponse.message);
       }
       if (!skipWaitingForSetCompletion) {
-        if (obj instanceof SetIdResponse) {
-          let obj1 = obj as SetIdResponse;
+        if (obj instanceof TaskResponse) {
+          let obj1 = obj as TaskResponse;
           if (obj1.setId != undefined) {
             input = new Input(
               hostPortArr[0],

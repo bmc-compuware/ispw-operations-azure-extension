@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tl = require("azure-pipelines-task-lib/task");
 const ActionFactory = require("./actions/ActionFactory");
 const Input = require("./transferObj/input");
-const SetIdResponse = require("./transferObj/SetIdResponse");
+const TaskResponse = require("./transferObj/TaskResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
 const polling_interval = 2000;
 const SET_STATE_DISPATCHED = "Dispatched";
@@ -61,7 +61,7 @@ function run() {
                     console.log(taskResponse.message);
                 }
                 if (!skipWaitingForSetCompletion) {
-                    if (obj instanceof SetIdResponse) {
+                    if (obj instanceof TaskResponse) {
                         let obj1 = obj;
                         if (obj1.setId != undefined) {
                             input = new Input(hostPortArr[0], hostPortArr[1], codePage, obj1.url, {}, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
