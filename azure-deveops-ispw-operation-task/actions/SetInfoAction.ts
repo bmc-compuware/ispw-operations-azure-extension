@@ -9,7 +9,7 @@ async performAction(input:Input):Promise<IspwResponse>{
         let cmnServiceObj= new cmnService();
         let rt= await cmnServiceObj.doGetRequest(input.cesUrl,input.cesToken);
         Object.assign(setInfoResponseObj,rt);
-        console.log("set Info response: "+ JSON.stringify(setInfoResponseObj));
+        console.log("Set Info response: "+ JSON.stringify(setInfoResponseObj));
         return setInfoResponseObj;
     }
 }

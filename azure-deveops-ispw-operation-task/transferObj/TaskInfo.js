@@ -2,6 +2,7 @@
 class TaskInfo {
     constructor() {
         this.application = "";
+        this.subAppl = "";
         this.stream = "";
         this.moduleType = "";
         this.moduleName = "";

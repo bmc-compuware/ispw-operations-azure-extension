@@ -1,5 +1,6 @@
 class TaskInfo{
      application:string=""
+	 subAppl:string=""
 	 stream:string=""
 	 moduleType:string=""
 	 moduleName:string=""
