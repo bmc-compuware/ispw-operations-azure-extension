@@ -37,7 +37,6 @@ async function run() {
   const showResponseBodyInConsole: boolean | undefined = tl.getBoolInput(
     "showResponseBodyInConsole"
   );
-
   var isValidInput: boolean =
     connectionId != undefined &&
     cesUrl != undefined &&

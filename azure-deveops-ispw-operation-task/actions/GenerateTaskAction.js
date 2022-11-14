@@ -19,6 +19,16 @@ class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
         this.runtimeConfiguration = "";
+        this.changeType = "";
+        this.executionStatus = "";
+        this.dpenvlst = "";
+        this.system = "";
+        this.autoDeploy = "";
+        this.deployActiveDate = "";
+        this.deployActiveTime = "";
+        this.deployImplementationDate = "";
+        this.deployImplementationTime = "";
+        this.override = "";
     }
 }
 class GenerateTaskAction extends IspwActions {

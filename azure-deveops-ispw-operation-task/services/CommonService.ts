@@ -14,9 +14,10 @@ class CommonService {
       headers: { 'Content-Type': 'application/json', 'Authorization': cesToken }
     };
     try {
+      console.log("Starting ISPW Operations Plugin...");
       if (isPrintEnable) {
         logRequest(url, options.headers, payload, cesToken, action, "POST");
-      }
+      }      
       let res = await axios.post(url, payload, options);
       let rt = res.data;
       if (isPrintEnable) {

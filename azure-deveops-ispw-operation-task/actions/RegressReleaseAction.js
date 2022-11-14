@@ -9,16 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const TaskResponse = require('../transferObj/TaskResponse');
+const TaskResponse = require("../transferObj/TaskResponse");
 var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/regress?level={level}&mname={mname}&mtype={mtype}";
-const restUtis = require('../utils/RestUtils');
-const CommonService = require('../services/CommonService');
-const IspwReqBody = require('../transferObj/IspwReqBody');
-const IspwActions = require('../actions/IspwActions');
+const restUtis = require("../utils/RestUtils");
+const CommonService = require("../services/CommonService");
+const IspwReqBody = require("../transferObj/IspwReqBody");
+const IspwActions = require("../actions/IspwActions");
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
         this.runtimeConfiguration = "";
+        this.changeType = "";
+        this.executionStatus = "";
+        this.dpenvlst = "";
+        this.system = "";
+        this.autoDeploy = "";
+        this.deployActiveDate = "";
+        this.deployActiveTime = "";
+        this.deployImplementationDate = "";
+        this.deployImplementationTime = "";
+        this.override = "";
+        this.taskId = [];
     }
 }
 class RegressReleaseAction extends IspwActions {

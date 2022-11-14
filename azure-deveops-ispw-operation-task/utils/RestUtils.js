@@ -1,5 +1,5 @@
 "use strict";
-const ispwReqTO = require('../transferObj/IspwReqTO');
+const ispwReqTO = require("../transferObj/IspwReqTO");
 class RestUtils {
     lstParm(contextPath) {
         var re = /\{\w+\}/g;
@@ -15,17 +15,17 @@ class RestUtils {
     }
     getIspwReqTo(input, contextPath, reqBody) {
         let reqTo = new ispwReqTO();
-        reqTo.srcId = input.host + '-' + input.port;
-        contextPath = contextPath.replace('{srid}', reqTo.srcId);
+        reqTo.srcId = input.host + "-" + input.port;
+        contextPath = contextPath.replace("{srid}", reqTo.srcId);
         let params = this.lstParm(contextPath);
         let req = input.payload;
-        let lineArr = req.split('\n');
+        let lineArr = req.split("\n");
         for (var line of lineArr) {
             line = line.toString().trim();
-            if (line.startsWith('#')) {
+            if (line.startsWith("#")) {
                 continue;
             }
-            let indexOfEqualSign = line.indexOf('=');
+            let indexOfEqualSign = line.indexOf("=");
             if (indexOfEqualSign != -1) {
                 var name = line.substring(0, indexOfEqualSign).trim();
                 var value = line.substring(indexOfEqualSign + 1, line.length);
@@ -34,17 +34,29 @@ class RestUtils {
                     reqTo.reqBody[name] = value;
                 }
                 if (params.indexOf(name) != -1) {
-                    contextPath = contextPath.replace('{' + name + '}', value.trim());
+                    if (value.indexOf(",") != -1) {
+                        contextPath = contextPath.replace(name + "={" + name + "}", this.getRealValue(name, value));
+                    }
+                    else {
+                        contextPath = contextPath.replace("{" + name + "}", value.trim());
+                    }
                 }
             }
         }
         reqTo.path = this.cleanContextPath(contextPath);
         return reqTo;
     }
+    getRealValue(name, value) {
+        let realValue = "";
+        let values = value.split(",");
+        for (let value of values) {
+            realValue = realValue + name + "=" + value + "&";
+        }
+        return realValue.slice(0, -1);
+    }
     cleanContextPath(contextPath) {
         let resultPath = contextPath;
         let arr = this.lstParm(contextPath);
-        let re = /[&]+/;
         contextPath = contextPath.replace("?&", "?");
         let index = contextPath.indexOf("?");
         if (index != -1) {
@@ -53,8 +65,9 @@ class RestUtils {
             for (let obj of arr) {
                 s2 = s2.replace(obj + "={" + obj + "}", "");
             }
-            s2 = s2.replace(re, "&");
-            if (s2.endsWith("&")) {
+            s2 = s2.replace(/[&]+/g, "&");
+            s2 = s2.replace("?&", "?");
+            while (s2.endsWith("&")) {
                 s2 = s2.substring(0, s2.length - 1);
             }
             resultPath = s1 + s2;
@@ -62,8 +75,8 @@ class RestUtils {
         return resultPath;
     }
     getCesUrl(ip) {
-        if (!ip.cesUrl.trim().startsWith('http')) {
-            throw new Error('Not A Valid Url');
+        if (!ip.cesUrl.trim().startsWith("http")) {
+            throw new Error("Not A Valid Url");
         }
         let url = new URL(ip.cesUrl);
         let protocol = url.protocol;

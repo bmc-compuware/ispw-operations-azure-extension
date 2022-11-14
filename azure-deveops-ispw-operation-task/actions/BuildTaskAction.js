@@ -14,11 +14,21 @@ const restUtis = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const BuildResponse = require("../transferObj/BuildResponse");
-var contextPath = "/ispw/{srid}/build?taskId={taskId}&application={application}&level={level}&mname={mname}&mtype={mtype}&assignmentId={assignmentId}";
+var contextPath = "/ispw/{srid}/build?taskId={taskId}&application={application}&subAppl={subAppl}&level={level}&mname={mname}&mtype={mtype}&assignmentId={assignmentId}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
         this.runtimeConfiguration = "";
+        this.changeType = "";
+        this.executionStatus = "";
+        this.dpenvlst = "";
+        this.system = "";
+        this.autoDeploy = "";
+        this.deployActiveDate = "";
+        this.deployActiveTime = "";
+        this.deployImplementationDate = "";
+        this.deployImplementationTime = "";
+        this.override = "";
     }
 }
 class BuildTaskAction extends IspwActions {

@@ -2,7 +2,7 @@
     "id": "ispw-operations",
     "name": "BMC ISPW Operations",
     "public": false,
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "BMC-Compuware",
     "targets": [
         {

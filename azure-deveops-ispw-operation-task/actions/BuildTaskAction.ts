@@ -5,13 +5,24 @@ const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const BuildResponse = require("../transferObj/BuildResponse");
 var contextPath =
-  "/ispw/{srid}/build?taskId={taskId}&application={application}&level={level}&mname={mname}&mtype={mtype}&assignmentId={assignmentId}";
+  "/ispw/{srid}/build?taskId={taskId}&application={application}&subAppl={subAppl}&level={level}&mname={mname}&mtype={mtype}&assignmentId={assignmentId}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
     super();
   }
   runtimeConfiguration: string = "";
+  changeType: string = "";
+  executionStatus: string = "";
+  dpenvlst: string = "";
+  system: string = "";
+  autoDeploy: string = "";
+  deployActiveDate: string = "";
+  deployActiveTime: string = "";
+  deployImplementationDate: string = "";
+  deployImplementationTime: string = "";
+  override: string = "";
+  // taskId: string[] = [];
 }
 
 class BuildTaskAction extends IspwActions {

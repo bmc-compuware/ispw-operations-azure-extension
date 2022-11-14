@@ -11,6 +11,17 @@ class ReqBodyAttributes extends IspwReqBody {
     super();
   }
   runtimeConfiguration: string = "";
+  changeType: string = "";
+  executionStatus: string = "";
+  dpenvlst: string = "";
+  system: string = "";
+  autoDeploy: string = "";
+  deployActiveDate: string = "";
+  deployActiveTime: string = "";
+  deployImplementationDate: string = "";
+  deployImplementationTime: string = "";
+  override: string = "";
+  taskId: string[] = [];
 }
 
 class PromoteAssignmentAction extends IspwActions {
