@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const setInfoResponse = require('../transferObj/SetInfoResponse');
-const cmnService = require('../services/CommonService');
-const ispwActions = require('./IspwActions');
+const setInfoResponse = require("../transferObj/SetInfoResponse");
+const cmnService = require("../services/CommonService");
+const ispwActions = require("./IspwActions");
 class SetInfoAction extends ispwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -19,7 +19,7 @@ class SetInfoAction extends ispwActions {
             let cmnServiceObj = new cmnService();
             let rt = yield cmnServiceObj.doGetRequest(input.cesUrl, input.cesToken);
             Object.assign(setInfoResponseObj, rt);
-            console.log("set Info response: " + JSON.stringify(setInfoResponseObj));
+            console.log("Set Info response: " + JSON.stringify(setInfoResponseObj));
             return setInfoResponseObj;
         });
     }

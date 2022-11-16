@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const IspwActions = require("./IspwActions");
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
 const restUtis = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
+var contextPath = "/ispw/{srid}/assignments/{assignmentId}/taskIds/generate?taskId={taskId}&level={level}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -29,31 +29,21 @@ class ReqBodyAttributes extends IspwReqBody {
         this.deployImplementationDate = "";
         this.deployImplementationTime = "";
         this.override = "";
-        this.taskId = [];
     }
 }
-class PromoteAssignmentAction extends IspwActions {
-    constructor() {
-        super();
-    }
+class GenerateTaskAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let prompteActionResponse = new TaskResponse();
-            try {
-                let util = new restUtis();
-                let authToken = input.cesToken;
-                let reqBody = new ReqBodyAttributes();
-                let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
-                let url = util.getCesUrl(input) + reqTO.path;
-                let cmnService = new CommonService();
-                let json = yield cmnService.doPostRequest(url, reqTO.reqBody, authToken, "Promote Assignemnt", input.showResponseBodyInConsole);
-                Object.assign(prompteActionResponse, json);
-            }
-            catch (e) {
-                console.log(e.message);
-            }
-            return prompteActionResponse;
+            let generateTaskActionResponse = new TaskResponse();
+            let util = new restUtis();
+            let reqBody = new ReqBodyAttributes();
+            let cmnService = new CommonService();
+            let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
+            let url = util.getCesUrl(input) + reqTO.path;
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Generate Task", input.showResponseBodyInConsole);
+            Object.assign(generateTaskActionResponse, json);
+            return generateTaskActionResponse;
         });
     }
 }
-module.exports = PromoteAssignmentAction;
+module.exports = GenerateTaskAction;

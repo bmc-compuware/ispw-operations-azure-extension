@@ -1,11 +1,11 @@
 export {};
-const TaskResponse = require("../transferObj/TaskResponse");
-var contextPath =
-  "/ispw/{srid}/assignments/{assignmentId}/tasks/regress?level={level}&mname={mname}&mtype={mtype}";
+const IspwActions = require("./IspwActions");
 const restUtis = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const IspwActions = require("../actions/IspwActions");
+const TaskResponse = require("../transferObj/TaskResponse");
+var contextPath =
+  "/ispw/{srid}/assignments/{assignmentId}/taskIds/generate?taskId={taskId}&level={level}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
@@ -22,31 +22,28 @@ class ReqBodyAttributes extends IspwReqBody {
   deployImplementationDate: string = "";
   deployImplementationTime: string = "";
   override: string = "";
-  taskId: string[] = [];
+  // taskId: string[] = [];
 }
 
-class RegressAssignmentAction extends IspwActions {
+class GenerateTaskAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
-    let rs: IspwResponse = new TaskResponse();
-    let restUtilObj = new restUtis();
+    let generateTaskActionResponse: IspwResponse =
+      new TaskResponse();
+    let util = new restUtis();
     let reqBody = new ReqBodyAttributes();
-    let reqTO: IspwReqTO = restUtilObj.getIspwReqTo(
-      input,
-      contextPath,
-      reqBody
-    );
-    let url = restUtilObj.getCesUrl(input) + reqTO.path;
     let cmnService = new CommonService();
+    let reqTO: IspwReqTO = util.getIspwReqTo(input, contextPath, reqBody);
+    let url = util.getCesUrl(input) + reqTO.path;
+
     let json = await cmnService.doPostRequest(
       url,
       reqTO.reqBody,
       input.cesToken,
-      "Regress Assignment",
+      "Generate Task",
       input.showResponseBodyInConsole
     );
-    Object.assign(rs, json);
-    return rs;
+    Object.assign(generateTaskActionResponse, json);
+    return generateTaskActionResponse;
   }
 }
-
-module.exports = RegressAssignmentAction;
+module.exports = GenerateTaskAction;

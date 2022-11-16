@@ -23,7 +23,7 @@ class ReqBodyAttributes extends IspwReqBody {
         this.checkoutFromLevel = "";
         this.owner = "";
         this.path = "";
-        this.release = "";
+        this.releaseId = "";
         this.runtimeConfiguration = "";
         this.stream = "";
         this.subAppl = "";

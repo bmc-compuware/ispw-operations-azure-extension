@@ -16,7 +16,7 @@ class ReqBodyAttributes extends IspwReqBody {
   checkoutFromLevel: string = "";
   owner: string = "";
   path: string = "";
-  release: string = "";
+  releaseId: string = "";
   runtimeConfiguration: string = "";
   stream: string = "";
   subAppl: string = "";

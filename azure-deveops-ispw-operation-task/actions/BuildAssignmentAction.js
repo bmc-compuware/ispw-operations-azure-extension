@@ -10,11 +10,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const IspwActions = require("./IspwActions");
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
 const restUtis = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const TaskResponse = require("../transferObj/TaskResponse");
+const BuildResponse = require("../transferObj/BuildResponse");
+var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/build?level={level}&mname={mname}&mtype={mtype}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -32,28 +32,19 @@ class ReqBodyAttributes extends IspwReqBody {
         this.taskId = [];
     }
 }
-class PromoteAssignmentAction extends IspwActions {
-    constructor() {
-        super();
-    }
+class BuildAssignmentAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let prompteActionResponse = new TaskResponse();
-            try {
-                let util = new restUtis();
-                let authToken = input.cesToken;
-                let reqBody = new ReqBodyAttributes();
-                let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
-                let url = util.getCesUrl(input) + reqTO.path;
-                let cmnService = new CommonService();
-                let json = yield cmnService.doPostRequest(url, reqTO.reqBody, authToken, "Promote Assignemnt", input.showResponseBodyInConsole);
-                Object.assign(prompteActionResponse, json);
-            }
-            catch (e) {
-                console.log(e.message);
-            }
-            return prompteActionResponse;
+            let buildAssignmentActionResponse = new BuildResponse();
+            let util = new restUtis();
+            let reqBody = new ReqBodyAttributes();
+            let cmnService = new CommonService();
+            let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
+            let url = util.getCesUrl(input) + reqTO.path;
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Build Assignment", input.showResponseBodyInConsole);
+            Object.assign(buildAssignmentActionResponse, json);
+            return buildAssignmentActionResponse;
         });
     }
 }
-module.exports = PromoteAssignmentAction;
+module.exports = BuildAssignmentAction;

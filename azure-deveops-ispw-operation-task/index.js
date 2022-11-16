@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const tl = require("azure-pipelines-task-lib/task");
 const ActionFactory = require("./actions/ActionFactory");
 const Input = require("./transferObj/input");
-const SetIdResponse = require("./transferObj/SetIdResponse");
+const TaskResponse = require("./transferObj/TaskResponse");
+const BuildResponse = require("./transferObj/BuildResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
 const polling_interval = 2000;
 const SET_STATE_DISPATCHED = "Dispatched";
@@ -55,49 +56,60 @@ function run() {
             if (!isEmpty(action)) {
                 ispwActions = actionFactory.createObj(action);
                 let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
-                const obj = yield ispwActions.performAction(input);
-                if (obj instanceof AddTaskResponse) {
-                    let taskResponse = obj;
+                const respObject = yield ispwActions.performAction(input);
+                if (respObject instanceof AddTaskResponse) {
+                    let taskResponse = respObject;
                     console.log(taskResponse.message);
                 }
                 if (!skipWaitingForSetCompletion) {
-                    if (obj instanceof SetIdResponse) {
-                        let obj1 = obj;
-                        if (obj1.setId != undefined) {
-                            input = new Input(hostPortArr[0], hostPortArr[1], codePage, obj1.url, {}, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
-                            ispwActions = actionFactory.createObj("SetInfo");
-                            let i = 0;
-                            for (; i < 60; i++) {
-                                yield sleep(polling_interval);
-                                const setResponse = yield ispwActions.performAction(input);
-                                let set_obj = setResponse;
-                                console.log("waiting for set to complete");
-                                if (set_obj.state == SET_STATE_FAILED) {
-                                    console.log("ISPW: Set " + set_obj.setid + " - action [%s] failed", action);
-                                    break;
-                                }
-                                else if (set_obj.state == SET_STATE_TERMINATED) {
-                                    console.log("ISPW: Set " + set_obj.setid + " - successfully terminated");
-                                    break;
-                                }
-                                else if (set_obj.state == SET_STATE_HELD) {
-                                    console.log("ISPW: Set " + set_obj.setid + " - successfully held");
-                                    break;
-                                }
-                                else if (set_obj.state == SET_STATE_RELEASED ||
-                                    set_obj.state == SET_STATE_WAITING_LOCK) {
-                                    console.log("ISPW: Set " + set_obj.setid + " - successfully released");
-                                    break;
-                                }
-                                else if (set_obj.state == SET_STATE_CLOSED ||
-                                    set_obj.state == SET_STATE_COMPLETE ||
-                                    set_obj.state == SET_STATE_WAITING_APPROVAL) {
-                                    console.log("ISPW: Action " + action + " completed");
-                                    break;
-                                }
-                                if (i == 60) {
-                                    console.log("max time out reached");
-                                }
+                    let setId = "";
+                    let url = "";
+                    if (respObject instanceof TaskResponse) {
+                        let taskResp = respObject;
+                        setId = taskResp.setId;
+                        url = taskResp.url;
+                    }
+                    else if (respObject instanceof BuildResponse) {
+                        let buildResp = respObject;
+                        setId = buildResp.setId;
+                        url = buildResp.url;
+                    }
+                    if (setId &&
+                        (respObject instanceof TaskResponse ||
+                            respObject instanceof BuildResponse)) {
+                        input = new Input(hostPortArr[0], hostPortArr[1], codePage, url, {}, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
+                        ispwActions = actionFactory.createObj("SetInfo");
+                        let i = 0;
+                        for (; i < 60; i++) {
+                            yield sleep(polling_interval);
+                            const setResponse = yield ispwActions.performAction(input);
+                            let set_obj = setResponse;
+                            console.log("waiting for set to complete");
+                            if (set_obj.state == SET_STATE_FAILED) {
+                                console.log("ISPW: Set " + set_obj.setid + " - action [%s] failed", action);
+                                break;
+                            }
+                            else if (set_obj.state == SET_STATE_TERMINATED) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully terminated");
+                                break;
+                            }
+                            else if (set_obj.state == SET_STATE_HELD) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully held");
+                                break;
+                            }
+                            else if (set_obj.state == SET_STATE_RELEASED ||
+                                set_obj.state == SET_STATE_WAITING_LOCK) {
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully released");
+                                break;
+                            }
+                            else if (set_obj.state == SET_STATE_CLOSED ||
+                                set_obj.state == SET_STATE_COMPLETE ||
+                                set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                console.log("ISPW: Action " + action + " completed");
+                                break;
+                            }
+                            if (i == 60) {
+                                console.log("max time out reached");
                             }
                         }
                     }

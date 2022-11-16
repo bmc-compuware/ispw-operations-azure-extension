@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 2
+        "Patch": 7
     },
     "instanceNameFormat": "Echo instanceName",
     "inputs": [
@@ -47,6 +47,12 @@
             "helpMarkDown": "ISPW action to be performed",
             "options": {
                 "AddTask": "Add Task",
+                "BuildAssignment": "Build Assignment",
+                "BuildRelease": "Build Release",
+                "BuildTask": "Build Task",
+                "GenerateTasksInAssignment": "Generate Tasks In Assignment",
+                "GenerateTasksInRelease": "Generate Tasks In Release",
+                "GenerateTask": "Generate Task",
                 "PromoteAssignment": "Promote Assignment",
                 "PromoteRelease": "Promote Release",
                 "RegressAssignment": "Regress Assignment",
