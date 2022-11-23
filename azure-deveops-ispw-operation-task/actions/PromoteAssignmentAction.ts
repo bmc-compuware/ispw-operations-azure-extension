@@ -2,7 +2,7 @@ export {};
 const IspwActions = require("./IspwActions");
 var contextPath =
   "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
-const restUtis = require("../utils/RestUtils");
+const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
@@ -31,7 +31,7 @@ class PromoteAssignmentAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
     let prompteActionResponse: IspwResponse = new TaskResponse();
     try {
-      let util = new restUtis();
+      let util = new RestUtils();
       let authToken = input.cesToken;
       let reqBody = new ReqBodyAttributes();
       let reqTO: IspwReqTO = util.getIspwReqTo(input, contextPath, reqBody);

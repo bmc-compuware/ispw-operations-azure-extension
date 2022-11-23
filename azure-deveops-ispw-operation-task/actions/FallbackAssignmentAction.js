@@ -14,7 +14,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/generate?level={level}&mname={mname}&mtype={mtype}";
+var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/fallback?level={level}&mname={mname}&mtype={mtype}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -32,19 +32,19 @@ class ReqBodyAttributes extends IspwReqBody {
         this.taskId = [];
     }
 }
-class GenerateTasksInAssignmentAction extends IspwActions {
+class FallbackAssignmentAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let generateTasksInAssignmentActionResponse = new TaskResponse();
+            let fallbackAssignmentActionResponse = new TaskResponse();
             let util = new RestUtils();
             let reqBody = new ReqBodyAttributes();
             let cmnService = new CommonService();
             let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
             let url = util.getCesUrl(input) + reqTO.path;
-            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Generate Tasks In Assignment", input.showResponseBodyInConsole);
-            Object.assign(generateTasksInAssignmentActionResponse, json);
-            return generateTasksInAssignmentActionResponse;
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Fallback Assignment", input.showResponseBodyInConsole);
+            Object.assign(fallbackAssignmentActionResponse, json);
+            return fallbackAssignmentActionResponse;
         });
     }
 }
-module.exports = GenerateTasksInAssignmentAction;
+module.exports = FallbackAssignmentAction;

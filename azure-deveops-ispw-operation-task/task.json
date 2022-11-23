@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 7
+        "Patch": 9
     },
     "instanceNameFormat": "Echo instanceName",
     "inputs": [
@@ -50,6 +50,11 @@
                 "BuildAssignment": "Build Assignment",
                 "BuildRelease": "Build Release",
                 "BuildTask": "Build Task",
+                "DeployAssignment": "Deploy Assignment",
+                "DeployRelease": "Deploy Release",
+                "DeployTask": "Deploy Task",
+                "FallbackAssignment": "Fallback Assignment",
+                "FallbackRelease": "Fallback Release",
                 "GenerateTasksInAssignment": "Generate Tasks In Assignment",
                 "GenerateTasksInRelease": "Generate Tasks In Release",
                 "GenerateTask": "Generate Task",

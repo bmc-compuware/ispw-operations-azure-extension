@@ -14,7 +14,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/generate?level={level}&mname={mname}&mtype={mtype}";
+var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/deploy?level={level}&mname={mname}&mtype={mtype}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -28,23 +28,22 @@ class ReqBodyAttributes extends IspwReqBody {
         this.deployActiveTime = "";
         this.deployImplementationDate = "";
         this.deployImplementationTime = "";
-        this.override = "";
         this.taskId = [];
     }
 }
-class GenerateTasksInAssignmentAction extends IspwActions {
+class DeployReleaseAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let generateTasksInAssignmentActionResponse = new TaskResponse();
+            let deployReleaseActionResponse = new TaskResponse();
             let util = new RestUtils();
             let reqBody = new ReqBodyAttributes();
             let cmnService = new CommonService();
             let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
             let url = util.getCesUrl(input) + reqTO.path;
-            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Generate Tasks In Assignment", input.showResponseBodyInConsole);
-            Object.assign(generateTasksInAssignmentActionResponse, json);
-            return generateTasksInAssignmentActionResponse;
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Deploy Release", input.showResponseBodyInConsole);
+            Object.assign(deployReleaseActionResponse, json);
+            return deployReleaseActionResponse;
         });
     }
 }
-module.exports = GenerateTasksInAssignmentAction;
+module.exports = DeployReleaseAction;

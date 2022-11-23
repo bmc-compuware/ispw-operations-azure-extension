@@ -10,6 +10,11 @@ const generateTaskAction = require("./GenerateTaskAction");
 const buildAssignmentAction = require("./BuildAssignmentAction");
 const buildReleaseAction = require("./BuildReleaseAction");
 const buildTaskAction = require("./BuildTaskAction");
+const deployAssignmentAction = require("./DeployAssignmentAction");
+const deployReleaseAction = require("./DeployReleaseAction");
+const deployTaskAction = require("./DeployTaskAction");
+const fallbackAssignmentAction = require("./FallbackAssignmentAction");
+const fallbackReleaseAction = require("./FallbackReleaseAction");
 
 class ActionFactory {
   constructor() {}
@@ -23,6 +28,16 @@ class ActionFactory {
         return new buildReleaseAction();
       case "BuildTask":
         return new buildTaskAction();
+      case "DeployAssignment":
+        return new deployAssignmentAction();
+      case "DeployRelease":
+        return new deployReleaseAction();
+      case "DeployTask":
+        return new deployTaskAction();
+      case "FallbackAssignment":
+        return new fallbackAssignmentAction();
+      case "FallbackRelease":
+        return new fallbackReleaseAction();
       case "GenerateTasksInAssignment":
         return new generateTasksInAssignmentAction();
       case "GenerateTasksInRelease":
@@ -40,7 +55,7 @@ class ActionFactory {
       case "RegressRelease":
         return new regressReleaseAction();
       default:
-        new Error("Action Not supported");
+        new Error("Action Not supported!");
     }
   }
 }

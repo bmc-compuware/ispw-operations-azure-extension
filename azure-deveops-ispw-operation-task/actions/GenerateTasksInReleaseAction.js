@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const IspwActions = require("./IspwActions");
-const restUtis = require("../utils/RestUtils");
+const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
@@ -36,7 +36,7 @@ class GenerateTasksInReleaseAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
             let generateTasksInReleaseActionResponse = new TaskResponse();
-            let util = new restUtis();
+            let util = new RestUtils();
             let reqBody = new ReqBodyAttributes();
             let cmnService = new CommonService();
             let reqTO = util.getIspwReqTo(input, contextPath, reqBody);

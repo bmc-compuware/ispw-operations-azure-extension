@@ -98,6 +98,9 @@ class RestUtils {
 
     return protocol + "//" + host;
   }
+  splitPascalCase(word: string) {    
+    return word.replace(/([A-Z]+)/g, "$1").replace(/([A-Z][a-z])/g, " $1").trim();
+  }
 }
 
 module.exports = RestUtils;

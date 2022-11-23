@@ -3,30 +3,31 @@ const IspwActions = require("./IspwActions");
 const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const AddTaskResponse = require("../transferObj/AddTaskResponse");
+const TaskResponse = require("../transferObj/TaskResponse");
 var contextPath =
-  "/ispw/{srid}/assignments/{assignmentId}/task/add?checkout={checkout}";
+  "/ispw/{srid}/assignments/{assignmentId}/tasks/fallback?level={level}&mname={mname}&mtype={mtype}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
     super();
   }
-  action: string = "";
-  application: string = "";
-  checkoutFromLevel: string = "";
-  owner: string = "";
-  path: string = "";
-  releaseId: string = "";
   runtimeConfiguration: string = "";
-  stream: string = "";
-  subAppl: string = "";
-  taskName: string = "";
-  type: string = "";
+  changeType: string = "";
+  executionStatus: string = "";
+  dpenvlst: string = "";
+  system: string = "";
+  autoDeploy: string = "";
+  deployActiveDate: string = "";
+  deployActiveTime: string = "";
+  deployImplementationDate: string = "";
+  deployImplementationTime: string = "";
+  override: string = "";
+  taskId: string[] = [];
 }
 
-class AddTaskAction extends IspwActions {
+class FallbackAssignmentAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
-    let addTaskActionResponse: IspwResponse = new AddTaskResponse();
+    let fallbackAssignmentActionResponse: IspwResponse = new TaskResponse();
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
@@ -37,11 +38,11 @@ class AddTaskAction extends IspwActions {
       url,
       reqTO.reqBody,
       input.cesToken,
-      "Add Task",
+      "Fallback Assignment",
       input.showResponseBodyInConsole
     );
-    Object.assign(addTaskActionResponse, json);
-    return addTaskActionResponse;
+    Object.assign(fallbackAssignmentActionResponse, json);
+    return fallbackAssignmentActionResponse;
   }
 }
-module.exports = AddTaskAction;
+module.exports = FallbackAssignmentAction;

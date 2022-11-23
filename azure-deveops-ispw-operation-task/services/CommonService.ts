@@ -26,16 +26,15 @@ class CommonService {
 
       return rt;
     } catch (error: any) {
+      console.error("\nError ::");
       if (error.response) {
-        console.error(error.response.data);
-        console.error(error.response.status);
-        console.error(error.response.headers);
+        console.error(error.response.data.message);
       } else if (error.request) {
         console.error(error.request);
       } else {
         console.error('Error', error.message);
       }
-      return error.message;
+      return error.response.data;
     }
   }
   async doGetRequest(url: string, cesToken: string) {
