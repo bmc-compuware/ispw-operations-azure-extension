@@ -1,4 +1,5 @@
 import { json } from "stream/consumers";
+import tl = require("azure-pipelines-task-lib/task");
 const fetch = require('node-fetch')
 const https = require('https');
 const axios = require('axios');
@@ -26,13 +27,12 @@ class CommonService {
 
       return rt;
     } catch (error: any) {
-      console.error("\nError ::");
       if (error.response) {
-        console.error(error.response.data.message);
+        tl.setResult(tl.TaskResult.Failed, error.response.data.message);
       } else if (error.request) {
-        console.error(error.request);
+        tl.setResult(tl.TaskResult.Failed, error.request);
       } else {
-        console.error('Error', error.message);
+        tl.setResult(tl.TaskResult.Failed, error.message);
       }
       return error.response.data;
     }
@@ -46,7 +46,8 @@ class CommonService {
       });
       return res.data;
     } catch (error) {
-      console.log('Error', error);
+      console.log('Error :', error);
+      tl.setResult(tl.TaskResult.Failed,"An error may have occurred. Please see task logs.");
     }
   }
 

@@ -106,9 +106,12 @@ function run() {
                                 console.log("ISPW: Set " + set_obj.setid + " - successfully released.");
                                 break;
                             }
+                            else if (set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                console.log("ISPW: In set (" + set_obj.setid + ") process, Approval required.");
+                                break;
+                            }
                             else if (set_obj.state == SET_STATE_CLOSED ||
-                                set_obj.state == SET_STATE_COMPLETE ||
-                                set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                set_obj.state == SET_STATE_COMPLETE) {
                                 console.log("ISPW: Action " + util.splitPascalCase(action) + " completed.");
                                 break;
                             }
