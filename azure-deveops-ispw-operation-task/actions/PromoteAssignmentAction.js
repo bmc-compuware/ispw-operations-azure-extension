@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const IspwActions = require("./IspwActions");
 var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/promote?level={level}&mname={mname}&mtype={mtype}";
-const restUtis = require("../utils/RestUtils");
+const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
@@ -40,7 +40,7 @@ class PromoteAssignmentAction extends IspwActions {
         return __awaiter(this, void 0, void 0, function* () {
             let prompteActionResponse = new TaskResponse();
             try {
-                let util = new restUtis();
+                let util = new RestUtils();
                 let authToken = input.cesToken;
                 let reqBody = new ReqBodyAttributes();
                 let reqTO = util.getIspwReqTo(input, contextPath, reqBody);

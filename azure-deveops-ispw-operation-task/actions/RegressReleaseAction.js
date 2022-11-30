@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const TaskResponse = require("../transferObj/TaskResponse");
 var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/regress?level={level}&mname={mname}&mtype={mtype}";
-const restUtis = require("../utils/RestUtils");
+const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const IspwActions = require("../actions/IspwActions");
@@ -36,7 +36,7 @@ class RegressReleaseAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
             let rs = new TaskResponse();
-            let restUtilObj = new restUtis();
+            let restUtilObj = new RestUtils();
             let reqBody = new ReqBodyAttributes();
             let reqTO = restUtilObj.getIspwReqTo(input, contextPath, reqBody);
             let url = restUtilObj.getCesUrl(input) + reqTO.path;

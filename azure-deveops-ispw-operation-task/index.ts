@@ -4,6 +4,7 @@ const Input = require("./transferObj/input");
 const TaskResponse = require("./transferObj/TaskResponse");
 const BuildResponse = require("./transferObj/BuildResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
+const RestUtils = require("./utils/RestUtils");
 const polling_interval: number = 2000;
 
 const SET_STATE_DISPATCHED: string = "Dispatched";
@@ -50,6 +51,7 @@ async function run() {
     let conStr = connection[0];
     let hostPortArr = conStr.split(":");
     let actionFactory = new ActionFactory();
+    let util = new RestUtils();
     if (!isEmpty(action)) {
       ispwActions = actionFactory.createObj(action);
       let input = new Input(
@@ -65,7 +67,9 @@ async function run() {
       const respObject = await ispwActions.performAction(input);
       if (respObject instanceof AddTaskResponse) {
         let taskResponse = respObject as AddTaskResponse;
-        console.log(taskResponse.message);
+        if (taskResponse.setId) {
+          console.log(taskResponse.message);
+        }
       }
       if (!skipWaitingForSetCompletion) {
         let setId = "";
@@ -102,21 +106,21 @@ async function run() {
               input
             );
             let set_obj = setResponse as SetInfoResponse;
-            console.log("waiting for set to complete");
+            console.log("Waiting for set to complete...");
             if (set_obj.state == SET_STATE_FAILED) {
               console.log(
-                "ISPW: Set " + set_obj.setid + " - action [%s] failed",
+                "ISPW: Set " + set_obj.setid + " - action [%s] failed.",
                 action
               );
               break;
             } else if (set_obj.state == SET_STATE_TERMINATED) {
               console.log(
-                "ISPW: Set " + set_obj.setid + " - successfully terminated"
+                "ISPW: Set " + set_obj.setid + " - successfully terminated."
               );
               break;
             } else if (set_obj.state == SET_STATE_HELD) {
               console.log(
-                "ISPW: Set " + set_obj.setid + " - successfully held"
+                "ISPW: Set " + set_obj.setid + " - successfully held."
               );
               break;
             } else if (
@@ -124,19 +128,24 @@ async function run() {
               set_obj.state == SET_STATE_WAITING_LOCK
             ) {
               console.log(
-                "ISPW: Set " + set_obj.setid + " - successfully released"
+                "ISPW: Set " + set_obj.setid + " - successfully released."
               );
+              break;
+            } else if (set_obj.state == SET_STATE_WAITING_APPROVAL) {
+              console.log("ISPW: In set (" + set_obj.setid + ") process, Approval required.");
               break;
             } else if (
               set_obj.state == SET_STATE_CLOSED ||
-              set_obj.state == SET_STATE_COMPLETE ||
-              set_obj.state == SET_STATE_WAITING_APPROVAL
+              set_obj.state == SET_STATE_COMPLETE
             ) {
-              console.log("ISPW: Action " + action + " completed");
+              console.log(
+                "ISPW: Action " + util.splitPascalCase(action) + " completed."
+              );
               break;
             }
+
             if (i == 60) {
-              console.log("max time out reached");
+              console.log("Max time out reached.");
             }
           }
         }

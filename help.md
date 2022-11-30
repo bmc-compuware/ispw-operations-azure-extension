@@ -138,6 +138,106 @@ Example:
 | --- | -- |
 | application=PLAY <br> level=DEV1 <br> mtype=COB <br> mname=TPROG15 | taskId=7E6B13477338,7E6B3AA9E550 <br> **Note: If the task ID is specified then application, level, mname, and mtype are not required and will be ignored** |
 
+## **Deploy Assignment / Deploy Release**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId (Deploy Asignment) or releaseId (Deploy Release) | The container for which you intend to deploy tasks |
+| level | Tasks in the container at this level will be deployed |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| mtype | Components of this type in the assignment will be deployed if specified |
+| mname | Components with this name in the assignment will be deployed if specified |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Deploy Assignment  | Deploy Release |
+| --- | -- |
+| assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br> mname=TPROG07 <br> mtype=COB | releaseId=ADORELEASE <br> level=DEV1 <br> #optional <br> mname=TPROG23 <br> mtype=COB |
+
+
+## **Deploy Task**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId | The container for which you intend to deploy tasks |
+| level | Tasks in the container at this level will be deployed |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| taskId | The comma-separated list of task IDs for the tasks that need to be deployed. Example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+<!-- | taskIds | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]| -->
+
+Example:
+
+|  Deploy Task #1  | Deploy Task #2  |
+| --- | -- |
+|  assignmentId=PLAY031347 <br> level=DEV1 |  assignmentId=PLAY031347 <br> level=DEV1 <br> taskId=7E6B13477338,7E6B3AA9E550 |
+
+## **Fallback Assignment / Fallback Release**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId (Fallback Assignment) or releaseId (Fallback Release) | The container ID for which you intend to fallback tasks |
+| level | All tasks in the container at this level will fallback |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| mtype | Component of this type in the assignment will fallback, if specified |
+| mname | Components with this name in the assignment will fallback, if specified |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Fallback Assignment | Fallback Release |
+| --- | -- |
+| assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br> mname=TPROG07 <br> mtype=COB | releaseId=ADORELEASE <br> level=DEV1 <br> #optional <br> mname=TPROG23 <br> mtype=COB |
+
 
 ## **Generate Task**  
 
@@ -173,14 +273,14 @@ Example:
 | assignmentId=PLAY031347 <br> level=DEV1 |  assignmentId=PLAY031347 <br> level=DEV1 <br> taskId=7E6B13477338,7E6B3AA9E550|
 
 
-## **Generate Assignment**  
+## **Generate Tasks In Assignment / Generate Tasks In Release**  
 
 Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | The ID of the assignment |
-| level | Tasks in the assignment at this level will be generated |
+| assignmentId (Generate Tasks In Assignment) or releaseId (Generate Tasks In Release) | The container ID for which you intend to generate tasks |
+| level | Tasks in the container at this level will be generated |
 
 Optional:
 
@@ -203,53 +303,17 @@ Optional:
 
 Example:
 
-| Generate Assignment |
-| --- | 
-| assignmentId=PLAY031347 <br> level=DEV1 <br> mname=TPROG23 <br> mtype=COB |
-
-
-## **Generate Release**  
-
-Required:
-
-| Parameter | Description |
+| Generate Assignment | Generate Release | 
 | --- | --- |
-| releaseId | The ID of the release |
-| level | Tasks in the assignment at this level will be generated |
-
-Optional:
-
-|  Parameter | Description |
-| --- | --- |
-| mtype | Component of this type in the assignment will be generated, if specified |
-| mname | Components with this name in the assignment will be generated, if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
-| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
-| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
-| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
-| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
-| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
-| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
-| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
-| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
-| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
-| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
-
-Example:
-
-|  Generate Release #1 | Generate Release #2 |
-| --- | -- |
-| releaseId=ADORELEASE <br> level=DEV1 | releaseId=ADORELEASE <br> assignmentId=PLAY031347 <br> level=DEV1 <br> mname=TPROG23 <br> mtype=COB |
+| assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br>  mname=TPROG23 <br> mtype=COB | releaseId=ADORELEASE <br> assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br> mname=TPROG23 <br> mtype=COB |
 
 
-## **PromoteAssignment / PromoteRelease actions**  
+## **Promote Assignment / Promote Release**  
 Required:
 
 |  Parameter | Description |
 | --- | --- |
-| runtimeConfiguration | see ISPW administrator for valid values |
-| assignmentId (PromoteAssignment) or releaseId (PromoteRelease) | The container ID for which you intend to promote tasks. |
+| assignmentId (Promote Assignment) or releaseId (Promote Release) | The container ID for which you intend to promote tasks. |
 | level | All tasks in the release at this level will be generated |
 
 Optional:
@@ -258,25 +322,32 @@ Optional:
 | --- | --- |
 | mname | component with this name in the container will be promoted |
 | mtype | component with this type in the container will be promoted |
-| override | override the higher version if  presented in the next level. Default to no override. |
-| changeType | optional, S for standard, I for incidental, or E for emergency. Default value of S. |
-| executionStatus | I for immediate execution or at start date/time, H to create request in hold |
-| autoDeploy | promotes can be set up to automatically Deploy as well by an option set up by the ISPW. The default is to not use Auto Deploy |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
 
 Example:
 
-| PromoteAssignment | PromoteRelease |
+| Promote Assignment | Promote Release |
 | --- | --- |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |   runtimeConfiguration=TPZP  <br>releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB|
+| assignmentId=PLAY000313  <br>level=DEV2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB | releaseId=JKGENRELID  <br>level=DEV2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB|
 
 
-## **RegressAssignment / RegressRelease actions**  
+## **Regress Assignment / Regress Release**  
 Required:
 
 |  Parameter | Description |
 | --- | --- |
-| runtimeConfiguration | see ISPW administrator for valid values |
-| assignmentId (RegressAsignment) or releaseId (RegressRelease) | The container for which you intend to regress the tasks |
+| assignmentId (Regress Asignment) or releaseId (Regress Release) | The container for which you intend to regress the tasks |
 | level | All tasks in the container at this level will be generated |
 
 Optional:
@@ -285,11 +356,21 @@ Optional:
 | --- | --- |
 | mname | component with this name in the container will be regressed |
 | mtype | component with this type in the container will be regressed |
-| changeType | S for standard, I for incidental, or E for emergency. Default value of S |
-| executionStatus | I for immediate execution or at start date/time, H to create request in hold |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
 
 Example:
 
-| RegressAssignment | RegressRelease |
+| Regress Assignment | Regress Release |
 | --- | --- |
-| runtimeConfiguration=TPZP  <br>assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB | runtimeConfiguration=TPZP <br>releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG08  <br>mtype=COB |
+| assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB | releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB |

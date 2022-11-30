@@ -1,6 +1,6 @@
 export {};
 const IspwActions = require("./IspwActions");
-const restUtis = require("../utils/RestUtils");
+const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const BuildResponse = require("../transferObj/BuildResponse");
@@ -28,7 +28,7 @@ class ReqBodyAttributes extends IspwReqBody {
 class BuildReleaseAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
     let buildAssignmentActionResponse: IspwResponse = new BuildResponse();
-    let util = new restUtis();
+    let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
     let reqTO: IspwReqTO = util.getIspwReqTo(input, contextPath, reqBody);

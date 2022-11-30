@@ -15,6 +15,7 @@ const Input = require("./transferObj/input");
 const TaskResponse = require("./transferObj/TaskResponse");
 const BuildResponse = require("./transferObj/BuildResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
+const RestUtils = require("./utils/RestUtils");
 const polling_interval = 2000;
 const SET_STATE_DISPATCHED = "Dispatched";
 const SET_STATE_EXECUTING = "Executing";
@@ -53,13 +54,16 @@ function run() {
             let conStr = connection[0];
             let hostPortArr = conStr.split(":");
             let actionFactory = new ActionFactory();
+            let util = new RestUtils();
             if (!isEmpty(action)) {
                 ispwActions = actionFactory.createObj(action);
                 let input = new Input(hostPortArr[0], hostPortArr[1], codePage, cesUrl, payload, cesToken, skipWaitingForSetCompletion, showResponseBodyInConsole);
                 const respObject = yield ispwActions.performAction(input);
                 if (respObject instanceof AddTaskResponse) {
                     let taskResponse = respObject;
-                    console.log(taskResponse.message);
+                    if (taskResponse.setId) {
+                        console.log(taskResponse.message);
+                    }
                 }
                 if (!skipWaitingForSetCompletion) {
                     let setId = "";
@@ -84,32 +88,35 @@ function run() {
                             yield sleep(polling_interval);
                             const setResponse = yield ispwActions.performAction(input);
                             let set_obj = setResponse;
-                            console.log("waiting for set to complete");
+                            console.log("Waiting for set to complete...");
                             if (set_obj.state == SET_STATE_FAILED) {
-                                console.log("ISPW: Set " + set_obj.setid + " - action [%s] failed", action);
+                                console.log("ISPW: Set " + set_obj.setid + " - action [%s] failed.", action);
                                 break;
                             }
                             else if (set_obj.state == SET_STATE_TERMINATED) {
-                                console.log("ISPW: Set " + set_obj.setid + " - successfully terminated");
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully terminated.");
                                 break;
                             }
                             else if (set_obj.state == SET_STATE_HELD) {
-                                console.log("ISPW: Set " + set_obj.setid + " - successfully held");
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully held.");
                                 break;
                             }
                             else if (set_obj.state == SET_STATE_RELEASED ||
                                 set_obj.state == SET_STATE_WAITING_LOCK) {
-                                console.log("ISPW: Set " + set_obj.setid + " - successfully released");
+                                console.log("ISPW: Set " + set_obj.setid + " - successfully released.");
+                                break;
+                            }
+                            else if (set_obj.state == SET_STATE_WAITING_APPROVAL) {
+                                console.log("ISPW: In set (" + set_obj.setid + ") process, Approval required.");
                                 break;
                             }
                             else if (set_obj.state == SET_STATE_CLOSED ||
-                                set_obj.state == SET_STATE_COMPLETE ||
-                                set_obj.state == SET_STATE_WAITING_APPROVAL) {
-                                console.log("ISPW: Action " + action + " completed");
+                                set_obj.state == SET_STATE_COMPLETE) {
+                                console.log("ISPW: Action " + util.splitPascalCase(action) + " completed.");
                                 break;
                             }
                             if (i == 60) {
-                                console.log("max time out reached");
+                                console.log("Max time out reached.");
                             }
                         }
                     }

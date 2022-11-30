@@ -14,7 +14,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskResponse = require("../transferObj/TaskResponse");
-var contextPath = "/ispw/{srid}/assignments/{assignmentId}/tasks/generate?level={level}&mname={mname}&mtype={mtype}";
+var contextPath = "/ispw/{srid}/assignments/{assignmentId}/taskIds/deploy?taskId={taskId}&level={level}";
 class ReqBodyAttributes extends IspwReqBody {
     constructor() {
         super();
@@ -28,23 +28,21 @@ class ReqBodyAttributes extends IspwReqBody {
         this.deployActiveTime = "";
         this.deployImplementationDate = "";
         this.deployImplementationTime = "";
-        this.override = "";
-        this.taskId = [];
     }
 }
-class GenerateTasksInAssignmentAction extends IspwActions {
+class DeployTaskAction extends IspwActions {
     performAction(input) {
         return __awaiter(this, void 0, void 0, function* () {
-            let generateTasksInAssignmentActionResponse = new TaskResponse();
+            let deployTaskActionResponse = new TaskResponse();
             let util = new RestUtils();
             let reqBody = new ReqBodyAttributes();
             let cmnService = new CommonService();
             let reqTO = util.getIspwReqTo(input, contextPath, reqBody);
             let url = util.getCesUrl(input) + reqTO.path;
-            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Generate Tasks In Assignment", input.showResponseBodyInConsole);
-            Object.assign(generateTasksInAssignmentActionResponse, json);
-            return generateTasksInAssignmentActionResponse;
+            let json = yield cmnService.doPostRequest(url, reqTO.reqBody, input.cesToken, "Deploy Task", input.showResponseBodyInConsole);
+            Object.assign(deployTaskActionResponse, json);
+            return deployTaskActionResponse;
         });
     }
 }
-module.exports = GenerateTasksInAssignmentAction;
+module.exports = DeployTaskAction;
