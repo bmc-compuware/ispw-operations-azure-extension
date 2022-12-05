@@ -10,7 +10,7 @@ The BMC ISPW Operations plugin allows Azure DevOps users to execute ISPW operati
 The following are required to use this extension:
 - [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
 - [BMC common configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
-- BMC Compuware mainframe ISPW
+- BMC Compuware ISPW
 - BMC Compuware CES
 
 Note: This extension version is only supported with on premise Azure DevOps Server, it will not work with Azure Cloud.
