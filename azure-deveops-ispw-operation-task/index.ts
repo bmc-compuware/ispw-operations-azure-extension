@@ -79,12 +79,14 @@ async function run() {
         let assignmentResponse = respObject as AssignmentResponse;
         if (action == "CreateAssignment") {
           console.log(
-            "Created Assignment " + assignmentResponse.assignmentId + " ."
+            "Created Assignment " + assignmentResponse.assignmentId + "."
           );
         }
         if (action == "CancelAssignment") {
           console.log(
-            "Cancel assignment " + assignmentResponse.assignmentId + " is submitted. "
+            "Cancel assignment " +
+              assignmentResponse.assignmentId +
+              " is submitted. "
           );
         }
         if (action == "CloseAssignment") {
@@ -98,7 +100,7 @@ async function run() {
       if (respObject instanceof ReleaseResponse) {
         let releaseResponse = respObject as ReleaseResponse;
         if (action == "CreateRelease") {
-          console.log("Created Release " + releaseResponse.releaseId + " .");
+          console.log("Created Release " + releaseResponse.releaseId + ".");
         }
         if (action == "CancelRelease") {
           console.log(

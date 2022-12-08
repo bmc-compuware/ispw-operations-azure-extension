@@ -138,6 +138,152 @@ Example:
 | --- | -- |
 | application=PLAY <br> level=DEV1 <br> mtype=COB <br> mname=TPROG15 | taskId=7E6B13477338,7E6B3AA9E550 <br> **Note: If the task ID is specified then application, level, mname, and mtype are not required and will be ignored** |
 
+## **Cancel Assignment / Close Assignment**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId | The assignment ID to be cancelled or closed |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Cancel Assignment | Close Assignment |
+| --- | -- |
+| assignmentId=PLAY031347 | assignmentId=PLAY031350 |
+
+## **Cancel Release / Close Release**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | The release id to be cancelled or closed |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Cancel Release | Close Release |
+| --- | -- |
+| releaseId=REL01 | releaseId=REL02 |
+
+## **Cancel Deployment**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| requestId | The deployment with the request ID to be cancelled |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| override | Specify true to override a higher version of the task during promote. Use with caution. Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Cancel Deployment | 
+| --- |
+| requestId=46158 |
+
+## **Create Assignment**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| stream | Stream name |
+| application | Application name |
+| defaultPath | Default checkout path |
+| description | Description for the assignment |
+| assignmentPrefix | Assignment prefix |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| owner | Owner of the container |
+| subAppl | Sub application name |
+| referenceNumber | Reference number |
+| releaseId | The release id |
+| userTag | User tag |
+
+Example:
+
+|  Create Assignment |
+| --- |
+| stream=PLAY <br> application=PLAY <br> subAppl=PLAY <br> defaultPath=DEV2 <br> description=Create Assignment for ADO <br> assignmentPrefix=PLAY |
+
+## **Create Release**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| stream | Stream name |
+| application | Application name |
+| description | Description for the release |
+| releaseId or releasePrefix | Either release ID or releasePrefix, but not both |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| owner | Owner of the container |
+| subAppl | Sub application name |
+| referenceNumber | Reference number |
+
+Example:
+
+|  Create Release |
+| --- |
+| stream=PLAY <br> application=PLAY <br> subAppl=PLAY <br> releaseId=MyR01 <br> description=Create Release for ADO |
+
 ## **Deploy Assignment / Deploy Release**  
 
 Required:
