@@ -15,7 +15,13 @@ const deployReleaseAction = require("./DeployReleaseAction");
 const deployTaskAction = require("./DeployTaskAction");
 const fallbackAssignmentAction = require("./FallbackAssignmentAction");
 const fallbackReleaseAction = require("./FallbackReleaseAction");
-
+const cancelAssignmentAction = require("./CancelAssignmentAction");
+const cancelDeploymentAction = require("./CancelDeploymentAction");
+const cancelReleaseAction = require("./CancelReleaseAction");
+const closeAssignmentAction = require("./CloseAssignmentAction");
+const closeReleaseAction = require("./CloseReleaseAction");
+const createAssignmentAction = require("./CreateAssignmentAction");
+const createReleaseAction = require("./CreateReleaseAction");
 class ActionFactory {
   constructor() {}
   createObj(type: string) {
@@ -28,6 +34,20 @@ class ActionFactory {
         return new buildReleaseAction();
       case "BuildTask":
         return new buildTaskAction();
+      case "CancelAssignment":
+        return new cancelAssignmentAction();
+      case "CancelDeployment":
+        return new cancelDeploymentAction();
+      case "CancelRelease":
+        return new cancelReleaseAction();
+      case "CloseAssignment":
+        return new closeAssignmentAction();
+      case "CloseRelease":
+        return new closeReleaseAction();
+      case "CreateAssignment":
+        return new createAssignmentAction();
+      case "CreateRelease":
+        return new createReleaseAction();
       case "DeployAssignment":
         return new deployAssignmentAction();
       case "DeployRelease":

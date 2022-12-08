@@ -1,5 +1,5 @@
-const input =  require('../transferObj/input');
+const input = require("../transferObj/input");
 abstract class IspwActions {
-    abstract performAction(input:Input) : Promise<IspwResponse>;
+  abstract performAction(input: Input): Promise<IspwResponse>;
 }
 module.exports = IspwActions;
