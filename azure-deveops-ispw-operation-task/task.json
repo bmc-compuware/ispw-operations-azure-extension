@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 11
+        "Patch": 13
     },
     "instanceNameFormat": "Echo instanceName",
     "inputs": [
@@ -50,6 +50,13 @@
                 "BuildAssignment": "Build Assignment",
                 "BuildRelease": "Build Release",
                 "BuildTask": "Build Task",
+                "CancelAssignment": "Cancel Assignment",
+                "CancelDeployment": "Cancel Deployment",
+                "CancelRelease": "Cancel Release",
+                "CloseAssignment": "Close Assignment",
+                "CloseRelease": "Close Release",
+                "CreateAssignment": "Create Assignment",
+                "CreateRelease": "Create Release",
                 "DeployAssignment": "Deploy Assignment",
                 "DeployRelease": "Deploy Release",
                 "DeployTask": "Deploy Task",

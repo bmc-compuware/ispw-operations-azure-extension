@@ -4,6 +4,10 @@ const Input = require("./transferObj/input");
 const TaskResponse = require("./transferObj/TaskResponse");
 const BuildResponse = require("./transferObj/BuildResponse");
 const AddTaskResponse = require("./transferObj/AddTaskResponse");
+const AssignmentResponse = require("./transferObj/AssignmentResponse");
+const DeploymentResponse = require("./transferObj/DeploymentResponse");
+const ReleaseResponse = require("./transferObj/ReleaseResponse");
+
 const RestUtils = require("./utils/RestUtils");
 const polling_interval: number = 2000;
 
@@ -71,6 +75,52 @@ async function run() {
           console.log(taskResponse.message);
         }
       }
+      if (respObject instanceof AssignmentResponse) {
+        let assignmentResponse = respObject as AssignmentResponse;
+        if (action == "CreateAssignment") {
+          console.log(
+            "Created Assignment " + assignmentResponse.assignmentId + "."
+          );
+        }
+        if (action == "CancelAssignment") {
+          console.log(
+            "Cancel assignment " +
+              assignmentResponse.assignmentId +
+              " is submitted. "
+          );
+        }
+        if (action == "CloseAssignment") {
+          console.log(
+            "Close assignment " +
+              assignmentResponse.assignmentId +
+              " is submitted. "
+          );
+        }
+      }
+      if (respObject instanceof ReleaseResponse) {
+        let releaseResponse = respObject as ReleaseResponse;
+        if (action == "CreateRelease") {
+          console.log("Created Release " + releaseResponse.releaseId + ".");
+        }
+        if (action == "CancelRelease") {
+          console.log(
+            "Cancel release " + releaseResponse.releaseId + " is submitted. "
+          );
+        }
+        if (action == "CloseRelease") {
+          console.log(
+            "Close release " + releaseResponse.releaseId + " is submitted. "
+          );
+        }
+      }
+      if (respObject instanceof DeploymentResponse) {
+        let deploymentResponse = respObject as DeploymentResponse;
+        console.log(
+          "Job to cancel deployment with the request ID " +
+            deploymentResponse.requestId +
+            " is submitted. "
+        );
+      }
       if (!skipWaitingForSetCompletion) {
         let setId = "";
         let url = "";
@@ -132,7 +182,11 @@ async function run() {
               );
               break;
             } else if (set_obj.state == SET_STATE_WAITING_APPROVAL) {
-              console.log("ISPW: In set (" + set_obj.setid + ") process, Approval required.");
+              console.log(
+                "ISPW: In set (" +
+                  set_obj.setid +
+                  ") process, Approval required."
+              );
               break;
             } else if (
               set_obj.state == SET_STATE_CLOSED ||

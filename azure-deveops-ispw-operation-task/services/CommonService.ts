@@ -24,17 +24,19 @@ class CommonService {
       if (isPrintEnable) {
         logResponse(rt);
       }
-
       return rt;
     } catch (error: any) {
+      console.error("Error : ");
       if (error.response) {
+        console.error(error.response.data.message);
         tl.setResult(tl.TaskResult.Failed, error.response.data.message);
       } else if (error.request) {
+        console.error(error.response.data.message);
         tl.setResult(tl.TaskResult.Failed, error.request);
       } else {
+        console.error(error.response.data.message);
         tl.setResult(tl.TaskResult.Failed, error.message);
       }
-      return error.response.data;
     }
   }
   async doGetRequest(url: string, cesToken: string) {
