@@ -43,11 +43,5 @@ class CreateAssignmentAction extends IspwActions {
     Object.assign(createAssignmentActionResponse, json);
     return createAssignmentActionResponse;
   }
-
-  endLog(response: Object): void {
-    let assignmentResponse = response as AssignmentResponse;
-    if (assignmentResponse.assignmentId)
-      console.log("Created Assignment " + assignmentResponse.assignmentId+" .");
-  }
 }
 module.exports = CreateAssignmentAction;

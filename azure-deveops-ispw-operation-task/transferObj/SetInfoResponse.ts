@@ -1,6 +1,7 @@
 class SetInfoResponse{
      setid:string="";
 	 applicationId:string="";
+	 subAppl:string="";
 	 streamName:string="";
 	 description:string="";
 	 owner:string="";

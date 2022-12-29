@@ -22,6 +22,13 @@ const closeAssignmentAction = require("./CloseAssignmentAction");
 const closeReleaseAction = require("./CloseReleaseAction");
 const createAssignmentAction = require("./CreateAssignmentAction");
 const createReleaseAction = require("./CreateReleaseAction");
+const getAssignmentInfoAction = require("./GetAssignmentInfoAction");
+const getAssignmentTaskListAction = require("./GetAssignmentTaskListAction");
+const getReleaseTaskInfoAction = require("./GetReleaseTaskInfoAction");
+const getReleaseTaskListAction = require("./GetReleaseTaskListAction");
+const getSetInfoAction = require("./GetSetInfoAction");
+const getSetTaskListAction = require("./GetSetTaskListAction");
+
 class ActionFactory {
   constructor() {}
   createObj(type: string) {
@@ -58,12 +65,24 @@ class ActionFactory {
         return new fallbackAssignmentAction();
       case "FallbackRelease":
         return new fallbackReleaseAction();
+      case "GenerateTask":
+        return new generateTaskAction();
       case "GenerateTasksInAssignment":
         return new generateTasksInAssignmentAction();
       case "GenerateTasksInRelease":
         return new generateTasksInReleaseAction();
-      case "GenerateTask":
-        return new generateTaskAction();
+      case "GetAssignmentInfo":
+        return new getAssignmentInfoAction();
+      case "GetAssignmentTaskList":
+        return new getAssignmentTaskListAction();
+      case "GetReleaseTaskInfo":
+        return new getReleaseTaskInfoAction();
+      case "GetReleaseTaskList":
+        return new getReleaseTaskListAction();
+      case "GetSetInfo":
+        return new getSetInfoAction();
+      case "GetSetTaskList":
+        return new getSetTaskListAction();
       case "PromoteAssignment":
         return new promoteAssignmentAction();
       case "SetInfo":
