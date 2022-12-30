@@ -7,7 +7,7 @@ class SetInfoAction extends ispwActions {
   async performAction(input: Input): Promise<IspwResponse> {
     let setInfoResponseObj: IspwResponse = new setInfoResponse();
     let cmnServiceObj = new cmnService();
-    let rt = await cmnServiceObj.doGetRequest(input.cesUrl, input.cesToken);
+    let rt = await cmnServiceObj.doGetRequest(input.cesUrl, input.cesToken, "Set Info", false);
     Object.assign(setInfoResponseObj, rt);
     console.log("Set Info response: " + JSON.stringify(setInfoResponseObj));
     return setInfoResponseObj;

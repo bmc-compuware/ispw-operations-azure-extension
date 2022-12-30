@@ -454,6 +454,100 @@ Example:
 | assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br>  mname=TPROG23 <br> mtype=COB | releaseId=ADORELEASE <br> assignmentId=PLAY031347 <br> level=DEV1 <br> #optional <br> mname=TPROG23 <br> mtype=COB |
 
 
+## **Get Assignment Info**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId | 	The assignment ID |
+
+Example:
+
+| Get Assignment Info |
+| --- |
+| assignmentId=PLAY031347 |
+
+
+## **Get Assignment Task List**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| assignmentId | 	The assignment ID |
+| level  | 	All tasks in the assignment at this level will be displayed |
+
+Example:
+
+| Get Assignment Task List |
+| --- |
+| assignmentId=PLAY031347 <br> level=DEV2 |
+
+
+## **Get Release Task Info**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | 	The release id |
+| taskId  | 	The task id |
+
+Example:
+
+| Get Release Task Info |
+| --- |
+| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 |
+
+
+## **Get Release Task List**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | 	The release id |
+| level  | 	All tasks in the release at this level will be displayed |
+
+Example:
+
+| Get Release Task List |
+| --- |
+| releaseId=JKGENRELID <br> level=DEV2  |
+
+
+## **Get Set Info**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| setId | 	The set ID you want info on |
+| level  | 	All tasks in the set at this level will be displayed |
+
+Example:
+
+| Get Set Info |
+| --- |
+| setId=S000015218 <br> level=DEV1|
+
+
+## **Get Set Task List**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| setId | 	The set ID you want info on|
+
+Example:
+
+| Get Set Task List |
+| --- |
+| setId=S000015218  |
+
+
 ## **Promote Assignment / Promote Release**  
 Required:
 

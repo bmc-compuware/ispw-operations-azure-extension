@@ -3,10 +3,7 @@ const ActionFactory = require("./actions/ActionFactory");
 const Input = require("./transferObj/input");
 const TaskResponse = require("./transferObj/TaskResponse");
 const BuildResponse = require("./transferObj/BuildResponse");
-const AddTaskResponse = require("./transferObj/AddTaskResponse");
-const AssignmentResponse = require("./transferObj/AssignmentResponse");
-const DeploymentResponse = require("./transferObj/DeploymentResponse");
-const ReleaseResponse = require("./transferObj/ReleaseResponse");
+const SummarizeResponse = require('./services/SummarizeResponse');
 
 const RestUtils = require("./utils/RestUtils");
 const polling_interval: number = 2000;
@@ -56,6 +53,7 @@ async function run() {
     let hostPortArr = conStr.split(":");
     let actionFactory = new ActionFactory();
     let util = new RestUtils();
+    let sr = new SummarizeResponse();
     if (!isEmpty(action)) {
       ispwActions = actionFactory.createObj(action);
       let input = new Input(
@@ -69,58 +67,7 @@ async function run() {
         showResponseBodyInConsole
       );
       const respObject = await ispwActions.performAction(input);
-      if (respObject instanceof AddTaskResponse) {
-        let taskResponse = respObject as AddTaskResponse;
-        if (taskResponse.setId) {
-          console.log(taskResponse.message);
-        }
-      }
-      if (respObject instanceof AssignmentResponse) {
-        let assignmentResponse = respObject as AssignmentResponse;
-        if (action == "CreateAssignment") {
-          console.log(
-            "Created Assignment " + assignmentResponse.assignmentId + "."
-          );
-        }
-        if (action == "CancelAssignment") {
-          console.log(
-            "Cancel assignment " +
-              assignmentResponse.assignmentId +
-              " is submitted. "
-          );
-        }
-        if (action == "CloseAssignment") {
-          console.log(
-            "Close assignment " +
-              assignmentResponse.assignmentId +
-              " is submitted. "
-          );
-        }
-      }
-      if (respObject instanceof ReleaseResponse) {
-        let releaseResponse = respObject as ReleaseResponse;
-        if (action == "CreateRelease") {
-          console.log("Created Release " + releaseResponse.releaseId + ".");
-        }
-        if (action == "CancelRelease") {
-          console.log(
-            "Cancel release " + releaseResponse.releaseId + " is submitted. "
-          );
-        }
-        if (action == "CloseRelease") {
-          console.log(
-            "Close release " + releaseResponse.releaseId + " is submitted. "
-          );
-        }
-      }
-      if (respObject instanceof DeploymentResponse) {
-        let deploymentResponse = respObject as DeploymentResponse;
-        console.log(
-          "Job to cancel deployment with the request ID " +
-            deploymentResponse.requestId +
-            " is submitted. "
-        );
-      }
+      sr.summarize(respObject, action);      
       if (!skipWaitingForSetCompletion) {
         let setId = "";
         let url = "";
