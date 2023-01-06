@@ -1,9 +1,9 @@
 {
     "id": "ispw-operations",
     "name": "BMC ISPW Operations",
-    "public": false,
-    "version": "1.0.0",
-    "publisher": "BMC-Compuware",
+    "public": true,
+    "version": "1.0.2",
+    "publisher": "BMC",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -22,7 +22,7 @@
     },
     "links": {
         "getstarted": {
-            "uri": "https://github.com/bmc-compuware/ispw-operations-azure-extension/master/README.md"
+            "uri": "https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/README.md"
         },
 		"license": {
             "uri": "https://github.com/bmc-compuware/ispw-operations-azure-extension/master/LICENSE"

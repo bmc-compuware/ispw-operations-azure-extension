@@ -3,7 +3,7 @@
 
 ## Overview
 
-The BMC ISPW Operations plugin allows Azure DevOps users to execute ISPW operations, such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the ISPW build process using Azure DevOps.
+The BMC ISPW Operations allows Azure DevOps users to execute ISPW operations, such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the ISPW build process using Azure DevOps.
 
 ## Prerequisites
 
@@ -73,12 +73,18 @@ This BMC ISPW Operations task has following parameters:
     -	Generate Task
     -   Generate Tasks In Assignment
     -   Generate Tasks In Release
+    -   Get Assignment Info
+    -   Get Assignment Task List
+    -   Get Release Task Info
+    -   Get Release Task List
+    -   Get Set Info
+    -   Get Set Task List
     -   Promote Assignment
     -   Promote Release
     -   Regress Assignment
     -   Regress Release
 
--   **Request**: Specify additional request parameters, [click here for more information](help.md).
+-   **Request**: Specify additional request parameters, [click here for more information](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md).
 
 -   **Skip waiting for the completion of the set (if applicable)** : This allows to turn on / off polling a set to wait for the job finish if it is applicable.
 
