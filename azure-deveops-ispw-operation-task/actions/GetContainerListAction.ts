@@ -3,8 +3,8 @@ const IspwActions = require("./IspwActions");
 const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const TaskListResponse = require("../transferObj/TaskListResponse");
-var contextPath = "/ispw/{srid}/sets/{setId}/tasks";
+const ContainerListResponse = require("../transferObj/ContainerListResponse");
+var contextPath = "/ispw/{srid}/containers/list?userId={userId}&containerId={containerId}&containerType={containerType}&application={application}&subAppl={subAppl}&owner={owner}&description={description}&refNumber={refNumber}&releaseId={releaseId}&stream={stream}&path={path}&tag={tag}&includeClosedContainers={includeClosedContainers}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
@@ -12,9 +12,9 @@ class ReqBodyAttributes extends IspwReqBody {
   }
 }
 
-class GetSetTaskListAction extends IspwActions {
+class GetContainerListAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
-    let getSetTaskListActionResponse: IspwResponse = new TaskListResponse();
+    let getContainerListActionResponse: IspwResponse = new ContainerListResponse();
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
@@ -24,11 +24,11 @@ class GetSetTaskListAction extends IspwActions {
     let json = await cmnService.doGetRequest(
       url,
       input.cesToken,
-      "Get Set Task List",
+      "Get Container List",
       input.showResponseBodyInConsole
     );
-    Object.assign(getSetTaskListActionResponse, json);
-    return getSetTaskListActionResponse;
+    Object.assign(getContainerListActionResponse, json);
+    return getContainerListActionResponse;
   }  
 }
-module.exports = GetSetTaskListAction;
+module.exports = GetContainerListAction;

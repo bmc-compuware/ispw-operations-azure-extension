@@ -3,8 +3,8 @@ const IspwActions = require("./IspwActions");
 const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const SetInfoResponse = require("../transferObj/SetInfoResponse");
-var contextPath = "/ispw/{srid}/sets/{setId}?level={level}";
+const ReleaseInfo = require("../transferObj/ReleaseInfo");
+var contextPath = "/ispw/{srid}/releases/{releaseId}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
@@ -12,9 +12,9 @@ class ReqBodyAttributes extends IspwReqBody {
   }
 }
 
-class GetSetInfoAction extends IspwActions {
-  async performAction(input: Input): Promise<SetInfoResponse> {
-    let getSetInfoActionResponse: SetInfoResponse = new SetInfoResponse();
+class GetReleaseInfoAction extends IspwActions {
+  async performAction(input: Input): Promise<IspwResponse> {
+    let getReleaseInfoActionResponse: IspwResponse = new ReleaseInfo();
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
@@ -24,11 +24,11 @@ class GetSetInfoAction extends IspwActions {
     let json = await cmnService.doGetRequest(
       url,
       input.cesToken,
-      "Get Set Info",
+      "Get Release Info",
       input.showResponseBodyInConsole
     );
-    Object.assign(getSetInfoActionResponse, json);
-    return getSetInfoActionResponse;
+    Object.assign(getReleaseInfoActionResponse, json);
+    return getReleaseInfoActionResponse;
   }  
 }
-module.exports = GetSetInfoAction;
+module.exports = GetReleaseInfoAction;

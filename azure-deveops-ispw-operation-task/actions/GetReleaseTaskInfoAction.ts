@@ -10,8 +10,6 @@ class ReqBodyAttributes extends IspwReqBody {
   constructor() {
     super();
   }
-  releaseId: String = "";
-  taskId: String = "";
 }
 
 class GetReleaseTaskInfoAction extends IspwActions {

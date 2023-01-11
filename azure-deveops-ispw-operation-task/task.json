@@ -9,7 +9,7 @@
   "author": "BMC Software",
   "version": {
     "Major": 1,
-    "Minor": 0,
+    "Minor": 1,
     "Patch": 0
   },
   "instanceNameFormat": "Echo instanceName",
@@ -67,6 +67,9 @@
         "GenerateTasksInRelease": "Generate Tasks In Release",
         "GetAssignmentInfo": "Get Assignment Info",
         "GetAssignmentTaskList": "Get Assignment Task List",
+        "GetContainerList": "Get Container List",
+        "GetReleaseInfo":"Get Release Info",
+        "GetReleaseTaskGenerateListing":"Get Release Task Generate Listing",
         "GetReleaseTaskInfo": "Get Release Task Info",
         "GetReleaseTaskList": "Get Release Task List",
         "GetSetInfo": "Get Set Info",

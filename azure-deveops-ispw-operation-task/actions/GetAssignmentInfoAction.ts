@@ -10,7 +10,6 @@ class ReqBodyAttributes extends IspwReqBody {
   constructor() {
     super();
   }
-  assignmentId: String = "";
 }
 
 class GetAssignmentInfoAction extends IspwActions {
