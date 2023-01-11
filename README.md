@@ -75,6 +75,9 @@ This BMC ISPW Operations task has following parameters:
     -   Generate Tasks In Release
     -   Get Assignment Info
     -   Get Assignment Task List
+    -   Get Container List
+    -   Get Release Info
+    -   Get Release Task Generate Listing
     -   Get Release Task Info
     -   Get Release Task List
     -   Get Set Info
