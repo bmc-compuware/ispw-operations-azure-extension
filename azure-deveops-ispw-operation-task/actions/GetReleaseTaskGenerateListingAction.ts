@@ -3,8 +3,8 @@ const IspwActions = require("./IspwActions");
 const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
-const SetInfoResponse = require("../transferObj/SetInfoResponse");
-var contextPath = "/ispw/{srid}/sets/{setId}?level={level}";
+const TaskListingResponse = require("../transferObj/TaskListingResponse");
+var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/{taskId}/listing";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
@@ -12,9 +12,9 @@ class ReqBodyAttributes extends IspwReqBody {
   }
 }
 
-class GetSetInfoAction extends IspwActions {
-  async performAction(input: Input): Promise<SetInfoResponse> {
-    let getSetInfoActionResponse: SetInfoResponse = new SetInfoResponse();
+class GetReleaseTaskGenerateListingAction extends IspwActions {
+  async performAction(input: Input): Promise<IspwResponse> {
+    let getReleaseTaskGenerateListingActionResponse: IspwResponse = new TaskListingResponse();
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
@@ -24,11 +24,11 @@ class GetSetInfoAction extends IspwActions {
     let json = await cmnService.doGetRequest(
       url,
       input.cesToken,
-      "Get Set Info",
+      "Get Release Task Generate Listing",
       input.showResponseBodyInConsole
     );
-    Object.assign(getSetInfoActionResponse, json);
-    return getSetInfoActionResponse;
+    Object.assign(getReleaseTaskGenerateListingActionResponse, json);
+    return getReleaseTaskGenerateListingActionResponse;
   }  
 }
-module.exports = GetSetInfoAction;
+module.exports = GetReleaseTaskGenerateListingAction;

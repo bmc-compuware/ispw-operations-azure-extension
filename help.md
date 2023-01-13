@@ -4,7 +4,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | The container ID for which you intend to add task |
+| assignmentId | The container id for which you intend to add task |
 | checkout | Whether to checkout the task. Valid values are true or false. Defaut value is false|
 | taskName | The task or component name |
 | stream | The stream name|
@@ -21,7 +21,7 @@ Optional:
 | subAppl | The sub application name |
 | action | Action code can be any of the following: <br> **Blank** - The task was created with no other actions.<br> **Compile only** - The component was added for compile only, without going through the rest of the change cycle process. <br> **Delete Prod Source** - Deletes the production-level source and executables from the production environment.<br> **Added from History** - Indicates that a historical version (for example, -1 or -2) of a component is requested for checkout.<br> **Fallback** - Component falls back to a previous component version at production.<br> **Implement** - Deploy processing is taking place|
 | owner | The Owner of the set that will be used for processing the action |
-| releaseId | The container ID for which you intend to add task |
+| releaseId | The container id for which you intend to add task |
 
 Example:
 
@@ -36,7 +36,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | The ID of the assignment |
+| assignmentId | The id of the assignment |
 | level | Tasks in the assignment at this level will be built |
 
 Optional:
@@ -71,8 +71,8 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| releaseId | The ID of the release |
-| assignmentId | The ID of the assignment  |
+| releaseId | The id of the release |
+| assignmentId | The id of the assignment  |
 | level | Tasks in the assignment at this level will be built |
 
 Optional:
@@ -116,8 +116,8 @@ Optional:
 
 |  Parameter | Description |
 | --- | --- |
-| taskId | The comma-separated list of task IDs for the tasks that need to be built. If the task ID is specified then application, level, mname, and mtype are not required and will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
-| assignmentId | The ID of the assignment to build the task in |
+| taskId | The comma-separated list of task IDs for the tasks that need to be built. If the task id is specified then application, level, mname, and mtype are not required and will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
+| assignmentId | The id of the assignment to build the task in |
 | subAppl | The sub application name |
 | runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
@@ -136,7 +136,7 @@ Example:
 
 |  Build Task #1  | Build Task #2  |
 | --- | -- |
-| application=PLAY <br> level=DEV1 <br> mtype=COB <br> mname=TPROG15 | taskId=7E6B13477338,7E6B3AA9E550 <br> **Note: If the task ID is specified then application, level, mname, and mtype are not required and will be ignored** |
+| application=PLAY <br> level=DEV1 <br> mtype=COB <br> mname=TPROG15 | taskId=7E6B13477338,7E6B3AA9E550 <br> **Note: If the task id is specified then application, level, mname, and mtype are not required and will be ignored** |
 
 ## **Cancel Assignment / Close Assignment**  
 
@@ -144,7 +144,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | The assignment ID to be cancelled or closed |
+| assignmentId | The assignment id to be cancelled or closed |
 
 Optional:
 
@@ -206,7 +206,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| requestId | The deployment with the request ID to be cancelled |
+| requestId | The deployment with the request id to be cancelled |
 
 Optional:
 
@@ -268,7 +268,7 @@ Required:
 | stream | Stream name |
 | application | Application name |
 | description | Description for the release |
-| releaseId or releasePrefix | Either release ID or releasePrefix, but not both |
+| releaseId or releasePrefix | Either release id or releasePrefix, but not both |
 
 Optional:
 
@@ -356,7 +356,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId (Fallback Assignment) or releaseId (Fallback Release) | The container ID for which you intend to fallback tasks |
+| assignmentId (Fallback Assignment) or releaseId (Fallback Release) | The container id for which you intend to fallback tasks |
 | level | All tasks in the container at this level will fallback |
 
 Optional:
@@ -391,14 +391,14 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | The ID of the assignment to generate |
+| assignmentId | The id of the assignment to generate |
 | level | Tasks in the assignment at this level will be generate |
 
 Optional:
 
 |  Parameter | Description |
 | --- | --- |
-| taskId | A task with this task ID will be generated. If the task ID is specified then assignmentId and level will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
+| taskId | A task with this task id will be generated. If the task id is specified then assignmentId and level will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
 | runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
@@ -425,7 +425,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId (Generate Tasks In Assignment) or releaseId (Generate Tasks In Release) | The container ID for which you intend to generate tasks |
+| assignmentId (Generate Tasks In Assignment) or releaseId (Generate Tasks In Release) | The container id for which you intend to generate tasks |
 | level | Tasks in the container at this level will be generated |
 
 Optional:
@@ -460,7 +460,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | 	The assignment ID |
+| assignmentId | 	The assignment id |
 
 Example:
 
@@ -475,7 +475,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| assignmentId | 	The assignment ID |
+| assignmentId | 	The assignment id |
 | level  | 	All tasks in the assignment at this level will be displayed |
 
 Example:
@@ -483,6 +483,65 @@ Example:
 | Get Assignment Task List |
 | --- |
 | assignmentId=PLAY031347 <br> level=DEV2 |
+
+
+## **Get Container List**  
+
+Required: None
+
+Optional:
+
+| Parameter | Description |
+| --- | --- |
+| application | The ISPW application id.  Trailing wildcards are supported, i.e. FOO* |
+| subAppl | The sub application.  Trailing wildcards are supported, i.e. FOO* |
+| containerId | The container id (Assignment id, Release id or Set id). Trailing wildcards are supported, i.e. PRFX0000* |
+| containerType | The type of container: A=Assignment, R=Release, S=Set |
+| description | The description for the container. Trailing wildcards are supported such as REF123* |
+| includeClosedContainers | Whether to include closed containers in the list.  Valid values are true or false (default) |
+| owner | The owner of the container. Trailing wildcards are supported, i.e. MYID* |
+| path | The default container path.  Trailing wildcards are supported, i.e. DEV* |
+| refNumber | Site defined number typically used to associate the container with a problem ticket number or change request number.Trailing wildcards are supported, i.e. MYISSUE* |
+| releaseId | The 10-character release number, if associated with an assignment. Trailing wildcards are supported, i.e. RELEASE1* |
+| stream | The ISPW stream name. Trailing wildcards are supported, i.e. BAR* |
+| tag | User-definable four-character field. Trailing wildcards are supported, i.e. TAG* (Case sensitive) |
+| userId | The owner or joined user for a container |
+
+Example:
+
+| Get Container List |
+| --- |
+| application=PLAY <br> containerId=PLAY001386 <br> containerType=A <br> description=myContainer <br> includeClosedContainers=false <br> owner=myUserId <br> path=DEV1 <br> refNumber=JIRA1234 <br> releaseId=R00001234 <br> stream=PLAY <br> subAppl=PLAY <br> userId=myUserId |
+
+
+## **Get Release Info**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | 	The release id |
+
+Example:
+
+| Get Release Info |
+| --- |
+| releaseId=JKGENRELID |
+
+## **Get Release Task Generate Listing**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | 	The release id |
+| taskId  | 	The task id |
+
+Example:
+
+| Get Release Task Generate Listing |
+| --- |
+| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 |
 
 
 ## **Get Release Task Info**  
@@ -523,7 +582,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| setId | 	The set ID you want info on |
+| setId | 	The set id you want info on |
 | level  | 	All tasks in the set at this level will be displayed |
 
 Example:
@@ -539,7 +598,7 @@ Required:
 
 | Parameter | Description |
 | --- | --- |
-| setId | 	The set ID you want info on|
+| setId | 	The set id you want info on|
 
 Example:
 
@@ -553,7 +612,7 @@ Required:
 
 |  Parameter | Description |
 | --- | --- |
-| assignmentId (Promote Assignment) or releaseId (Promote Release) | The container ID for which you intend to promote tasks. |
+| assignmentId (Promote Assignment) or releaseId (Promote Release) | The container id for which you intend to promote tasks. |
 | level | All tasks in the release at this level will be generated |
 
 Optional:
