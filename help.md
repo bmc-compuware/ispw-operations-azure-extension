@@ -252,6 +252,7 @@ Optional:
 | referenceNumber | Reference number |
 | releaseId | The release id |
 | userTag | User tag |
+| sandboxJoinAtLevel | Sandbox Join at level |
 
 Example:
 

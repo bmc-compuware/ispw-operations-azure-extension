@@ -22,6 +22,7 @@ class ReqBodyAttributes extends IspwReqBody {
   userTag: String = "";
   assignmentId: String = "";
   message: String = "";
+  sandboxJoinAtLevel: String="";
 }
 
 class CreateAssignmentAction extends IspwActions {
