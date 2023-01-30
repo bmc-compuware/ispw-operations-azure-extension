@@ -10,6 +10,10 @@ const containerListResponse = require("../transferObj/ContainerListResponse");
 const containerListInfo = require("../transferObj/ContainerListInfo");
 const releaseInfo = require("../transferObj/ReleaseInfo");
 const taskListingResponse = require("../transferObj/TaskListingResponse");
+const workListResponse = require("../transferObj/WorkListResponse");
+const multiTaskInfoResponse = require("../transferObj/MultiTaskInfoResponse");
+const taskResponse = require("../transferObj/TaskResponse");
+const taskLoadResponse = require("../transferObj/TaskLoadResponse");
 
 class SummarizeResponse {
   summarize(respObject: any, action: string): void {
@@ -196,7 +200,7 @@ class SummarizeResponse {
         if (respObject.subAppl) {
           console.log(
             "Stream/Application/SubAppl: " +
-            respObject.stream +
+              respObject.stream +
               "/" +
               respObject.application +
               "/" +
@@ -205,16 +209,13 @@ class SummarizeResponse {
         } else {
           console.log(
             "Stream/Application: " +
-            respObject.stream +
+              respObject.stream +
               "/" +
               respObject.application
           );
         }
         console.log(
-          "Release: " +
-          respObject.releaseId +
-            " - " +
-            respObject.description
+          "Release: " + respObject.releaseId + " - " + respObject.description
         );
         console.log("Owner: " + respObject.owner);
         console.log("WORK REQ. : " + respObject.referenceNumber);
@@ -224,9 +225,76 @@ class SummarizeResponse {
 
     if (respObject instanceof taskListingResponse) {
       if (action == "GetReleaseTaskGenerateListing") {
-        console.log("Listing : \n"+respObject.listing);
+        console.log("Listing : \n" + respObject.listing);
       }
     }
+
+    if (respObject instanceof workListResponse) {
+      if (action == "GetWorkList") {
+        for (let i = 0; i < respObject.workListItems.length; i++) {
+          console.log(" ");
+          console.log("Action: " + respObject.workListItems[i].action);
+          console.log(
+            "Alternate Name: " + respObject.workListItems[i].alternateName
+          );
+          console.log(
+            "Application: " + respObject.workListItems[i].application
+          );
+          if (respObject.workListItems[i].subAppl) {
+            console.log("SubAppl: " + respObject.workListItems[i].subAppl);
+          }
+          console.log(
+            "Assignment ID: " + respObject.workListItems[i].assignmentId
+          );
+          console.log("Clazz: " + respObject.workListItems[i].clazz);
+          console.log("Date/Time: " + respObject.workListItems[i].dateTime);
+          console.log(
+            "Environment: " + respObject.workListItems[i].environment
+          );
+          console.log("Group: " + respObject.workListItems[i].group);
+          console.log("Level: " + respObject.workListItems[i].level);
+          console.log("Message: " + respObject.workListItems[i].message);
+          console.log("Name: " + respObject.workListItems[i].name);
+          console.log("Operation: " + respObject.workListItems[i].operation);
+          console.log("Owner: " + respObject.workListItems[i].owner);
+          console.log("Path: " + respObject.workListItems[i].path);
+          console.log("WORK REQ.: " + respObject.workListItems[i].refNumber);
+          console.log(
+            "Relative Path: " + respObject.workListItems[i].relativePath
+          );
+          console.log("Release ID: " + respObject.workListItems[i].releaseId);
+          console.log("Stream: " + respObject.workListItems[i].stream);
+          console.log("Task ID: " + respObject.workListItems[i].taskId);
+          console.log("Technology: " + respObject.workListItems[i].technology);
+          console.log("Type: " + respObject.workListItems[i].type);
+          console.log("User: " + respObject.workListItems[i].user);
+          console.log("Version: " + respObject.workListItems[i].version);
+        }
+      }
+    }
+
+    if (respObject instanceof multiTaskInfoResponse) {
+      if (action == "RemoveFromRelease") {
+        console.log(respObject.message);
+      }
+      if (action == "TransferTask") {
+        console.log(respObject.message);
+      }
+
+    }
+
+    if (respObject instanceof taskResponse) {
+      if (action == "SetOperation") {
+        console.log("Completed operation on set " + respObject.setId);
+      }
+    }
+
+    if (respObject instanceof taskLoadResponse) {
+      if (action == "TaskLoad" && respObject.taskId) {
+        console.log("Task with ID "+respObject.taskId+" loaded to assignment "+ respObject.url.split("/").reverse()[2]);
+      }
+    }
+    
   }
 }
 

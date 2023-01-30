@@ -10,7 +10,7 @@
   "version": {
     "Major": 1,
     "Minor": 1,
-    "Patch": 0
+    "Patch": 5
   },
   "instanceNameFormat": "Echo instanceName",
   "inputs": [
@@ -74,10 +74,15 @@
         "GetReleaseTaskList": "Get Release Task List",
         "GetSetInfo": "Get Set Info",
         "GetSetTaskList": "Get Set Task List",
+        "GetWorkList": "Get Work List",
         "PromoteAssignment": "Promote Assignment",
         "PromoteRelease": "Promote Release",
         "RegressAssignment": "Regress Assignment",
-        "RegressRelease": "Regress Release"
+        "RegressRelease": "Regress Release",
+        "RemoveFromRelease": "Remove From Release",
+        "SetOperation": "Set Operation",
+        "TaskLoad": "Task Load",
+        "TransferTask": "Transfer Task"
       }
     },
     {

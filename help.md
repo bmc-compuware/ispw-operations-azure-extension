@@ -252,7 +252,7 @@ Optional:
 | referenceNumber | Reference number |
 | releaseId | The release id |
 | userTag | User tag |
-| sandboxJoinAtLevel | Sandbox Join at level |
+| sandboxJoinAtLevel | Sandbox Join at level |											  
 
 Example:
 
@@ -608,6 +608,40 @@ Example:
 | setId=S000015218  |
 
 
+## **Get Work List**  
+
+Required: None
+
+Optional:
+
+| Parameter | Description |
+| --- | --- |
+| inProgress | True/false value indicating whether or not to include active tasks that are not in Production. The default value is true. |
+| production | True/false value indicating whether or not to include current Production tasks. The default value is false.|
+| historical | True/false value indicating whether or not to include tasks that were once in Production. The default value is false.|
+| startDate | Specify the start date in yyyy-mm-dd format to filter a range based on last update. |
+| endDate | Specify the end date in yyyy-mm-dd format to filter a range based on last update.|
+| application | Container's primary application code. Containers may include components from multiple applications. Trailing wildcards are supported, i.e. FOO*|
+| subAppl | Container's primary sub application code. Containers may include components from multiple applications. Trailing wildcards are supported, i.e. FOO*|
+| environment | ISPW environment for this version (such as OUTS, TEST, HOLD, or PROD). Trailing wildcards are supported, i.e. PRO* |
+| group | Component or task belonging to this application owner group. Trailing wildcards are supported, i.e. FOO* |
+| lastUpdatedBy | User ID that requested the last significant operation (see Operation). |
+| level |Level of this component when the last operation was requested. Trailing wildcards are supported, i.e. DEV*|
+| name |A component name (case sensitive). Trailing wildcards are supported, i.e. TPROG*|
+| operation |Last operation performed on this component. Valid operation values include Browse, Checkout, Delete, Edit, Fallback, Generate, Implement, Loaded, Promote, Regress, Transfer, and Update Replace Version|
+| owner |User who performed the checkout of the component.|
+| refNumber |Optional, site-definable field typically used to associate the assignment with a problem ticket number or change request number. Trailing wildcards are supported, i.e. MYISSUE*|
+| releaseId |Release a component belongs to. Trailing wildcards are supported, i.e. RELEASE1*|
+| stream |2- to 8-character code defines the application structure with which the application is associated. Trailing wildcards are supported, i.e. BAR*|
+| type |The one-to four-character acronym for the type of component, such as COB for a Cobol program or COPY for a copybook. Trailing wildcards are supported, i.e. C*|
+
+Example:
+
+| Get Work List |
+| --- |
+| inProgress=true<br>production=true<br>historical=true<br>startDate=2019-01-01<br>endDate=2019-03-31<br>application=PLAY<br>subAppl=PLAY<br>environment=TEST<br>group=GRP1<br>lastUpdatedBy=FOOUSER<br>level=DEV1<br>name=TPROG01<br>operation=Promote<br>owner=FOOUSER<br>refNumber=JIRA1234<br>releaseId=RLS001<br>stream=PLAY<br>type=COB |
+
+
 ## **Promote Assignment / Promote Release**  
 Required:
 
@@ -674,3 +708,103 @@ Example:
 | Regress Assignment | Regress Release |
 | --- | --- |
 | assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB | releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB |
+
+
+## **Remove From Release**  
+
+Required: none
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+|level|All tasks at this level will be removed|
+|mname|The component name to be removed|
+|mtype|The component type to be removed|
+|taskId|The task ID to be removed|
+
+Example:
+
+| Remove From Release |
+| --- |
+| releaseId=RLS123<br>level=DEV1<br>mname=TPROG01<br>mtype=COB<br>taskId=7E2BACADE42C |
+
+
+## **Set Operation**  
+
+Required: 
+
+|  Parameter | Description |
+| --- | --- |
+|setId|The set ID|
+|action|The action to be operated on the set,supported actions: hold, release, lock, unlock, delete, restart, terminate;or approve, deny, reset (approver must be provided)|
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+|runtimeConfiguration|The runtime configuration|
+|approver|The approver name, must be provided if use action -  approve, deny, reset|
+
+Example:
+
+| Set Operation|
+| --- |
+| runtimeConfiguration=TPZP <br>action=deny<br>approver=dummy<br>setId=S000143423 |
+
+
+## **Task Load**  
+
+Required: 
+
+|  Parameter | Description |
+| --- | --- |
+|assignmentId| The assignment ID to add task to|
+|stream|The stream|
+|application|The application name|
+|moduleName|The name of the task to be loaded|
+|moduleType|The type of the task|
+|currentLevel|The current level of the task|
+|startingLevel|The starting level for the task|
+|userId|The user ID|
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+|runtimeConfiguration|The runtime configuration|
+| subAppl | The sub application name |
+|release| The release |
+
+Example:
+
+| Task Load|
+| --- |
+| runtimeConfiguration=TPZP<br>assignmentId=PLAY001386<br>stream=PLAY<br>application=PLAY<br>subAppl=PLAY<br>moduleName=TREXX23<br>moduleType=CLST<br>currentLevel=DEV1<br>startingLevel=DEV1<br>userId=Foobar |
+
+
+## **Transfer Task**  
+
+Required: 
+
+|  Parameter | Description |
+| --- | --- |
+|assignmentId|The assignment ID to move task from|
+|containerId|The target container ID to move to|
+|containerType|'A' or 'R'. A for assignment and R for release|
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+|runtimeConfiguration| The runtime configuration|
+|level|All tasks at this level will be transferred|
+|mname|The component name to be transferred|
+|mtype|The component type to be transferred|
+|taskId|The task ID to be transferred|
+
+Example:
+
+| Transfer Task |
+| --- |
+| runtimeConfiguration=TPZP<br>assignmentId=PLAY001386<br>level=DEV1<br>containerId=PLAY001387<br>containerType=A|

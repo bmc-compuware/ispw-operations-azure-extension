@@ -82,10 +82,15 @@ This BMC ISPW Operations task has following parameters:
     -   Get Release Task List
     -   Get Set Info
     -   Get Set Task List
+    -   Get Work List
     -   Promote Assignment
     -   Promote Release
     -   Regress Assignment
     -   Regress Release
+    -   Remove From Release
+    -   Set Operation
+    -   Task Load
+    -   Transfer Task
 
 -   **Request**: Specify additional request parameters, [click here for more information](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md).
 
