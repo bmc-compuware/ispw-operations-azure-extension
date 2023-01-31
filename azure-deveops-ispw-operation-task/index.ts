@@ -83,7 +83,7 @@ async function run() {
         if (
           setId &&
           (respObject instanceof TaskResponse ||
-            respObject instanceof BuildResponse)
+            respObject instanceof BuildResponse) && action != "SetOperation"
         ) {
           input = new Input(
             hostPortArr[0],

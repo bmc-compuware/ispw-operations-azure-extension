@@ -31,6 +31,11 @@ const getSetTaskListAction = require("./GetSetTaskListAction");
 const getContainerListAction = require("./GetContainerListAction");
 const getReleaseInfoAction = require("./GetReleaseInfoAction");
 const getReleaseTaskGenerateListingAction = require("./GetReleaseTaskGenerateListingAction");
+const getWorkListAction = require("./GetWorkListAction");
+const removeFromReleaseAction = require("./RemoveFromReleaseAction");
+const setOperationAction = require("./SetOperationAction");
+const taskLoadAction = require("./TaskLoadAction");
+const transferTaskAction = require("./TransferTaskAction");
 
 class ActionFactory {
   constructor() {}
@@ -92,6 +97,8 @@ class ActionFactory {
         return new getSetInfoAction();
       case "GetSetTaskList":
         return new getSetTaskListAction();
+      case "GetWorkList":
+        return new getWorkListAction();
       case "PromoteAssignment":
         return new promoteAssignmentAction();
       case "SetInfo":
@@ -102,6 +109,14 @@ class ActionFactory {
         return new regressAssignmentAction();
       case "RegressRelease":
         return new regressReleaseAction();
+      case "RemoveFromRelease":
+        return new removeFromReleaseAction();
+      case "SetOperation":
+        return new setOperationAction();
+      case "TaskLoad":
+        return new taskLoadAction();
+      case "TransferTask":
+        return new transferTaskAction();
       default:
         new Error("Action Not supported!");
     }

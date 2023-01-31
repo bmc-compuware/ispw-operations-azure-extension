@@ -13,7 +13,7 @@ class CommonService {
     isPrintEnable: boolean
   ) {
     const options = {
-      headers: { 'Content-Type': 'application/json', 'Authorization': cesToken }
+      headers: { "Content-Type": "application/json", Authorization: cesToken },
     };
     try {
       console.log("Starting ISPW Operations Plugin...");
@@ -29,8 +29,11 @@ class CommonService {
     } catch (error: any) {
       console.error("Error : ");
       if (error.response) {
-        console.error(error.response.data.message);
-        tl.setResult(tl.TaskResult.Failed, error.response.data.message);
+        let errorMessage = error.response.data.message
+          ? error.response.data.message
+          : error.response.data;
+        console.error(errorMessage);
+        tl.setResult(tl.TaskResult.Failed, errorMessage);
       } else if (error.request) {
         console.error(error.response.data.message);
         tl.setResult(tl.TaskResult.Failed, error.request);
@@ -47,7 +50,7 @@ class CommonService {
     isPrintEnable: boolean
   ) {
     const options = {
-      headers: { "Content-Type": "application/json", 'Authorization': cesToken },
+      headers: { "Content-Type": "application/json", Authorization: cesToken },
     };
     try {
       console.log("Starting ISPW Operations Plugin...");
