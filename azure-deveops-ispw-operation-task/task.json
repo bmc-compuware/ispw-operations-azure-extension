@@ -265,7 +265,7 @@
       "label": "Branch Mapping",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "###The following mappings show how to use the 'Branch Mapping' field.\n - **/dev1 => DEV1, per-commit\n - **/dev2 => DEV2, per-branch\n - **/dev3 => DEV3, custom, a description\n ####Each mapping has three possible fields which should be separated by commas.\n[Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/edit/master/help.md#git-to-ispw-sync)",
+      "helpMarkDown": "###The following mappings show how to use the 'Branch Mapping' field.\n - **/dev1 => DEV1, per-commit\n - **/dev2 => DEV2, per-branch\n - **/dev3 => DEV3, custom, a description\n ####Each mapping has three possible fields which should be separated by commas.\n[Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md#git-to-ispw-sync)",
       "visibleRule": "operationType=ISPWSYNC",
       "groupName": "branchMapping"
     }
