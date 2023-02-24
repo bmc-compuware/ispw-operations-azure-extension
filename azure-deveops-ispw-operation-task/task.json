@@ -272,21 +272,21 @@
   ],
   "dataSourceBindings": [
     {
-      "endpointId": "tfs:teamfoundation",
+      "endpointId": "tfs:ems",
       "target": "connectionId",
       "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
       "resultSelector": "jsonpath:$.value[*]",
       "resultTemplate": "{\"Value\":\"{{{host}}}#{{{code_page}}}\",\"DisplayValue\":\"{{{host}}}\"}"
     },
     {
-      "endpointId": "tfs:teamfoundation",
+      "endpointId": "tfs:ems",
       "target": "cesUrl",
       "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
       "resultSelector": "jsonpath:$.value[*]",
       "resultTemplate": "{\"Value\":\"{{{ces_url}}}\",\"DisplayValue\":\"{{{ces_url}}}\"}"
     },
     {
-      "endpointId": "tfs:teamfoundation",
+      "endpointId": "tfs:ems",
       "target": "encryptionProtocol",
       "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
       "resultSelector": "jsonpath:$.value[*]",
