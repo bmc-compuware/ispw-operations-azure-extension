@@ -8,11 +8,24 @@
   "category": "Utility",
   "author": "BMC Software",
   "version": {
-    "Major": 1,
-    "Minor": 1,
-    "Patch": 5
-  },
-  "instanceNameFormat": "Echo instanceName",
+    "Major": 2,
+    "Minor": 0,
+    "Patch": 0},
+  "instanceNameFormat": "ISPW Operations",
+  "groups": [
+    {
+      "name": "ispw",
+      "displayName": "ISPW",
+      "isExpanded": true,
+      "visibleRule": "operationType=ISPWSYNC"
+    },
+    {
+      "name": "branchMapping",
+      "displayName": "Git to ISPW Branch Mapping",
+      "isExpanded": true,
+      "visibleRule": "operationType=ISPWSYNC"
+    }
+  ],
   "inputs": [
     {
       "name": "connectionId",
@@ -23,20 +36,34 @@
       "helpMarkDown": "This field specifies the host connection associated with a CES URL. Host connections with CES url can be configured in the Common Configuration Extension."
     },
     {
+      "name": "operationType",
+      "type": "radio",
+      "label": "Perform : ",
+      "required": true,
+      "defaultValue": "CES",
+      "helpMarkDown": "Select either ISPW operations or Git to ISPW Sync",
+      "options": {
+        "CES": "ISPW Operations",
+        "ISPWSYNC": "Git to ISPW Sync"
+      }
+    },
+    {
       "name": "cesUrl",
       "type": "pickList",
       "label": "CES URL",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "This field specifies the CES URL. Host connections with CES url can be configured in the Common Configuration Extension."
+      "helpMarkDown": "This field specifies the CES URL. Host connections with CES url can be configured in the Common Configuration Extension.",
+      "visibleRule": "operationType=CES"
     },
     {
       "name": "cesSecretToken",
       "type": "string",
       "label": "CES secret token",
-      "defaultValue": "",
+      "defaultValue": "$(cesToken)",
       "required": true,
-      "helpMarkDown": "The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(variablename)."
+      "helpMarkDown": "The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
+      "visibleRule": "operationType=CES"
     },
     {
       "name": "action",
@@ -45,6 +72,7 @@
       "defaultValue": "",
       "required": true,
       "helpMarkDown": "ISPW action to be performed",
+      "visibleRule": "operationType=CES",
       "options": {
         "AddTask": "Add Task",
         "BuildAssignment": "Build Assignment",
@@ -68,8 +96,8 @@
         "GetAssignmentInfo": "Get Assignment Info",
         "GetAssignmentTaskList": "Get Assignment Task List",
         "GetContainerList": "Get Container List",
-        "GetReleaseInfo":"Get Release Info",
-        "GetReleaseTaskGenerateListing":"Get Release Task Generate Listing",
+        "GetReleaseInfo": "Get Release Info",
+        "GetReleaseTaskGenerateListing": "Get Release Task Generate Listing",
         "GetReleaseTaskInfo": "Get Release Task Info",
         "GetReleaseTaskList": "Get Release Task List",
         "GetSetInfo": "Get Set Info",
@@ -92,7 +120,8 @@
       "options": {},
       "defaultValue": "#The following messages are commented out to show how to use the 'Request' field.\n#Click on the help button to the right of the screen for examples of how to populate this field based on 'Action' type\n #\n #For example, if you select GenerateTasksInAssignment for 'Action' field,\n# you may populate the following properties in 'Request' field.\n # The property value should be based on your own container ID and level.\n #\n #assignmentId=PLAY000313\n #level=STG2\n",
       "required": true,
-      "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md)"
+      "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md)",
+      "visibleRule": "operationType=CES"
     },
     {
       "name": "skipWaitingForSetCompletion",
@@ -104,7 +133,8 @@
       "options": {
         "true": "Yes",
         "false": "No"
-      }
+      },
+      "visibleRule": "operationType=CES"
     },
     {
       "name": "showResponseBodyInConsole",
@@ -116,7 +146,128 @@
       "options": {
         "true": "Yes",
         "false": "No"
-      }
+      },
+      "visibleRule": "operationType=CES"
+    },    
+    {
+      "name": "topazWorkbenchCLIHome",
+      "type": "string",
+      "label": "Topaz Workbench CLI Home",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the Topaz Workbench CLI Home.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "runtimeConfiguration",
+      "type": "string",
+      "label": "Runtime Configuration",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the ISPW runtime configuration.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    }, 
+    {
+      "name": "ispwusername",
+      "type": "string",
+      "label": "User Id",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the ISPW user name.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "ispwpassword",
+      "type": "string",
+      "label": "Password",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the ISPW user password. The recommended way to set secret variables are in a variable group. For eaxmple, $(ispw.password).",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },  
+    {
+      "name": "stream",
+      "type": "string",
+      "label": "Stream",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the ISPW Stream name.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },    
+    {
+      "name": "application",
+      "type": "string",
+      "label": "Application",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the ISPW Application name.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "subApplication",
+      "type": "string",
+      "label": "Sub Application",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "(Optional) Specify the ISPW Sub Application name.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "yamlMappingFile",
+      "type": "string",
+      "label": "YAML Mapping File",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "(Optional) Relative path of ISPW YAML configuration file to GIT repository root. If not set, default to {repository.root}/ispwconfig.yml",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "encryptionProtocol",
+      "type": "pickList",
+      "label": "Encryption protocol",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the encryption protocol.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "codePage",
+      "type": "string",
+      "label": "Code Page",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Specify the code page.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "timeout",
+      "type": "string",
+      "label": "Read/write timeout (minutes)",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Specify the read/write timeout.",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "ispw"
+    },
+    {
+      "name": "branchMapping",
+      "type": "string",
+      "label": "Branch Mapping",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "###The following mappings show how to use the 'Branch Mapping' field.\n - **/dev1 => DEV1, per-commit\n - **/dev2 => DEV2, per-branch\n - **/dev3 => DEV3, custom, a description\n ####Each mapping has three possible fields which should be separated by commas.\n[Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/edit/master/help.md#git-to-ispw-sync)",
+      "visibleRule": "operationType=ISPWSYNC",
+      "groupName": "branchMapping"
     }
   ],
   "dataSourceBindings": [
@@ -133,6 +284,13 @@
       "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
       "resultSelector": "jsonpath:$.value[*]",
       "resultTemplate": "{\"Value\":\"{{{ces_url}}}\",\"DisplayValue\":\"{{{ces_url}}}\"}"
+    },
+    {
+      "endpointId": "tfs:teamfoundation",
+      "target": "encryptionProtocol",
+      "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
+      "resultSelector": "jsonpath:$.value[*]",
+      "resultTemplate": "{\"Value\":\"{{{protocol}}}\",\"DisplayValue\":\"{{{protocol}}}\"}"
     }
   ],
   "execution": {

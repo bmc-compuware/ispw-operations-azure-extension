@@ -808,3 +808,23 @@ Example:
 | Transfer Task |
 | --- |
 | runtimeConfiguration=TPZP<br>assignmentId=PLAY001386<br>level=DEV1<br>containerId=PLAY001387<br>containerType=A|
+
+
+## **Git to ISPW Sync**  
+
+The following mappings show how to use the 'Branch Mapping' field.
+```
+- **/dev1 => DEV1, per-commit
+- **/dev2 => DEV2, per-branch
+- **/dev3 => DEV3, custom, a description
+```
+
+This area is used to define the branch mappings of Git branches to ISPW levels. Each mapping has three possible fields which should be separated by commas.
+
+1. The first field is a Git branch to ISPW level mapping which supports wildcarding (example: **/dev1 => DEV1, **/dev2 => DEV2, etc.)
+2. The second field indicates how often to create an assignment to load the changes in ISPW.<br>
+   The possible values are :<br>
+   - **per-commit**: an assignment will be created for each commit.
+   - **per-branch**: an assignment will be created for each Git branch. If an assignment already exists for a Git branch, it will be reused.
+   - **custom**: an assignment with the given custom description will be created for this branch mapping. If an assignment with this description already exists, it will be reused. When "custom" is specified, the user must specify the third field.
+3. The third field indicates the custom assignment description to use when loading changes into an assignment. This field is only required if "custom" was specified in the second field.
