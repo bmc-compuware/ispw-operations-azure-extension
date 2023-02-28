@@ -8,7 +8,8 @@ The BMC ISPW Operations allows Azure DevOps users to execute ISPW operations, su
 ## Prerequisites
 
 The following are required to use this extension:
-- [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
+- Azure Cloud or [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
+- [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser): Self Hosted Agents setup on which Topaz WorkBench CLI will be installed.
 - [BMC common configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
 - [BMC Compuware ISPW](https://www.bmc.com/it-solutions/bmc-compuware-ispw.html)
 - [BMC Compuware CES](https://docs.bmc.com/docs/bces2010/introduction-to-bmc-compuware-enterprise-services-1068407133.html)
