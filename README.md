@@ -8,12 +8,11 @@ The BMC ISPW Operations allows Azure DevOps users to execute ISPW operations, su
 ## Prerequisites
 
 The following are required to use this extension:
-- [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
+- Azure Cloud or [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
+- [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser): Self Hosted Agents setup on which Topaz WorkBench CLI and BMC Compuware CES will be installed.
 - [BMC common configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
 - [BMC Compuware ISPW](https://www.bmc.com/it-solutions/bmc-compuware-ispw.html)
 - [BMC Compuware CES](https://docs.bmc.com/docs/bces2010/introduction-to-bmc-compuware-enterprise-services-1068407133.html)
-
-Note: This extension version is only supported with on premise Azure DevOps Server, it will not work with Azure Cloud.
 
 ## Installing extensions in a Azure Devops Server Instance
 
@@ -49,9 +48,11 @@ This BMC ISPW Operations task has following parameters:
 
 -   **Host Connection** : Select the host connection to be used to connect to the z/OS host. Alternatively, to add a connection navigate to Pipelines and go to BMC Common Configurations section.
 
+-   **ISPW Operations** : Select ISPW operations to perform action
+
 -   **CES URL** : This field specifies the CES URL. Host connections with CES url can be configured in the BMC Common Configuration Extension.
 
--   **CES secret token**: The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(variablename). 
+-   **CES secret token**: The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).
 
 -   **Action** :  ISPW operation to be performed. Following actions are supported :
     -   Add Task
@@ -97,6 +98,22 @@ This BMC ISPW Operations task has following parameters:
 -   **Skip waiting for the completion of the set (if applicable)** : This allows to turn on / off polling a set to wait for the job finish if it is applicable.
 
 -   **Show Response body in console** : This allows you to turn on / off writing the response body to the log.
+
+Click Save & queue > Save and run.
+
+## Executing Git to ISPW Sync
+
+This Git to ISPW Sync task has following parameters:
+
+-   **Display name** :  The name of the Task.
+
+-   **Host Connection** : Select the host connection to be used to connect to the z/OS host. Alternatively, to add a connection navigate to Pipelines and go to BMC Common Configurations section.
+
+-   **Git to ISPW Sync** : Select Git to ISPW Sync to perform sync operation.
+
+-   **ISPW** : Expand ISPW group to specify required parameters [ Topaz Workbench CLI Home, Runtime Configuration, User Id, Password, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
+
+-   **Git to ISPW Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/edit/master/help.md#git-to-ispw-sync)"
 
 Click Save & queue > Save and run.
 
