@@ -113,7 +113,7 @@ This Git to ISPW Sync task has following parameters:
 
 -   **ISPW** : Expand ISPW group to specify required parameters [ Topaz Workbench CLI Home, Runtime Configuration, User Id, Password, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
 
--   **Git to ISPW Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/edit/master/help.md#git-to-ispw-sync)"
+-   **Git to ISPW Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md#git-to-ispw-sync)"
 
 Click Save & queue > Save and run.
 
