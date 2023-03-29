@@ -114,18 +114,18 @@ async function run() {
                 console.log("Waiting for set to complete...");
                 if (set_obj.state == SET_STATE_FAILED) {
                   console.log(
-                    "ISPW: Set " + set_obj.setid + " - action [%s] failed.",
+                    "Code Pipeline: Set " + set_obj.setid + " - action [%s] failed.",
                     action
                   );
                   break;
                 } else if (set_obj.state == SET_STATE_TERMINATED) {
                   console.log(
-                    "ISPW: Set " + set_obj.setid + " - successfully terminated."
+                    "Code Pipeline: Set " + set_obj.setid + " - successfully terminated."
                   );
                   break;
                 } else if (set_obj.state == SET_STATE_HELD) {
                   console.log(
-                    "ISPW: Set " + set_obj.setid + " - successfully held."
+                    "Code Pipeline: Set " + set_obj.setid + " - successfully held."
                   );
                   break;
                 } else if (
@@ -133,12 +133,12 @@ async function run() {
                   set_obj.state == SET_STATE_WAITING_LOCK
                 ) {
                   console.log(
-                    "ISPW: Set " + set_obj.setid + " - successfully released."
+                    "Code Pipeline: Set " + set_obj.setid + " - successfully released."
                   );
                   break;
                 } else if (set_obj.state == SET_STATE_WAITING_APPROVAL) {
                   console.log(
-                    "ISPW: In set (" +
+                    "Code Pipeline: In set (" +
                       set_obj.setid +
                       ") process, Approval required."
                   );
@@ -148,7 +148,7 @@ async function run() {
                   set_obj.state == SET_STATE_COMPLETE
                 ) {
                   console.log(
-                    "ISPW: Action " +
+                    "Code Pipeline: Action " +
                       util.splitPascalCase(action) +
                       " completed."
                   );
@@ -194,7 +194,7 @@ async function run() {
             throw error;
           }
         }
-        console.log("ISPW Sync action is completed.");
+        console.log("Code Pipeline Sync action is completed.");
       } catch (error) {
         if (error instanceof Error) {
           tl.setResult(tl.TaskResult.Failed, error.message);

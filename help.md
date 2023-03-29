@@ -50,7 +50,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -86,7 +86,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -124,7 +124,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -155,7 +155,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -186,7 +186,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -217,7 +217,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -305,7 +305,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -338,7 +338,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -371,7 +371,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -405,7 +405,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -440,7 +440,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -494,7 +494,7 @@ Optional:
 
 | Parameter | Description |
 | --- | --- |
-| application | The ISPW application id.  Trailing wildcards are supported, i.e. FOO* |
+| application | The Code Pipeline application id.  Trailing wildcards are supported, i.e. FOO* |
 | subAppl | The sub application.  Trailing wildcards are supported, i.e. FOO* |
 | containerId | The container id (Assignment id, Release id or Set id). Trailing wildcards are supported, i.e. PRFX0000* |
 | containerType | The type of container: A=Assignment, R=Release, S=Set |
@@ -504,7 +504,7 @@ Optional:
 | path | The default container path.  Trailing wildcards are supported, i.e. DEV* |
 | refNumber | Site defined number typically used to associate the container with a problem ticket number or change request number.Trailing wildcards are supported, i.e. MYISSUE* |
 | releaseId | The 10-character release number, if associated with an assignment. Trailing wildcards are supported, i.e. RELEASE1* |
-| stream | The ISPW stream name. Trailing wildcards are supported, i.e. BAR* |
+| stream | The Code Pipeline stream name. Trailing wildcards are supported, i.e. BAR* |
 | tag | User-definable four-character field. Trailing wildcards are supported, i.e. TAG* (Case sensitive) |
 | userId | The owner or joined user for a container |
 
@@ -623,7 +623,7 @@ Optional:
 | endDate | Specify the end date in yyyy-mm-dd format to filter a range based on last update.|
 | application | Container's primary application code. Containers may include components from multiple applications. Trailing wildcards are supported, i.e. FOO*|
 | subAppl | Container's primary sub application code. Containers may include components from multiple applications. Trailing wildcards are supported, i.e. FOO*|
-| environment | ISPW environment for this version (such as OUTS, TEST, HOLD, or PROD). Trailing wildcards are supported, i.e. PRO* |
+| environment | Code Pipeline environment for this version (such as OUTS, TEST, HOLD, or PROD). Trailing wildcards are supported, i.e. PRO* |
 | group | Component or task belonging to this application owner group. Trailing wildcards are supported, i.e. FOO* |
 | lastUpdatedBy | User ID that requested the last significant operation (see Operation). |
 | level |Level of this component when the last operation was requested. Trailing wildcards are supported, i.e. DEV*|
@@ -661,7 +661,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -695,7 +695,7 @@ Optional:
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
 | system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
-| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your ISPW instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
 | deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
 | deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
 | deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
@@ -810,7 +810,7 @@ Example:
 | runtimeConfiguration=TPZP<br>assignmentId=PLAY001386<br>level=DEV1<br>containerId=PLAY001387<br>containerType=A|
 
 
-## **Git to ISPW Sync**  
+## **Git to Code Pipeline Sync**  
 
 The following mappings show how to use the 'Branch Mapping' field.
 ```
@@ -819,10 +819,10 @@ The following mappings show how to use the 'Branch Mapping' field.
 - **/dev3 => DEV3, custom, a description
 ```
 
-This area is used to define the branch mappings of Git branches to ISPW levels. Each mapping has three possible fields which should be separated by commas.
+This area is used to define the branch mappings of Git branches to Code Pipeline levels. Each mapping has three possible fields which should be separated by commas.
 
-1. The first field is a Git branch to ISPW level mapping which supports wildcarding (example: **/dev1 => DEV1, **/dev2 => DEV2, etc.)
-2. The second field indicates how often to create an assignment to load the changes in ISPW.<br>
+1. The first field is a Git branch to Code Pipeline level mapping which supports wildcarding (example: **/dev1 => DEV1, **/dev2 => DEV2, etc.)
+2. The second field indicates how often to create an assignment to load the changes in Code Pipeline.<br>
    The possible values are :<br>
    - **per-commit**: an assignment will be created for each commit.
    - **per-branch**: an assignment will be created for each Git branch. If an assignment already exists for a Git branch, it will be reused.
