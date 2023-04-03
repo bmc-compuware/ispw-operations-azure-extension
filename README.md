@@ -1,22 +1,22 @@
-# BMC ISPW Operations
+# BMC AMI DevX Code Pipeline Operations (Code Pipeline Operations)
 ![](images/ISPW_marble.png)
 
 ## Overview
 
-The BMC ISPW Operations allows Azure DevOps users to execute ISPW operations, such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the ISPW build process using Azure DevOps.
+The Code Pipeline Operations allows Azure DevOps users to execute Code Pipeline operations, such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the Code Pipeline build process using Azure DevOps.
 
 ## Prerequisites
 
 The following are required to use this extension:
 - Azure Cloud or [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
-- [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser): Self Hosted Agents setup on which Topaz WorkBench CLI and BMC Compuware CES will be installed.
-- [BMC common configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
-- [BMC Compuware ISPW](https://www.bmc.com/it-solutions/bmc-compuware-ispw.html)
-- [BMC Compuware CES](https://docs.bmc.com/docs/bces2010/introduction-to-bmc-compuware-enterprise-services-1068407133.html)
+- [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser): Self Hosted Agents setup on which WorkBench CLI and BMC AMI Common Enterprise Services will be installed.
+- [BMC AMI DevX Common Configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
+- [BMC AMI DevX Code Pipeline](https://www.bmc.com/it-solutions/bmc-compuware-ispw.html)
+- [BMC AMI Common Enterprise Services](https://docs.bmc.com/docs/bces2010/introduction-to-bmc-compuware-enterprise-services-1068407133.html)
 
 ## Installing extensions in a Azure Devops Server Instance
 
-Install the BMC common configuration extension and BMC ISPW Operation extension according to the Azure Devops instructions for installing extensions. 
+Install the BMC AMI DevX Common Configuration extension and BMC AMI DevX Code Pipeline Operations extension according to the Azure Devops instructions for installing extensions. 
 
 ## Configuring Host Connections
 
@@ -33,28 +33,28 @@ If no host connection appears in the **Host:Port** section, select Create New Ho
 
 -   **Read/write timeout (minutes)** : Enter the number of minutes for the plugin to wait for a response from the host before timing out.
 
--   **CES URL** : Enter a URL for BMC Compuware Enterprise Services (CES). By default it is empty. Please do NOT attach any context
+-   **CES URL** : Enter a URL for Common Enterprise Services (CES). By default it is empty. Please do NOT attach any context
     path, it should be in the format: [http://host:port/](http://hostport/).
 
 **Note:** Click **Delete Host Connection** to delete an existing connection.
 
-## Executing BMC ISPW Operations
+## Executing Code Pipeline Operations
 
-While creating the new Azure pipeline, we can add a new task by clicking + sign on Agent Job and search for "BMC ISPW Operations", select and click on **Add**.
+While creating the new Azure pipeline, we can add a new task by clicking + sign on Agent Job and search for "BMC AMI DevX Code Pipeline Operations", select and click on **Add**.
 
-This BMC ISPW Operations task has following parameters:
+This Code Pipeline Operations task has following parameters:
 
 -   **Display name** :  The name of the Task.
 
 -   **Host Connection** : Select the host connection to be used to connect to the z/OS host. Alternatively, to add a connection navigate to Pipelines and go to BMC Common Configurations section.
 
--   **ISPW Operations** : Select ISPW operations to perform action
+-   **Code Pipeline Operations** : Select Code Pipeline operations to perform action
 
--   **CES URL** : This field specifies the CES URL. Host connections with CES url can be configured in the BMC Common Configuration Extension.
+-   **CES URL** : This field specifies the CES URL. Host connections with CES URL can be configured in the Common Configuration Extension.
 
--   **CES secret token**: The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).
+-   **CES secret token**: The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).
 
--   **Action** :  ISPW operation to be performed. Following actions are supported :
+-   **Action** : Code Pipeline operation to be performed. Following actions are supported :
     -   Add Task
     -   Build Assignment
     -   Build Release
@@ -101,19 +101,19 @@ This BMC ISPW Operations task has following parameters:
 
 Click Save & queue > Save and run.
 
-## Executing Git to ISPW Sync
+## Executing Git to Code Pipeline Sync
 
-This Git to ISPW Sync task has following parameters:
+This Git to Code Pipeline Sync task has following parameters:
 
 -   **Display name** :  The name of the Task.
 
 -   **Host Connection** : Select the host connection to be used to connect to the z/OS host. Alternatively, to add a connection navigate to Pipelines and go to BMC Common Configurations section.
 
--   **Git to ISPW Sync** : Select Git to ISPW Sync to perform sync operation.
+-   **Git to Code Pipeline Sync** : Select Git to Code Pipeine Sync to perform sync operation.
 
--   **ISPW** : Expand ISPW group to specify required parameters [ Topaz Workbench CLI Home, Runtime Configuration, User Id, Password, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
+-   **Code Pipeline** : Expand Code Pipeline group to specify required parameters [ Workbench CLI Home, Runtime Configuration, User Id, Password, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
 
--   **Git to ISPW Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md#git-to-ispw-sync)"
+-   **Git to Code Pipeline Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md#git-to-ispw-sync)"
 
 Click Save & queue > Save and run.
 
@@ -133,7 +133,7 @@ At BMC, we strive to make our products and documentation the best in the industr
 
 - The name, release number, and build number of your product. This information is displayed in the installed extensions page. Apply filter: BMC in order to display all of the installed BMC extension.
 
-- Environment information, such as the operating system and release on which the Topaz CLI is installed.
+- Environment information, such as the operating system and release on which the Workbench CLI is installed.
 
 #### Web
 

@@ -65,7 +65,7 @@ export function getInputs(): IISPWSyncParms {
 
   // users need make sure Topaz CLI is installed at the same path
   if (!cliHome) {
-    throw new Error("Topaz CLI Path not defined.");
+    throw new Error("Workbench CLI Path not defined.");
   } else {
     validatePath(cliHome);
   }

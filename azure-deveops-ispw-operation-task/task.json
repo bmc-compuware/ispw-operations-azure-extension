@@ -2,8 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
   "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa7",
   "name": "azure-deveops-ispw-operation-task",
-  "friendlyName": "BMC ISPW Operations",
-  "description": "This task is used for ISPW operations.",
+  "friendlyName": "BMC AMI DevX Code Pipeline Operations",
+  "description": "This task is used for Code Pipeline operations.",
   "helpMarkDown": "",
   "category": "Utility",
   "author": "BMC Software",
@@ -11,17 +11,17 @@
     "Major": 2,
     "Minor": 0,
     "Patch": 1},
-  "instanceNameFormat": "ISPW Operations",
+  "instanceNameFormat": "Code Pipeline Operations",
   "groups": [
     {
-      "name": "ispw",
-      "displayName": "ISPW",
+      "name": "codePipeline",
+      "displayName": "Code Pipeline",
       "isExpanded": true,
       "visibleRule": "operationType=ISPWSYNC"
     },
     {
       "name": "branchMapping",
-      "displayName": "Git to ISPW Branch Mapping",
+      "displayName": "Git to Code Pipeline Branch Mapping",
       "isExpanded": true,
       "visibleRule": "operationType=ISPWSYNC"
     }
@@ -41,10 +41,10 @@
       "label": "Perform : ",
       "required": true,
       "defaultValue": "CES",
-      "helpMarkDown": "Select either ISPW operations or Git to ISPW Sync",
+      "helpMarkDown": "Select either Code Pipeline operations or Git to Code Pipeline Sync",
       "options": {
-        "CES": "ISPW Operations",
-        "ISPWSYNC": "Git to ISPW Sync"
+        "CES": "Code Pipeline Operations",
+        "ISPWSYNC": "Git to Code Pipeline Sync"
       }
     },
     {
@@ -62,7 +62,7 @@
       "label": "CES secret token",
       "defaultValue": "$(cesToken)",
       "required": true,
-      "helpMarkDown": "The available CES secret token to perform ISPW actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
+      "helpMarkDown": "The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
       "visibleRule": "operationType=CES"
     },
     {
@@ -71,7 +71,7 @@
       "label": "Action",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "ISPW action to be performed",
+      "helpMarkDown": "Code Pipeline action to be performed",
       "visibleRule": "operationType=CES",
       "options": {
         "AddTask": "Add Task",
@@ -152,12 +152,12 @@
     {
       "name": "topazWorkbenchCLIHome",
       "type": "string",
-      "label": "Topaz Workbench CLI Home",
+      "label": "Workbench CLI Home",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the Topaz Workbench CLI Home.",
+      "helpMarkDown": "Specify the Workbench CLI Home.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "runtimeConfiguration",
@@ -165,9 +165,9 @@
       "label": "Runtime Configuration",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the ISPW runtime configuration.",
+      "helpMarkDown": "Specify the Code Pipeline runtime configuration.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     }, 
     {
       "name": "ispwusername",
@@ -175,9 +175,9 @@
       "label": "User Id",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the ISPW user name.",
+      "helpMarkDown": "Specify the Code Pipeline user name.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "ispwpassword",
@@ -185,9 +185,9 @@
       "label": "Password",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the ISPW user password. The recommended way to set secret variables are in a variable group. For eaxmple, $(ispw.password).",
+      "helpMarkDown": "Specify the Code Pipeline user password. The recommended way to set secret variables are in a variable group. For eaxmple, $(ispw.password).",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },  
     {
       "name": "stream",
@@ -195,9 +195,9 @@
       "label": "Stream",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the ISPW Stream name.",
+      "helpMarkDown": "Specify the Code Pipeline Stream name.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },    
     {
       "name": "application",
@@ -205,9 +205,9 @@
       "label": "Application",
       "defaultValue": "",
       "required": true,
-      "helpMarkDown": "Specify the ISPW Application name.",
+      "helpMarkDown": "Specify the Code Pipeline Application name.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "subApplication",
@@ -215,9 +215,9 @@
       "label": "Sub Application",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "(Optional) Specify the ISPW Sub Application name.",
+      "helpMarkDown": "(Optional) Specify the Code Pipeline Sub Application name.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "yamlMappingFile",
@@ -225,9 +225,9 @@
       "label": "YAML Mapping File",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "(Optional) Relative path of ISPW YAML configuration file to GIT repository root. If not set, default to {repository.root}/ispwconfig.yml",
+      "helpMarkDown": "(Optional) Relative path of Code Pipeline YAML configuration file to GIT repository root. If not set, default to {repository.root}/ispwconfig.yml",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "encryptionProtocol",
@@ -237,7 +237,7 @@
       "required": true,
       "helpMarkDown": "Specify the encryption protocol.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "codePage",
@@ -247,7 +247,7 @@
       "required": true,
       "helpMarkDown": "Specify the code page.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "timeout",
@@ -257,7 +257,7 @@
       "required": false,
       "helpMarkDown": "Specify the read/write timeout.",
       "visibleRule": "operationType=ISPWSYNC",
-      "groupName": "ispw"
+      "groupName": "codePipeline"
     },
     {
       "name": "branchMapping",

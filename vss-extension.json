@@ -1,6 +1,6 @@
 {
     "id": "ispw-operations",
-    "name": "BMC ISPW Operations",
+    "name": "BMC AMI DevX Code Pipeline Operations",
     "public": true,
     "version": "2.0.1",
     "publisher": "BMC",
@@ -9,7 +9,7 @@
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Extension to perform ISPW operations.",
+    "description": "Extension to perform Code Pipeline operations.",
     "categories": [
         "Azure Pipelines"
     ],
@@ -44,7 +44,8 @@
         "ISPW Operations",
         "Mainframe",
         "Compuware",
-        "Continuous Integration"
+        "Continuous Integration",
+        "Code Pipeline Operations"
     ],
     "files": [
         {
