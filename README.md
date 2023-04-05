@@ -1,9 +1,8 @@
-# BMC AMI DevX Code Pipeline Operations (Code Pipeline Operations)
-![](images/ISPW_marble.png)
+# BMC AMI DevX Code Pipeline Operations
 
 ## Overview
 
-The Code Pipeline Operations allows Azure DevOps users to execute Code Pipeline operations, such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the Code Pipeline build process using Azure DevOps.
+The Code Pipeline Operations allows Azure DevOps users to execute Code Pipeline(ISPW) operations such as Generate, Promote, Deploy or Regress on the mainframe. Users can seamlessly integrate the Code Pipeline build process using Azure DevOps.
 
 ## Prerequisites
 
@@ -29,7 +28,7 @@ If no host connection appears in the **Host:Port** section, select Create New Ho
 -   **Host:port** : Enter the z/OS host and port to connect to.
 
 -   **Encryption protocol** : Select the desired encryption protocol to be used for this connection. 
-    The encryption protocol is used to encrypt data sent to and from   the host. The default is 'None'.
+    The encryption protocol is used to encrypt data sent to and from the host. The default is 'None'.
 
 -   **Read/write timeout (minutes)** : Enter the number of minutes for the plugin to wait for a response from the host before timing out.
 
