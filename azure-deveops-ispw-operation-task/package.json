@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "azure-pipelines-task-lib": "^4.0.0-preview",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "tfx-cli": "^0.14.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.15",
