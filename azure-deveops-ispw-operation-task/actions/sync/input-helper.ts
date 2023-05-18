@@ -11,12 +11,14 @@ export function getInputs(): IISPWSyncParms {
 
   //If git.exe not found in local, throw error
   if (!gitLocalPath) {
-    throw new Error("The environment variable GITHUB_WORKSPACE is not defined.");
+    throw new Error(
+      "The environment variable GITHUB_WORKSPACE is not defined."
+    );
   }
 
   gitLocalPath = path.resolve(gitLocalPath);
-  
-  console.log("Git Local Path : ",gitLocalPath);
+
+  console.log("Git Local Path : ", gitLocalPath);
 
   try {
     fs.statSync(gitLocalPath);
@@ -25,26 +27,37 @@ export function getInputs(): IISPWSyncParms {
       `Encountered an error when checking whether path '${gitLocalPath}' exists`
     );
   }
- 
+
   let connection: string[] = tl.getDelimitedInput("connectionId", ":", true);
   const branchMapping: string[] = tl.getDelimitedInput(
     "branchMapping",
     "=>",
     true
   );
-  const branchName= branchMapping[0];
+  const branchName = branchMapping[0];
   const bmInput: string[] = branchMapping[1].trim().split(",");
-  const cliHome=tl.getInputRequired("topazWorkbenchCLIHome");
+  let codePage: string[] = tl.getDelimitedInput("codePage", "-", true);
+
+  let cliHome = "";
+  if (tl.getPlatform() == 0) {
+    cliHome = tl.getInputRequired("windowsWorkbenchCliHome");
+  } else if (tl.getPlatform() == 2) {
+    cliHome = tl.getInput("linuxWorkbenchCliHome") || "";
+  } else {
+    throw new Error(
+      "An operating system the build agent is running on is not supported."
+    );
+  }
 
   result.workspace = gitLocalPath;
   result.host = connection[0];
   result.port = parseInt(connection[1]);
   result.encryptionProtocol = tl.getInputRequired("encryptionProtocol");
-  result.codePage = tl.getInputRequired("codePage");
+  result.codePage = codePage[0].trim();
   result.timeout = parseInt(tl.getInput("timeout", false) || "");
   result.uid = tl.getInputRequired("ispwUsername");
   result.pass = tl.getInputRequired("ispwPassword");
-  // result.certificate = core.getInput("certificate", { required: false }); 
+  // result.certificate = core.getInput("certificate", { required: false });
   result.runtimeConfiguration = tl.getInputRequired("runtimeConfiguration");
   result.stream = tl.getInputRequired("stream");
   result.application = tl.getInputRequired("application");
@@ -58,10 +71,10 @@ export function getInputs(): IISPWSyncParms {
   result.gitCommit = tl.getVariable("Build.SourceVersion") || "";
   result.containerCreation = bmInput[1].trim();
   result.containerDescription = "";
-  if(bmInput[2]){
+  if (bmInput[2]) {
     result.containerDescription = bmInput[2];
   }
-  result.yamlMappingFile=tl.getInput("yamlMappingFile",false) || "";
+  result.yamlMappingFile = tl.getInput("yamlMappingFile", false) || "";
 
   // users need make sure Topaz CLI is installed at the same path
   if (!cliHome) {
@@ -69,7 +82,7 @@ export function getInputs(): IISPWSyncParms {
   } else {
     validatePath(cliHome);
   }
- 
+
   //Depend on the agent platform set Topaz Workbench CLI Home Path
   if (tl.getPlatform() == 0) {
     result.winTopazPath = cliHome;
