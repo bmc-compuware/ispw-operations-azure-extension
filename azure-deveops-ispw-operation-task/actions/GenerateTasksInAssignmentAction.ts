@@ -32,7 +32,15 @@ class GenerateTasksInAssignmentAction extends IspwActions {
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
-    let reqTO: IspwReqTO = util.getIspwReqTo(input, contextPath, reqBody);
+    let reqTO: IspwReqTO;
+
+    if(input.buildAutomatically == true)
+    {
+      reqTO = util.getIspwReqToForBuildAutomatically(input, contextPath, reqBody);
+    }else
+    {
+      reqTO = util.getIspwReqTo(input, contextPath, reqBody);
+    }
     let url = util.getCesUrl(input) + reqTO.path;
 
     let json = await cmnService.doPostRequest(
