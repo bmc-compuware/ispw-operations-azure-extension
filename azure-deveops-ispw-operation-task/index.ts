@@ -41,6 +41,9 @@ async function run() {
       const action: any | undefined = tl.getInput("action", true);
       const payload: string | undefined = tl.getInput("request", true);
       const cesToken: string | undefined = tl.getInput("cesSecretToken");
+      const buildAutomatically: boolean | undefined = tl.getBoolInput(
+        "buildAutomatically"
+      ); //fetching value from buildAutomatically checkbox
       const skipWaitingForSetCompletion: boolean | undefined = tl.getBoolInput(
         "skipWaitingForSetCompletion"
       );
@@ -71,6 +74,7 @@ async function run() {
             cesUrl,
             payload,
             cesToken,
+            buildAutomatically,
             skipWaitingForSetCompletion,
             showResponseBodyInConsole
           );
@@ -101,6 +105,7 @@ async function run() {
                 url,
                 {},
                 cesToken,
+                buildAutomatically,
                 skipWaitingForSetCompletion,
                 showResponseBodyInConsole
               );

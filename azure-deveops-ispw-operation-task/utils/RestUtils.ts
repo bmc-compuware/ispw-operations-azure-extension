@@ -1,4 +1,9 @@
 const ispwReqTO = require("../transferObj/IspwReqTO");
+import tl = require("azure-pipelines-task-lib/task");
+import * as fs from 'fs';
+import { existsSync, unlinkSync, createWriteStream } from "fs";
+import * as path from "path";
+
 class RestUtils {
   lstParm(contextPath: string) {
     var re = /\{\w+\}/g;
@@ -47,6 +52,80 @@ class RestUtils {
       }
     }
     reqTo.path = this.cleanContextPath(contextPath);
+    return reqTo;
+  }
+
+  getIspwReqToForBuildAutomatically(input: Input, contextPath: string, reqBody: IspwReqBody){
+    let reqTo = new ispwReqTO();
+    reqTo.srcId = input.host + "-" + input.port;
+    contextPath = contextPath.replace("{srid}", reqTo.srcId);
+    let params = this.lstParm(contextPath); 
+        //reading file 
+      let curWk = tl.getVariable("Build.SourcesDirectory"); 
+        if (!curWk) {
+          throw new Error(
+             "Workspace not found."
+           );
+         }
+
+        curWk = path.resolve(curWk);  
+
+        const filename = path.join(curWk, "automaticBuildParams.txt");
+
+      if (existsSync(filename)){
+          const loadedautoBuildParms = fs.readFileSync(filename, 'utf-8');
+          const AssgnDetails = JSON.parse(loadedautoBuildParms);
+          //console.log(AssgnDetails);
+
+        if("containerId" in AssgnDetails) 
+        {
+          contextPath = contextPath.replace("{assignmentId}", AssgnDetails.containerId);
+        }
+        
+        if("releaseId" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{releaseId}", AssgnDetails.releaseId);
+        }
+        
+        if("taskLevel" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{level}", AssgnDetails.taskLevel);
+        }
+
+        if("taskIds" in AssgnDetails)
+        {
+          //for(var task in AssgnDetails.taskIds){  }
+          contextPath = contextPath.replace("{taskId}", AssgnDetails.taskIds);
+        }
+        //
+        if("application" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{application}", AssgnDetails.application);
+          //contextPath = contextPath.replace("{application}", input. );
+        }
+
+        if("subAppl" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{subAppl}", AssgnDetails.subAppl);
+          //contextPath = contextPath.replace("{subAppl}", input. );
+        }
+
+        if("mname" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{mname}", AssgnDetails.mname);
+        }
+
+        if("mtype" in AssgnDetails)
+        {
+          contextPath = contextPath.replace("{mtype}", AssgnDetails.mtype);
+        }
+
+        reqTo.path = this.cleanContextPath(contextPath);
+        
+    }
+    else {
+      console.log("Unable to read automaticBuildParams. txt since file does not exist");
+    }
     return reqTo;
   }
 
