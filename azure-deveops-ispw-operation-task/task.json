@@ -113,7 +113,7 @@
     },
     {
       "name": "buildAutomatically",
-      "label": "buildAutomatically",
+      "label": "buildAutomatically (if applicable)",
       "type": "boolean",
       "required": true,
       "defaultValue": "false",
