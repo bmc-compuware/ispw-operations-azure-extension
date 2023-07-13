@@ -104,6 +104,8 @@ Click Save & queue > Save and run.
 
 ## Executing Git to Code Pipeline Sync
 
+**Pre-requisite:** Disable shallow fetch in Azure Pipeline. [Click here for more information.](https://learn.microsoft.com/en-us/azure/devops/pipelines/repos/azure-repos-git?view=azure-devops&tabs=yaml#sync-tags)
+
 This Git to Code Pipeline Sync task has following parameters:
 
 -   **Display name** :  The name of the Task.
