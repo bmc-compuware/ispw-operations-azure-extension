@@ -26,7 +26,7 @@ export async function calculateDiff(
   
   //arg to find changed files name only
   if (commitid) {
-    args = ["diff-tree", "--no-commit-id", "--name-only", "-r", commitid];
+    args = ["diff-tree", "--no-commit-id", "--name-only", "-m", "-r", commitid];
   } else {
     throw new Error("Commit id is not found!");
   }
