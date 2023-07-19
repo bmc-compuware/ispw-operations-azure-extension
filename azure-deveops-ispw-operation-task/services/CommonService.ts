@@ -1,5 +1,4 @@
 import tl = require("azure-pipelines-task-lib/task");
-const fetch = require("node-fetch");
 const https = require("https");
 const axios = require("axios");
 
