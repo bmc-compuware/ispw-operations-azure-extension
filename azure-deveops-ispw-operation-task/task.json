@@ -94,6 +94,7 @@
         "GetAssignmentInfo": "Get Assignment Info",
         "GetAssignmentTaskList": "Get Assignment Task List",
         "GetContainerList": "Get Container List",
+        "GetDeploymentList": "Get Deployment List",
         "GetReleaseInfo": "Get Release Info",
         "GetReleaseTaskGenerateListing": "Get Release Task Generate Listing",
         "GetReleaseTaskInfo": "Get Release Task Info",
@@ -130,7 +131,7 @@
       "type": "multiLine",
       "options": {},
       "defaultValue": "#The following messages are commented out to show how to use the 'Request' field.\n#Click on the help button to the right of the screen for examples of how to populate this field based on 'Action' type\n #\n #For example, if you select GenerateTasksInAssignment for 'Action' field,\n# you may populate the following properties in 'Request' field.\n # The property value should be based on your own container ID and level.\n #\n #assignmentId=PLAY000313\n #level=STG2\n",
-      "required": true,
+      "required": false,
       "helpMarkDown": "[Please Click To Get Request Details For Action](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md)",
       "visibleRule": "operationType=CES && buildAutomatically=false"
     },

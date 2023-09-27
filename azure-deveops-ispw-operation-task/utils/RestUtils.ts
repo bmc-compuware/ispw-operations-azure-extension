@@ -23,30 +23,33 @@ class RestUtils {
     reqTo.srcId = input.host + "-" + input.port;
     contextPath = contextPath.replace("{srid}", reqTo.srcId);
     let params = this.lstParm(contextPath);
-    let req = input.payload;
-    let lineArr = req.split("\n");
-    for (var line of lineArr) {
-      line = line.toString().trim();
-      if (line.startsWith("#")) {
-        continue;
-      }
-      let indexOfEqualSign = line.indexOf("=");
-      if (indexOfEqualSign != -1) {
-        var name: string = line.substring(0, indexOfEqualSign).trim();
-        var value = line.substring(indexOfEqualSign + 1, line.length);
-        let reqBody1 = reqBody.toPlainObject();
-        if (reqBody1.hasOwnProperty(name)) {
-          reqTo.reqBody[name] = value;
+    if (input.payload != undefined) 
+    {
+      let req = input.payload;
+      let lineArr = req.split("\n");
+      for (var line of lineArr) {
+        line = line.toString().trim();
+        if (line.startsWith("#")) {
+          continue;
         }
+        let indexOfEqualSign = line.indexOf("=");
+        if (indexOfEqualSign != -1) {
+          var name: string = line.substring(0, indexOfEqualSign).trim();
+          var value = line.substring(indexOfEqualSign + 1, line.length);
+          let reqBody1 = reqBody.toPlainObject();
+          if (reqBody1.hasOwnProperty(name)) {
+            reqTo.reqBody[name] = value;
+          }
 
-        if (params.indexOf(name) != -1) {
-          if (value.indexOf(",") != -1) {
-            contextPath = contextPath.replace(
-              name + "={" + name + "}",
-              this.getRealValue(name, value)
-            );
-          } else {
-            contextPath = contextPath.replace("{" + name + "}", value.trim());
+          if (params.indexOf(name) != -1) {
+            if (value.indexOf(",") != -1) {
+              contextPath = contextPath.replace(
+                name + "={" + name + "}",
+                this.getRealValue(name, value)
+              );
+            } else {
+              contextPath = contextPath.replace("{" + name + "}", value.trim());
+            }
           }
         }
       }
@@ -59,69 +62,69 @@ class RestUtils {
     let reqTo = new ispwReqTO();
     reqTo.srcId = input.host + "-" + input.port;
     contextPath = contextPath.replace("{srid}", reqTo.srcId);
-    let params = this.lstParm(contextPath); 
-        //reading file 
-      let curWk = tl.getVariable("Build.SourcesDirectory"); 
-        if (!curWk) {
-          throw new Error(
-             "Workspace not found."
-           );
-         }
+    let params = this.lstParm(contextPath);
+    //reading file 
+    let curWk = tl.getVariable("Build.SourcesDirectory");
+    if (!curWk) {
+      throw new Error(
+        "Workspace not found."
+      );
+    }
 
-        curWk = path.resolve(curWk);  
+    curWk = path.resolve(curWk);
 
-        const filename = path.join(curWk, "automaticBuildParams.txt");
+    const filename = path.join(curWk, "automaticBuildParams.txt");
 
-      if (existsSync(filename)){
-          const loadedautoBuildParms = fs.readFileSync(filename, 'utf-8');
-          const AssgnDetails = JSON.parse(loadedautoBuildParms);
-          //console.log(AssgnDetails);
+    if (existsSync(filename)){
+      const loadedautoBuildParms = fs.readFileSync(filename, 'utf-8');
+      const AssgnDetails = JSON.parse(loadedautoBuildParms);
+      //console.log(AssgnDetails);
 
-        if("containerId" in AssgnDetails) 
+      if("containerId" in AssgnDetails) 
         {
-          contextPath = contextPath.replace("{assignmentId}", AssgnDetails.containerId);
-        }
-        
-        if("releaseId" in AssgnDetails)
-        {
-          contextPath = contextPath.replace("{releaseId}", AssgnDetails.releaseId);
-        }
-        
-        if("taskLevel" in AssgnDetails)
-        {
-          contextPath = contextPath.replace("{level}", AssgnDetails.taskLevel);
-        }
+        contextPath = contextPath.replace("{assignmentId}", AssgnDetails.containerId);
+      }
 
-        if("taskIds" in AssgnDetails)
+      if("releaseId" in AssgnDetails)
         {
-          //for(var task in AssgnDetails.taskIds){  }
-          contextPath = contextPath.replace("{taskId}", AssgnDetails.taskIds);
-        }
-        //
-        if("application" in AssgnDetails)
-        {
-          contextPath = contextPath.replace("{application}", AssgnDetails.application);
-          //contextPath = contextPath.replace("{application}", input. );
-        }
+        contextPath = contextPath.replace("{releaseId}", AssgnDetails.releaseId);
+      }
 
-        if("subAppl" in AssgnDetails)
+      if("taskLevel" in AssgnDetails)
         {
-          contextPath = contextPath.replace("{subAppl}", AssgnDetails.subAppl);
-          //contextPath = contextPath.replace("{subAppl}", input. );
-        }
+        contextPath = contextPath.replace("{level}", AssgnDetails.taskLevel);
+      }
 
-        if("mname" in AssgnDetails)
+      if("taskIds" in AssgnDetails)
         {
-          contextPath = contextPath.replace("{mname}", AssgnDetails.mname);
-        }
-
-        if("mtype" in AssgnDetails)
+        //for(var task in AssgnDetails.taskIds){  }
+        contextPath = contextPath.replace("{taskId}", AssgnDetails.taskIds);
+      }
+      //
+      if("application" in AssgnDetails)
         {
-          contextPath = contextPath.replace("{mtype}", AssgnDetails.mtype);
-        }
+        contextPath = contextPath.replace("{application}", AssgnDetails.application);
+        //contextPath = contextPath.replace("{application}", input. );
+      }
 
-        reqTo.path = this.cleanContextPath(contextPath);
-        
+      if("subAppl" in AssgnDetails)
+        {
+        contextPath = contextPath.replace("{subAppl}", AssgnDetails.subAppl);
+        //contextPath = contextPath.replace("{subAppl}", input. );
+      }
+
+      if("mname" in AssgnDetails)
+        {
+        contextPath = contextPath.replace("{mname}", AssgnDetails.mname);
+      }
+
+      if("mtype" in AssgnDetails)
+        {
+        contextPath = contextPath.replace("{mtype}", AssgnDetails.mtype);
+      }
+
+      reqTo.path = this.cleanContextPath(contextPath);
+
     }
     else {
       console.log("Unable to read automaticBuildParams. txt since file does not exist");
@@ -177,7 +180,7 @@ class RestUtils {
 
     return protocol + "//" + host;
   }
-  splitPascalCase(word: string) {    
+  splitPascalCase(word: string) {
     return word.replace(/([A-Z]+)/g, "$1").replace(/([A-Z][a-z])/g, " $1").trim();
   }
 }

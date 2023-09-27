@@ -10,6 +10,7 @@ const containerListResponse = require("../transferObj/ContainerListResponse");
 const containerListInfo = require("../transferObj/ContainerListInfo");
 const releaseInfo = require("../transferObj/ReleaseInfo");
 const taskListingResponse = require("../transferObj/TaskListingResponse");
+const deploymentListResponse = require("../transferObj/DeploymentListResponse");
 const workListResponse = require("../transferObj/WorkListResponse");
 const multiTaskInfoResponse = require("../transferObj/MultiTaskInfoResponse");
 const taskResponse = require("../transferObj/TaskResponse");
@@ -229,6 +230,29 @@ class SummarizeResponse {
       }
     }
 
+    if (respObject instanceof deploymentListResponse) 
+    {
+      if (action == "GetDeploymentList") 
+      {
+        for (let i = 0; i < respObject.deploymentListItems.length; i++) 
+        {
+          console.log(" ");
+          console.log("Request Id: " + respObject.deploymentListItems[i].requestId);
+          console.log(
+            "Set: " + respObject.deploymentListItems[i].setId
+          );
+          console.log(
+            "Environment: " + respObject.deploymentListItems[i].environment
+          );
+          console.log(
+            "Status: " + respObject.deploymentListItems[i].status
+          );
+          console.log("Description: " + respObject.deploymentListItems[i].description);
+          console.log("Create Date/Time: " + respObject.deploymentListItems[i].createDateTime);
+        }
+      }
+    }
+
     if (respObject instanceof workListResponse) {
       if (action == "GetWorkList") {
         for (let i = 0; i < respObject.workListItems.length; i++) {
@@ -294,8 +318,8 @@ class SummarizeResponse {
         console.log("Task with ID "+respObject.taskId+" loaded to assignment "+ respObject.url.split("/").reverse()[2]);
       }
     }
-    
-  }
+
+}
 }
 
 module.exports = SummarizeResponse;

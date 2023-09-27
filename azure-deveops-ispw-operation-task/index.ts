@@ -39,7 +39,7 @@ async function run() {
     if (operationType == "CES") {
       const cesUrl: string | undefined = tl.getInput("cesUrl", true);
       const action: any | undefined = tl.getInput("action", true);
-      const payload: string | undefined = tl.getInput("request", true);
+      const payload: string | undefined = tl.getInput("request", false);
       const cesToken: string | undefined = tl.getInput("cesSecretToken");
       const buildAutomatically: boolean | undefined = tl.getBoolInput(
         "buildAutomatically"
