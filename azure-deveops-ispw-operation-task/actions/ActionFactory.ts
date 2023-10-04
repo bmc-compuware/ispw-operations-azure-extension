@@ -24,6 +24,7 @@ const createAssignmentAction = require("./CreateAssignmentAction");
 const createReleaseAction = require("./CreateReleaseAction");
 const getAssignmentInfoAction = require("./GetAssignmentInfoAction");
 const getAssignmentTaskListAction = require("./GetAssignmentTaskListAction");
+const getDeploymentListAction = require("./GetDeploymentListAction");
 const getReleaseTaskInfoAction = require("./GetReleaseTaskInfoAction");
 const getReleaseTaskListAction = require("./GetReleaseTaskListAction");
 const getSetInfoAction = require("./GetSetInfoAction");
@@ -85,6 +86,8 @@ class ActionFactory {
         return new getAssignmentTaskListAction();
       case "GetContainerList":
         return new getContainerListAction();
+      case "GetDeploymentList":
+        return new getDeploymentListAction();
       case "GetReleaseInfo":
         return new getReleaseInfoAction();
       case "GetReleaseTaskGenerateListing":

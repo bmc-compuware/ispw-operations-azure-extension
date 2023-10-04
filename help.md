@@ -515,6 +515,30 @@ Example:
 | application=PLAY <br> containerId=PLAY001386 <br> containerType=A <br> description=myContainer <br> includeClosedContainers=false <br> owner=myUserId <br> path=DEV1 <br> refNumber=JIRA1234 <br> releaseId=R00001234 <br> stream=PLAY <br> subAppl=PLAY <br> userId=myUserId |
 
 
+## **Get Deployment List**  
+
+Required: None  
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| todaysDate | True/False value indicating whether or not to include today's date deployments. This field is not case sensitive. |
+| priorWeek | True/False value indicating whether or not to include prior week deployments. This field is not case sensitive. The default value is true. |
+| startDate | Deployment start date/time in yyyy-mm-dd format when the set will be dispatched for execution. |
+| endDate | Deployment end date/time in yyyy-mm-dd format |
+| requestId |  A unique numerical id assigned to this deployment request. Wildcard * is not supported |
+| setId | The set ID you want information on. This field is case sesitive. Wildcard * is only supported |
+| environment | The logical execution environment where the components will be deployed for this request. This field is not case sensitive. Wildcard * is only supported |
+| status | The overall current status of the deploy request, which may be Planned, Confirmed, Staged, Implemented, Completed, Failed, or Terminated. This field is not case sensitive. Wildcard * is only supported |
+
+Example:
+
+| Get Deployment List #1  | Get Deployment List #2  |
+| --- | -- |
+|  startDate=2023-08-09 <br> endDate=2023-08-14 |  startDate=2023-08-09 <br> endDate=2023-08-14 <br> status=COMPLETED |
+
+
 ## **Get Release Info**  
 
 Required:
