@@ -2,7 +2,7 @@
     "id": "ispw-operations",
     "name": "BMC AMI DevX Code Pipeline Operations",
     "public": true,
-    "version": "2.2.4",
+    "version": "2.3.0",
     "publisher": "BMC",
     "targets": [
         {
