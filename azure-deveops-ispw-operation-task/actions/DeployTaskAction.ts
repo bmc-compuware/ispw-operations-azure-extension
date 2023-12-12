@@ -35,10 +35,16 @@ class DeployTaskAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Deploy Task",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(deployTaskActionResponse, json);
     return deployTaskActionResponse;

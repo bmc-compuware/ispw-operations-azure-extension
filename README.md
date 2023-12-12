@@ -51,7 +51,15 @@ This Code Pipeline Operations task has following parameters:
 
 -   **CES URL** : This field specifies the CES URL. Host connections with CES URL can be configured in the Common Configuration Extension.
 
--   **CES secret token**: The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).
+-   **Authentication** : Authentication based on CES secret token or PKCS#12 Certificate to perform Code Pipeline actions for Rest API call. 
+
+-   **CES secret token**: The available CES secret token to perform Code Pipeline actions for Rest API call. In this field, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).
+
+-   **Azure Subscription** : The Azure Subscription under which Key Vault is created. 
+
+-   **Key Vault** : Name of Key Vault that holds the Certificate for authentication.
+
+-   **Certificate Name** : Name of the certificate as uploaded in Key Vault. (PFX format is supported)
 
 -   **Action** : Code Pipeline operation to be performed. Following actions are supported :
     -   Add Task
@@ -100,6 +108,8 @@ This Code Pipeline Operations task has following parameters:
 -   **Skip waiting for the completion of the set (if applicable)** : This allows to turn on / off polling a set to wait for the job finish if it is applicable.
 
 -   **Show Response body in console** : This allows you to turn on / off writing the response body to the log.
+
+-   **Trust all Certificates** : This allows you to trust self-signed server certificates.\n>Enabling this is not recommended for production environment. This is by default set to false.
 
 Click Save & queue > Save and run.
 

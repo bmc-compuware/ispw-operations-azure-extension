@@ -23,9 +23,15 @@ class GetSetTaskListAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Set Task List",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getSetTaskListActionResponse, json);
     return getSetTaskListActionResponse;

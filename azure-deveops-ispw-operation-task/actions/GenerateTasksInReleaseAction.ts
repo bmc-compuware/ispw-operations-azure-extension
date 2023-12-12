@@ -44,10 +44,16 @@ class GenerateTasksInReleaseAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Generate Tasks In Release",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(generateTasksInReleaseActionResponse, json);
     return generateTasksInReleaseActionResponse;

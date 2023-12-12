@@ -23,9 +23,15 @@ class GetReleaseTaskGenerateListingAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Release Task Generate Listing",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getReleaseTaskGenerateListingActionResponse, json);
     return getReleaseTaskGenerateListingActionResponse;

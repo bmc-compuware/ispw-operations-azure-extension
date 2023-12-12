@@ -39,10 +39,16 @@ class PromoteAssignmentAction extends IspwActions {
       let cmnService = new CommonService();
       let json = await cmnService.doPostRequest(
         url,
+        input.host,
+        input.port,
         reqTO.reqBody,
-        authToken,
+        input.authType,
+        input.cesToken,
+        input.certificate,
+        input.key,
         "Promote Assignemnt",
-        input.showResponseBodyInConsole
+        input.showResponseBodyInConsole,
+        input.trustAllCerts
       );
       Object.assign(prompteActionResponse, json);
     } catch (e) {

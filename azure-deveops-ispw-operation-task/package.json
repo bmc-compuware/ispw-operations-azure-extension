@@ -12,7 +12,7 @@
   "author": "Mayank Jain",
   "license": "ISC",
   "dependencies": {
-    "azure-pipelines-task-lib": "^4.4.0",
+    "azure-pipelines-task-lib": "^4.7.0",
     "npm-dependency-exclusion": "^1.0.2",
     "semver": "^7.5.2"
   },
@@ -24,7 +24,7 @@
     "azure-devops-extension-sdk": "^2.0.11",
     "tsc": "^2.0.4"
   },
-  "exclusions" :{
-    "mockery" : "any"
+  "exclusions": {
+    "mockery": "any"
   }
 }

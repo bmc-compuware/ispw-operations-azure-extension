@@ -23,9 +23,15 @@ class GetDeploymentListAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Deployment List",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(deploymentListResponseActionResponse, json);
     return deploymentListResponseActionResponse;

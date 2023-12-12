@@ -23,9 +23,15 @@ class GetWorkListAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Work List",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(workListResponseActionResponse, json);
     return workListResponseActionResponse;

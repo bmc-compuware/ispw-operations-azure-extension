@@ -23,10 +23,16 @@ class RemoveFromReleaseAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Remove From Release",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(removeFromReleaseActionResponse, json);
     return removeFromReleaseActionResponse;

@@ -23,9 +23,15 @@ class GetSetInfoAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Set Info",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getSetInfoActionResponse, json);
     return getSetInfoActionResponse;
