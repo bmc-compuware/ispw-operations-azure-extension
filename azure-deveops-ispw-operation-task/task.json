@@ -56,13 +56,55 @@
       "visibleRule": "operationType=CES"
     },
     {
+      "name": "authenticationType",
+      "type": "radio",
+      "label": "Authentication : ",
+      "required": true,
+      "defaultValue": "TOKEN",
+      "helpMarkDown": "Select either CES Token or PFX Certificate",
+      "options": {
+        "TOKEN": "CES Token",
+        "CERT": "PFX Certificate"
+      },
+      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+    },
+    {
       "name": "cesSecretToken",
       "type": "string",
       "label": "CES secret token",
       "defaultValue": "$(cesToken)",
       "required": true,
       "helpMarkDown": "The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
-      "visibleRule": "operationType=CES"
+      "visibleRule": "operationType=CES && authenticationType!=CERT"
+    },
+    {
+      "name": "ConnectedServiceName",
+      "aliases": [
+        "azureSubscription"
+      ],
+      "type": "connectedService:AzureRM",
+      "label": "Azure Subscription",
+      "required": true,
+      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+    },
+    {
+      "name": "keyvaultName",
+      "type": "pickList",
+      "label": "Key vault",
+      "required": true,
+      "helpMarkDown": "Provide the name of an existing key vault",
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+    },
+    {
+      "name": "certificateName",
+      "type": "string",
+      "label": "Certificate Name",
+      "required": true,
+      "helpMarkDown": "Provide the name of certificate as added in Keyvault",
+      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
     },
     {
       "name": "action",
@@ -160,6 +202,18 @@
         "false": "No"
       },
       "visibleRule": "operationType=CES"
+    },
+    {
+      "name": "trustAllCerts",
+      "label": "Trust all Certificates",
+      "type": "boolean",
+      "defaultValue": "false",
+      "helpMarkDown": "This allows you to trust self-signed server certificates.\n>Enabling this is not recommended for production environment.",
+      "options": {
+        "true": "Yes",
+        "false": "No"
+      },
+      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
     },
     {
       "name": "windowsWorkbenchCliHome",
@@ -328,6 +382,12 @@
       "endpointUrl": "{{endpoint.url}}/_apis/ExtensionManagement/InstalledExtensions/BMC/common-config-extension/Data/Scopes/Default/Current/Collections/$settings/Documents/hostconnection",
       "resultSelector": "jsonpath:$.value[*]",
       "resultTemplate": "{\"Value\":\"{{{timeout}}}\",\"DisplayValue\":\"{{{timeout}}}\"}"
+    },
+    {
+      "target": "keyvaultName",
+      "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureKeyVaultsListV2",
+      "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
     }
   ],
   "execution": {

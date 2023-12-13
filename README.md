@@ -109,7 +109,7 @@ This Code Pipeline Operations task has following parameters:
 
 -   **Show Response body in console** : This allows you to turn on / off writing the response body to the log.
 
--   **Trust all Certificates** : This allows you to trust self-signed server certificates.\n>Enabling this is not recommended for production environment. This is by default set to false.
+-   **Trust all Certificates** : This allows you to trust self-signed server certificates. By default set to false.\n>Enabling this is not recommended.
 
 Click Save & queue > Save and run.
 
