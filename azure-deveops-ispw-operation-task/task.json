@@ -243,12 +243,25 @@
       "groupName": "codePipeline"
     },
     {
+      "name": "authenticationTypeIspwSync",
+      "type": "radio",
+      "label": "Authentication : ",
+      "required": true,
+      "defaultValue": "CERT",
+      "helpMarkDown": "Select either Username-Password or PFX Certificate",
+      "options": {
+        "USER": "Username-Password",
+        "CERT": "PFX Certificate"
+      },
+      "visibleRule": "operationType=ISPWSYNC"
+    },
+    {
       "name": "ispwusername",
       "type": "string",
       "label": "User Id",
       "required": true,
       "helpMarkDown": "Specify the Code Pipeline user name.",
-      "visibleRule": "operationType=ISPWSYNC",
+      "visibleRule": "operationType=ISPWSYNC && authenticationTypeIspwSync=USER",
       "groupName": "codePipeline"
     },
     {
@@ -257,8 +270,37 @@
       "label": "Password",
       "required": true,
       "helpMarkDown": "Specify the Code Pipeline user password. The recommended way to set secret variables are in a variable group. For eaxmple, $(ispw.password).",
-      "visibleRule": "operationType=ISPWSYNC",
+      "visibleRule": "operationType=ISPWSYNC && authenticationTypeIspwSync=USER",
       "groupName": "codePipeline"
+    },
+    {
+      "name": "ConnectedServiceNameIspwSync",
+      "aliases": [
+        "azureSubscriptionIspwSync"
+      ],
+      "type": "connectedService:AzureRM",
+      "label": "Azure Subscription",
+      "required": true,
+      "visibleRule": "operationType=ISPWSYNC && authenticationTypeIspwSync=CERT"
+    },
+    {
+      "name": "keyvaultNameIspwSync",
+      "type": "pickList",
+      "label": "Key vault",
+      "required": true,
+      "helpMarkDown": "Provide the name of an existing key vault",
+      "properties": {
+        "EditableOptions": "True"
+      },
+      "visibleRule": "operationType=ISPWSYNC && authenticationTypeIspwSync=CERT"
+    },
+    {
+      "name": "certificateNameIspwSync",
+      "type": "string",
+      "label": "Certificate Name",
+      "required": true,
+      "helpMarkDown": "Provide the name of certificate as added in Keyvault",
+      "visibleRule": "operationType=ISPWSYNC && authenticationTypeIspwSync=CERT"
     },
     {
       "name": "stream",
@@ -391,7 +433,7 @@
     }
   ],
   "execution": {
-    "Node10": {
+    "Node16": {
       "target": "index.js"
     }
   }

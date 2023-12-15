@@ -55,8 +55,13 @@ export function getInputs(): IISPWSyncParms {
   result.encryptionProtocol = tl.getInputRequired("encryptionProtocol");
   result.codePage = codePage[0].trim();
   result.timeout = parseInt(tl.getInput("timeout", false) || "");
-  result.uid = tl.getInputRequired("ispwUsername");
-  result.pass = tl.getInputRequired("ispwPassword");
+  var authenticationType = tl.getInputRequired("authenticationTypeIspwSync");
+  if (authenticationType == 'USER') {
+    result.uid = tl.getInputRequired("ispwUsername");
+    result.pass = tl.getInputRequired("ispwPassword");
+  } else {
+    result.certificate = 'certificatecontents';
+  }
   // result.certificate = core.getInput("certificate", { required: false });
   result.runtimeConfiguration = tl.getInputRequired("runtimeConfiguration");
   result.stream = tl.getInputRequired("stream");
