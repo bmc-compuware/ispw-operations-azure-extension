@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-  "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa7",
+  "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa3",
   "name": "azure-deveops-ispw-operation-task",
   "friendlyName": "BMC AMI DevX Code Pipeline Operations",
   "description": "This task is used for Code Pipeline operations.",
@@ -10,7 +10,7 @@
   "version": {
     "Major": 2,
     "Minor": 4,
-    "Patch": 0
+    "Patch": 20
   },
   "instanceNameFormat": "Code Pipeline Operations",
   "groups": [
@@ -90,7 +90,7 @@
     {
       "name": "keyvaultName",
       "type": "pickList",
-      "label": "Key vault",
+      "label": "Key Vault",
       "required": true,
       "helpMarkDown": "Provide the name of an existing key vault",
       "properties": {
@@ -428,6 +428,12 @@
     {
       "target": "keyvaultName",
       "endpointId": "$(ConnectedServiceName)",
+      "dataSourceName": "AzureKeyVaultsListV2",
+      "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
+    },
+    {
+      "target": "keyvaultNameIspwSync",
+      "endpointId": "$(ConnectedServiceNameIspwSync)",
       "dataSourceName": "AzureKeyVaultsListV2",
       "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
     }

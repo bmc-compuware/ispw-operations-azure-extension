@@ -3,6 +3,7 @@ import * as path from "path";
 import { existsSync, unlinkSync, createWriteStream } from "fs";
 import { IISPWSyncParms } from "./ispw-sync-parms";
 import * as gitCommand from "./git-command-helper";
+import { spawnSync } from 'child_process';
 
 export async function getISPWCLIPath(parms: IISPWSyncParms): Promise<string> {
   let topazCLIPath = "";
@@ -182,7 +183,7 @@ export async function execISPWSync(
       args.push(parms.subAppl);
     }
 
-    if (typeof parms.certificate != "undefined" && parms.certificate) {
+    if (parms.certificate) {
       args.push("-certificate");
       args.push(parms.certificate);
     } else {
@@ -228,10 +229,14 @@ export async function execISPWSync(
 
     cwd = quoteArg(true, cwd);
     cliPath = quoteArg(true, cliPath);
-
-    let syncResult = await tl.execSync(cliPath, args, { cwd });
-    if (syncResult.code != 0) {
-      throw new Error("Git to ISPW Sync Failed! Please see console logs.");
+    // we have replaced tl.execSync with spawnSync during implementation of story: ZENG-322671. 
+    // tl.execSync used to enclose the certificate content in double-quotes resulting in StackOverFlow error at CLI.
+    let syncResult = spawnSync(cliPath, args, {cwd});
+    if (syncResult.status != 0) {
+      throw new Error("Git to ISPW Sync Failed! Please see console logs. \n" + syncResult.stdout.toString());
+    }
+    if(syncResult.stderr) {
+      throw new Error(syncResult.stderr.toString());
     }
   } catch (error) {
     if (error instanceof Error) {
