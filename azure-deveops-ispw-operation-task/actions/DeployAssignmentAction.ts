@@ -35,10 +35,16 @@ class DeployAssignmentAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Deploy Assignment",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(deployAssignmentActionResponse, json);
     return deployAssignmentActionResponse;

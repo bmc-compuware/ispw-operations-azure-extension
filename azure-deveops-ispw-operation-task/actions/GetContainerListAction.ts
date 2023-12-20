@@ -20,12 +20,17 @@ class GetContainerListAction extends IspwActions {
     let cmnService = new CommonService();
     let reqTO: IspwReqTO = util.getIspwReqTo(input, contextPath, reqBody);
     let url = util.getCesUrl(input) + reqTO.path;
-
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Container List",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getContainerListActionResponse, json);
     return getContainerListActionResponse;

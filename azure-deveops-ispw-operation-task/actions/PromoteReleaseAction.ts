@@ -38,10 +38,16 @@ class PromoteReleaseAction extends IspwActions {
     let cmnService = new CommonService();
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Promote Release",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(prompteActionResponse, json);
     return prompteActionResponse;

@@ -36,10 +36,16 @@ class FallbackReleaseAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Fallback Release",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(fallbackReleaseActionResponse, json);
     return fallbackReleaseActionResponse;

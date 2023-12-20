@@ -3,21 +3,25 @@ const https = require("https");
 const axios = require("axios");
 
 class CommonService {
-  constructor() {}
+  constructor() { }
   async doPostRequest(
     url: string,
+    host: string,
+    port: string,
     payload: string,
+    authenticationType: string,
     cesToken: string,
+    certificate: string,
+    key: string,
     action: string,
-    isPrintEnable: boolean
+    isPrintEnable: boolean,
+    trustAllCerts: boolean
   ) {
-    const options = {
-      headers: { "Content-Type": "application/json", Authorization: cesToken },
-    };
+    const options = getHttpAgent(url, host, port, authenticationType, cesToken, certificate, key, trustAllCerts);
     try {
       console.log("Starting ISPW Operations Plugin...");
       if (isPrintEnable) {
-        logRequest(url, options.headers, payload, cesToken, action, "POST");
+        logRequest(url, options, payload, cesToken, action, "POST");
       }
       let res = await axios.post(url, payload, options);
       let rt = res.data;
@@ -27,7 +31,7 @@ class CommonService {
       return rt;
     } catch (error: any) {
       console.error("Error : ");
-      if (error.response) {
+            if (error.response) {
         let errorMessage = error.response.data.message
           ? error.response.data.message
           : error.response.data;
@@ -44,17 +48,21 @@ class CommonService {
   }
   async doGetRequest(
     url: string,
+    host: string,
+    port: string,
+    authenticationType: string,
     cesToken: string,
+    certificate: string,
+    key: string,
     action: string,
-    isPrintEnable: boolean
+    isPrintEnable: boolean,
+    trustAllCerts: boolean
   ) {
-    const options = {
-      headers: { "Content-Type": "application/json", Authorization: cesToken },
-    };
+    const options = getHttpAgent(url, host, port, authenticationType, cesToken, certificate, key, trustAllCerts);
     try {
       console.log("Starting ISPW Operations Plugin...");
       if (isPrintEnable) {
-        logRequest(url, options.headers, "", cesToken, action, "GET");
+        logRequest(url, options, "", cesToken, action, "GET");
       }
       let res = await axios.get(url, options);
       if (isPrintEnable) {
@@ -84,11 +92,45 @@ function logRequest(
   console.log("Content-type: " + "application/json");
   console.log("Authorization: " + token);
   console.log("Request Body: " + JSON.stringify(body));
-  console.log("Headers: " + JSON.stringify(header));
+  console.log("Options: " + JSON.stringify(header));
 }
 
 function logResponse(response: string) {
   console.log("response: " + JSON.stringify(response));
+}
+
+function getHttpAgent(url: string,
+  host: string,
+  port: string,
+  authenticationType: string,
+  cesToken: string,
+  certificate: string,
+  key: string,
+  trustAllCerts: boolean) {
+    const urlObj = new URL(url);
+    let options = undefined;
+    let headers = undefined;
+    if(urlObj.protocol == 'https:') {
+      const agent = new https.Agent({
+        pfx: Buffer.from(key, "base64"),
+        rejectUnauthorized: !trustAllCerts // this is added to allow/disallow self-signed certificates
+      });
+      if(authenticationType == 'CERT') {
+        headers = { "Content-Type": "application/json", "cpwr_hci_host": host, "cpwr_hci_port": port, "javax.servlet.request.X509Certificate": certificate };
+      } else {
+        headers = { "Content-Type": "application/json", Authorization: cesToken };
+      }
+      options = {
+          headers : headers,
+          httpsAgent: agent
+        }
+    } else if(urlObj.protocol == 'http:') {
+      options = {
+        headers : { "Content-Type": "application/json", Authorization: cesToken }
+      }
+    }
+
+    return options;
 }
 
 module.exports = CommonService;

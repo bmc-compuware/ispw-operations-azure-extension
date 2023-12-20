@@ -23,9 +23,15 @@ class GetAssignmentTaskListAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Assignment Task List",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getAssignmentTaskListActionResponse, json);
     return getAssignmentTaskListActionResponse;

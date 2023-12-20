@@ -23,9 +23,15 @@ class GetReleaseTaskInfoAction extends IspwActions {
 
     let json = await cmnService.doGetRequest(
       url,
+      input.host,
+      input.port,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Get Release Task Info",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(getReleaseTaskInfoActionResponse, json);
     return getReleaseTaskInfoActionResponse;

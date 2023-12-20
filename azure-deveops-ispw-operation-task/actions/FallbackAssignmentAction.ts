@@ -36,10 +36,16 @@ class FallbackAssignmentAction extends IspwActions {
 
     let json = await cmnService.doPostRequest(
       url,
+      input.host,
+      input.port,
       reqTO.reqBody,
+      input.authType,
       input.cesToken,
+      input.certificate,
+      input.key,
       "Fallback Assignment",
-      input.showResponseBodyInConsole
+      input.showResponseBodyInConsole,
+      input.trustAllCerts
     );
     Object.assign(fallbackAssignmentActionResponse, json);
     return fallbackAssignmentActionResponse;
