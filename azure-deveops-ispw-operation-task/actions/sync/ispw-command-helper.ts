@@ -232,11 +232,9 @@ export async function execISPWSync(
     // we have replaced tl.execSync with spawnSync during implementation of story: ZENG-322671. 
     // tl.execSync used to enclose the certificate content in double-quotes resulting in StackOverFlow error at CLI.
     let syncResult = spawnSync(cliPath, args, {cwd});
+    console.log(syncResult.stdout.toString());
     if (syncResult.status != 0) {
       throw new Error("Git to ISPW Sync Failed! Please see console logs. \n" + syncResult.stdout.toString());
-    }
-    if(syncResult.stderr) {
-      throw new Error(syncResult.stderr.toString());
     }
   } catch (error) {
     if (error instanceof Error) {
