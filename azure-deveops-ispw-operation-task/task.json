@@ -10,7 +10,7 @@
   "version": {
     "Major": 2,
     "Minor": 4,
-    "Patch": 20
+    "Patch": 24
   },
   "instanceNameFormat": "Code Pipeline Operations",
   "groups": [
@@ -208,7 +208,7 @@
       "label": "Trust all Certificates",
       "type": "boolean",
       "defaultValue": "false",
-      "helpMarkDown": "This allows you to trust self-signed server certificates.\n>Enabling this is not recommended for production environment.",
+      "helpMarkDown": "This allows you to trust self-signed server certificates.\n>Enabling this is not recommended.",
       "options": {
         "true": "Yes",
         "false": "No"

@@ -183,7 +183,7 @@ export async function execISPWSync(
       args.push(parms.subAppl);
     }
 
-    if (parms.certificate) {
+    if (typeof parms.certificate != "undefined" && parms.certificate) {
       args.push("-certificate");
       args.push(parms.certificate);
     } else {
@@ -234,7 +234,7 @@ export async function execISPWSync(
     let syncResult = spawnSync(cliPath, args, {cwd});
     console.log(syncResult.stdout.toString());
     if (syncResult.status != 0) {
-      throw new Error("Git to ISPW Sync Failed! Please see console logs. \n" + syncResult.stdout.toString());
+      throw new Error("Git to ISPW Sync Failed! Please see console logs.");
     }
   } catch (error) {
     if (error instanceof Error) {

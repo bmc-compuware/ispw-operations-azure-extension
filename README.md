@@ -125,7 +125,7 @@ This Git to Code Pipeline Sync task has following parameters:
 
 -   **Git to Code Pipeline Sync** : Select Git to Code Pipeine Sync to perform sync operation.
 
--   **Code Pipeline** : Expand Code Pipeline group to specify required parameters [ Workbench CLI Home, Runtime Configuration, User Id, Password, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
+-   **Code Pipeline** : Expand Code Pipeline group to specify required parameters [ Workbench CLI Home, Runtime Configuration, Authentication, User Id, Password, Azure Subscription, Azure Key Vault, Certificate, Stream, Application, Sub Application, YAML Mapping File, Encryption protocol, Code Page, Read/write timeout (minutes) ].
 
 -   **Git to Code Pipeline Branch Mapping**: [Click here for more information.](https://github.com/bmc-compuware/ispw-operations-azure-extension/blob/master/help.md#git-to-ispw-sync)"
 
