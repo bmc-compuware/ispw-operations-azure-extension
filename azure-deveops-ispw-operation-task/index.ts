@@ -38,7 +38,6 @@ async function run() {
   const operationType: string | undefined = tl.getInput("operationType", true);
   if (operationType) {
     if (operationType == "CES") {
-      console.debug("Operation Type CES");
       const cesUrl: string | undefined = tl.getInput("cesUrl", true);
       const action: any | undefined = tl.getInput("action", true);
       const payload: string | undefined = tl.getInput("request", false);
@@ -49,7 +48,6 @@ async function run() {
       let trustAllCerts: boolean = false;
       const cesUrlObj = new URL(cesUrl as string);
       if (cesUrlObj.protocol == 'https:') {
-        console.debug('Protocol : [' + cesUrlObj.protocol + ']');
         trustAllCerts = tl.getBoolInput("trustAllCerts");
         const certUtils = new CertificateUtils();
         const connectedService = tl.getInputRequired("ConnectedServiceName");
