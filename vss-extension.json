@@ -2,8 +2,8 @@
     "id": "ispw-operations",
     "name": "BMC AMI DevX Code Pipeline Operations",
     "public": true,
-    "version": "2.4.1",
-    "publisher": "CodePipelinePublisher-Nikhita",
+    "version": "2.5.0",
+    "publisher": "BMC",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"

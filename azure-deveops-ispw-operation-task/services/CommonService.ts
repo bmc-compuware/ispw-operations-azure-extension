@@ -92,7 +92,9 @@ function logRequest(
   console.log("Content-type: " + "application/json");
   console.log("Authorization: " + token);
   console.log("Request Body: " + JSON.stringify(body));
-  console.log("Options: " + JSON.stringify(header));
+  if(token) {
+    console.log("Header: " + JSON.stringify(header));
+  }
 }
 
 function logResponse(response: string) {
