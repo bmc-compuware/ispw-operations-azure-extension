@@ -54,7 +54,6 @@ async function run() {
         const keyvaultName = tl.getInputRequired("keyvaultName");
         const certificateName = tl.getInputRequired("certificateName");
         await certUtils.getCertificate(authenticationType, connectedService, keyvaultName, certificateName).then(function(authenticate: Authenticate) {
-          console.log(authenticate);
           cesToken = authenticate.cesToken;
           certContent = authenticate.certificate;
           certKey = authenticate.pkcs;
