@@ -2,8 +2,9 @@ import tl = require("azure-pipelines-task-lib/task");
 import * as path from "path";
 import * as fs from "fs";
 import { IISPWSyncParms } from "./ispw-sync-parms";
+const CertificateUtils = require("../../utils/CertificateUtils");
 
-export function getInputs(): IISPWSyncParms {
+export async function getInputs(): Promise<IISPWSyncParms> {
   const result = {} as unknown as IISPWSyncParms;
 
   //Git Local Path i.e. absolute path to git.exe
@@ -55,8 +56,19 @@ export function getInputs(): IISPWSyncParms {
   result.encryptionProtocol = tl.getInputRequired("encryptionProtocol");
   result.codePage = codePage[0].trim();
   result.timeout = parseInt(tl.getInput("timeout", false) || "");
-  result.uid = tl.getInputRequired("ispwUsername");
-  result.pass = tl.getInputRequired("ispwPassword");
+  var authenticationType = tl.getInputRequired("authenticationTypeIspwSync");
+  if (authenticationType == 'USER') {
+    result.uid = tl.getInputRequired("ispwUsername");
+    result.pass = tl.getInputRequired("ispwPassword");
+  } else {
+    const certUtils = new CertificateUtils();
+    const connectedService = tl.getInputRequired("ConnectedServiceNameIspwSync");
+    const keyvaultName = tl.getInputRequired("keyvaultNameIspwSync");
+    const certificateName = tl.getInputRequired("certificateNameIspwSync");
+    await certUtils.getCertificate(authenticationType, connectedService, keyvaultName, certificateName).then(function (authenticate: Authenticate) {
+      result.certificate = authenticate.certificate;
+    });
+  }
   // result.certificate = core.getInput("certificate", { required: false });
   result.runtimeConfiguration = tl.getInputRequired("runtimeConfiguration");
   result.stream = tl.getInputRequired("stream");
