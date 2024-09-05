@@ -1,0 +1,8 @@
+This branch contains code for 
+- connecting to remote server via ftp (ftp-basic is used)
+- For FTP to work you'll need IIS installed and configured on remote
+- folders should have necessary permissions for user used fot ftp connection 
+- firewall should allow ftp and inboud-outbound set correctly
+- index.ts has the relevant code, please ignore any other extra files
+- to test install extension and select code pipeline sync option
+- don't forget to update password

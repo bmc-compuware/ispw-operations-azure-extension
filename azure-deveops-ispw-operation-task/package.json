@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "azure-pipelines-task-lib": "^4.7.0",
+    "basic-ftp": "^5.0.5",
     "npm-dependency-exclusion": "^1.0.2",
     "semver": "^7.5.2"
   },

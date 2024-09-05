@@ -1,15 +1,15 @@
 {
-    "id": "ispw-operations",
-    "name": "BMC AMI DevX Code Pipeline Operations",
-    "public": true,
-    "version": "2.5.0",
-    "publisher": "BMC",
+    "id": "ispw-operations15",
+    "name": "BMC AMI DevX Code Pipeline Operations15",
+    "public": false,
+    "version": "2.5.15",
+    "publisher": "KajalTestPublisher",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
         }
     ],
-    "description": "Extension to perform Code Pipeline operations.",
+    "description": "Extension to perform Code Pipeline operations.15",
     "categories": [
         "Azure Pipelines"
     ],

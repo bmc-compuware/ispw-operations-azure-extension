@@ -1,16 +1,16 @@
 {
   "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-  "id": "9e9efe80-1343-4058-bf4d-8e3189d51fa7",
-  "name": "azure-deveops-ispw-operation-task",
-  "friendlyName": "BMC AMI DevX Code Pipeline Operations",
-  "description": "This task is used for Code Pipeline operations.",
+  "id": "9e9efe80-1343-4058-bf4d-8e3189d51fab",
+  "name": "azure-deveops-ispw-operation-task15",
+  "friendlyName": "BMC AMI DevX Code Pipeline Operations15",
+  "description": "This task is used for Code Pipeline operations15.",
   "helpMarkDown": "",
   "category": "Utility",
   "author": "BMC Software",
   "version": {
     "Major": 2,
     "Minor": 5,
-    "Patch": 0
+    "Patch": 15
   },
   "instanceNameFormat": "Code Pipeline Operations",
   "groups": [
@@ -115,6 +115,7 @@
       "visibleRule": "operationType=CES",
       "options": {
         "AddTask": "Add Task",
+        "FtpTransfer": "FTP transfer",
         "BuildAssignment": "Build Assignment",
         "BuildRelease": "Build Release",
         "BuildTask": "Build Task",
