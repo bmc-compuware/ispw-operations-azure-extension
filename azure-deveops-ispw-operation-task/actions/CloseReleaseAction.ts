@@ -4,7 +4,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const ReleaseResponse = require("../transferObj/ReleaseResponse");
-var contextPath = "/ispw/{srid}/releases/{releaseId}/cancel";
+var contextPath = "/ispw/{srid}/releases/{releaseId}/close";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
@@ -24,9 +24,9 @@ class ReqBodyAttributes extends IspwReqBody {
   taskId: string[] = [];
 }
 
-class CancelReleaseAction extends IspwActions {
+class CloseReleaseAction extends IspwActions {
   async performAction(input: Input): Promise<IspwResponse> {
-    let cancelReleaseActionResponse: IspwResponse = new ReleaseResponse();
+    let closeReleaseActionResponse: IspwResponse = new ReleaseResponse();
     let util = new RestUtils();
     let reqBody = new ReqBodyAttributes();
     let cmnService = new CommonService();
@@ -42,12 +42,12 @@ class CancelReleaseAction extends IspwActions {
       input.cesToken,
       input.certificate,
       input.key,
-      "Cancel Release",
+      "Close Release",
       input.showResponseBodyInConsole,
       input.trustAllCerts
     );
-    Object.assign(cancelReleaseActionResponse, json);
-    return cancelReleaseActionResponse;
+    Object.assign(closeReleaseActionResponse, json);
+    return closeReleaseActionResponse;
   }  
 }
-module.exports = CancelReleaseAction;
+module.exports = CloseReleaseAction;
