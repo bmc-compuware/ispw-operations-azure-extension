@@ -16,6 +16,7 @@ export async function getISPWCLIPath(parms: IISPWSyncParms): Promise<string> {
       topazCLIPath = parms.winTopazPath;
       topazCLIPath = path.join(topazCLIPath, "IspwCLI.bat");
       topazCLIPath = path.normalize(topazCLIPath);
+      topazCLIPath = path.resolve(topazCLIPath);
 
       console.log("Topaz CLI Path: ", topazCLIPath);
 
@@ -31,6 +32,7 @@ export async function getISPWCLIPath(parms: IISPWSyncParms): Promise<string> {
       topazCLIPath = parms.unixTopazPath;
       topazCLIPath = path.join(topazCLIPath, "IspwCLI.sh");
       topazCLIPath = path.normalize(topazCLIPath);
+      topazCLIPath = path.resolve(topazCLIPath);
 
       console.log("Topaz CLI Path: ", topazCLIPath);
 
