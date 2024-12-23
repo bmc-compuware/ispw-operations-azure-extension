@@ -463,11 +463,15 @@ Required:
 | --- | --- |
 | assignmentId | 	The assignment id |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Assignment Info |
 | --- |
-| assignmentId=PLAY031347 |
+| assignmentId=PLAY031347 <br> runtimConfiguration=tptp |
 
 
 ## **Get Assignment Task List**  
@@ -478,6 +482,10 @@ Required:
 | --- | --- |
 | assignmentId | 	The assignment id |
 | level  | 	All tasks in the assignment at this level will be displayed |
+
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -507,12 +515,13 @@ Optional:
 | stream | The Code Pipeline stream name. Trailing wildcards are supported, i.e. BAR* |
 | tag | User-definable four-character field. Trailing wildcards are supported, i.e. TAG* (Case sensitive) |
 | userId | The owner or joined user for a container |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
 | Get Container List |
 | --- |
-| application=PLAY <br> containerId=PLAY001386 <br> containerType=A <br> description=myContainer <br> includeClosedContainers=false <br> owner=myUserId <br> path=DEV1 <br> refNumber=JIRA1234 <br> releaseId=R00001234 <br> stream=PLAY <br> subAppl=PLAY <br> userId=myUserId |
+| application=PLAY <br> containerId=PLAY001386 <br> containerType=A <br> description=myContainer <br> includeClosedContainers=false <br> owner=myUserId <br> path=DEV1 <br> refNumber=JIRA1234 <br> releaseId=R00001234 <br> stream=PLAY <br> subAppl=PLAY <br> userId=myUserId <br> runtimeConfiguration=tptp |
 
 
 ## **Get Deployment List**  
@@ -531,12 +540,13 @@ Optional:
 | setId | The set ID you want information on. This field is case sesitive. Wildcard * is only supported |
 | environment | The logical execution environment where the components will be deployed for this request. This field is not case sensitive. Wildcard * is only supported |
 | status | The overall current status of the deploy request, which may be Planned, Confirmed, Staged, Implemented, Completed, Failed, or Terminated. This field is not case sensitive. Wildcard * is only supported |
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
 | Get Deployment List #1  | Get Deployment List #2  |
 | --- | -- |
-|  startDate=2023-08-09 <br> endDate=2023-08-14 |  startDate=2023-08-09 <br> endDate=2023-08-14 <br> status=COMPLETED |
+|  startDate=2023-08-09 <br> endDate=2023-08-14 |  startDate=2023-08-09 <br> endDate=2023-08-14 <br> status=COMPLETED <br> runtimeConfiguration=tptp |
 
 
 ## **Get Release Info**  
@@ -547,11 +557,15 @@ Required:
 | --- | --- |
 | releaseId | 	The release id |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Release Info |
 | --- |
-| releaseId=JKGENRELID |
+| releaseId=JKGENRELID <br> runtimeConfiguration=tptp |
 
 ## **Get Release Task Generate Listing**  
 
@@ -562,11 +576,15 @@ Required:
 | releaseId | 	The release id |
 | taskId  | 	The task id |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Release Task Generate Listing |
 | --- |
-| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 |
+| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 <br> runtimeConfiguration=tptp |
 
 
 ## **Get Release Task Info**  
@@ -578,11 +596,15 @@ Required:
 | releaseId | 	The release id |
 | taskId  | 	The task id |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Release Task Info |
 | --- |
-| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 |
+| releaseId=JKGENRELID <br> taskId=7E1AC3D3DE25 <br> runtimeConfiguration=tptp |
 
 
 ## **Get Release Task List**  
@@ -594,11 +616,15 @@ Required:
 | releaseId | 	The release id |
 | level  | 	All tasks in the release at this level will be displayed |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Release Task List |
 | --- |
-| releaseId=JKGENRELID <br> level=DEV2  |
+| releaseId=JKGENRELID <br> level=DEV2  <br> runtimeConfiguration=tptp |
 
 
 ## **Get Set Info**  
@@ -610,11 +636,15 @@ Required:
 | setId | 	The set id you want info on |
 | level  | 	All tasks in the set at this level will be displayed |
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Set Info |
 | --- |
-| setId=S000015218 <br> level=DEV1|
+| setId=S000015218 <br> level=DEV1 <br> runtimeConfiguration=tptp |
 
 
 ## **Get Set Task List**  
@@ -625,11 +655,15 @@ Required:
 | --- | --- |
 | setId | 	The set id you want info on|
 
+Optional:
+
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+
 Example:
 
 | Get Set Task List |
 | --- |
-| setId=S000015218  |
+| setId=S000015218  <br> runtimeConfiguration=tptp |
 
 
 ## **Get Work List**  
@@ -658,12 +692,13 @@ Optional:
 | releaseId |Release a component belongs to. Trailing wildcards are supported, i.e. RELEASE1*|
 | stream |2- to 8-character code defines the application structure with which the application is associated. Trailing wildcards are supported, i.e. BAR*|
 | type |The one-to four-character acronym for the type of component, such as COB for a Cobol program or COPY for a copybook. Trailing wildcards are supported, i.e. C*|
+| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
 | Get Work List |
 | --- |
-| inProgress=true<br>production=true<br>historical=true<br>startDate=2019-01-01<br>endDate=2019-03-31<br>application=PLAY<br>subAppl=PLAY<br>environment=TEST<br>group=GRP1<br>lastUpdatedBy=FOOUSER<br>level=DEV1<br>name=TPROG01<br>operation=Promote<br>owner=FOOUSER<br>refNumber=JIRA1234<br>releaseId=RLS001<br>stream=PLAY<br>type=COB |
+| inProgress=true<br>production=true<br>historical=true<br>startDate=2019-01-01<br>endDate=2019-03-31<br>application=PLAY<br>subAppl=PLAY<br>environment=TEST<br>group=GRP1<br>lastUpdatedBy=FOOUSER<br>level=DEV1<br>name=TPROG01<br>operation=Promote<br>owner=FOOUSER<br>refNumber=JIRA1234<br>releaseId=RLS001<br>stream=PLAY<br>type=COB <br> runtimeConfiguration=tptp |
 
 
 ## **Promote Assignment / Promote Release**  
