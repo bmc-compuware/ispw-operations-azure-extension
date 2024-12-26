@@ -51,15 +51,6 @@ class RestUtils {
               contextPath = contextPath.replace("{" + name + "}", value.trim());
             }
           }
-
-          if(name == "runtimeConfiguration")
-          {
-            //if value exists it's being updated in prev if
-          }else{
-            //clean up in case of no value
-            contextPath = contextPath.replace("?rtConfig={runtimeConfiguration}","") //when it's first param
-            contextPath = contextPath.replace("&rtConfig={runtimeConfiguration}","") //when it's last param
-          }
         }
       }
     }

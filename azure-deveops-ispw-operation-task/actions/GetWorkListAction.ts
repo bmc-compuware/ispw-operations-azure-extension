@@ -4,7 +4,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const WorkListResponse = require("../transferObj/WorkListResponse");
-var contextPath = "/ispw/{srid}/worklist?inProgress={inProgress}&production={production}&historical={historical}&startDate={startDate}&endDate={endDate}&type={type}&name={name}&operation={operation}&level={level}&environment={environment}&application={application}&subAppl={subAppl}&stream={stream}&lastUpdatedBy={lastUpdatedBy}&owner={owner}&releaseId={releaseId}&refNumber={refNumber}&group={group}&rtConfig={runtimeConfiguration}";
+var contextPath = "/ispw/{srid}/worklist?inProgress={inProgress}&production={production}&historical={historical}&startDate={startDate}&endDate={endDate}&type={type}&name={name}&operation={operation}&level={level}&environment={environment}&application={application}&subAppl={subAppl}&stream={stream}&lastUpdatedBy={lastUpdatedBy}&owner={owner}&releaseId={releaseId}&refNumber={refNumber}&group={group}&rtConfig={rtConfig}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
