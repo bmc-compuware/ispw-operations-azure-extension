@@ -4,7 +4,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const TaskListingResponse = require("../transferObj/TaskListingResponse");
-var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/{taskId}/listing?rtConfig={runtimeConfiguration}";
+var contextPath = "/ispw/{srid}/releases/{releaseId}/tasks/{taskId}/listing?rtConfig={rtConfig}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {

@@ -4,7 +4,7 @@ const RestUtils = require("../utils/RestUtils");
 const CommonService = require("../services/CommonService");
 const IspwReqBody = require("../transferObj/IspwReqBody");
 const DeploymentListResponse = require("../transferObj/DeploymentListResponse");
-var contextPath = "/ispw/{srid}/deployments?todaysDate={todaysDate}&priorWeek={priorWeek}&startDate={startDate}&endDate={endDate}&requestId={requestId}&setId={setId}&environment={environment}&status={status}&rtConfig={runtimeConfiguration}";
+var contextPath = "/ispw/{srid}/deployments?todaysDate={todaysDate}&priorWeek={priorWeek}&startDate={startDate}&endDate={endDate}&requestId={requestId}&setId={setId}&environment={environment}&status={status}&rtConfig={rtConfig}";
 
 class ReqBodyAttributes extends IspwReqBody {
   constructor() {
