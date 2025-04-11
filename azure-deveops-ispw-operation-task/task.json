@@ -9,7 +9,7 @@
   "author": "BMC Software",
   "version": {
     "Major": 2,
-    "Minor": 6,
+    "Minor": 7,
     "Patch": 0
   },
   "instanceNameFormat": "Code Pipeline Operations",
@@ -148,7 +148,8 @@
         "PromoteRelease": "Promote Release",
         "RegressAssignment": "Regress Assignment",
         "RegressRelease": "Regress Release",
-        "RemoveFromRelease": "Remove From Release",
+        "ReleaseDeployOperation": "Release Deploy Operation",
+        "RemoveFromRelease": "Remove From Release",        
         "SetOperation": "Set Operation",
         "TaskLoad": "Task Load",
         "TransferTask": "Transfer Task"

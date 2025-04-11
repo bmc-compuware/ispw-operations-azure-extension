@@ -15,6 +15,7 @@ const workListResponse = require("../transferObj/WorkListResponse");
 const multiTaskInfoResponse = require("../transferObj/MultiTaskInfoResponse");
 const taskResponse = require("../transferObj/TaskResponse");
 const taskLoadResponse = require("../transferObj/TaskLoadResponse");
+const releaseDeploymentActionResponse = require("../transferObj/ReleaseDeploymentActionResponse");
 
 class SummarizeResponse {
   summarize(respObject: any, action: string): void {
@@ -316,6 +317,22 @@ class SummarizeResponse {
     if (respObject instanceof taskLoadResponse) {
       if (action == "TaskLoad" && respObject.taskId) {
         console.log("Task with ID "+respObject.taskId+" loaded to assignment "+ respObject.url.split("/").reverse()[2]);
+      }
+    }
+
+    if (respObject instanceof releaseDeploymentActionResponse) {
+      if (action == "ReleaseDeployOperation" && respObject.message) {
+        console.error(respObject.message);
+      } else {
+        for (let i = 0; i < respObject.sets.length; i++) {
+          console.info("Deployments for set : ",respObject.sets[i].id);
+          for (let j = 0; j < respObject.sets[i].deployments.length; j++) {
+            console.log(" ");
+            console.info("Request Id: " + respObject.sets[i].deployments[j].requestId);
+            console.info("URL : " + respObject.sets[i].deployments[j].url);            
+            console.log("-------------------------------------------------");
+          }
+        }
       }
     }
 

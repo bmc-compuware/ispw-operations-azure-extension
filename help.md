@@ -45,7 +45,7 @@ Optional:
 | --- | --- |
 | mtype | Component of this type in the assignment will be built, if specified |
 | mname | Components with this name in the assignment will be built, if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -81,7 +81,7 @@ Optional:
 | --- | --- |
 | mtype | Component of this type in the assignment will be built, if specified |
 | mname | Components with this name in the assignment will be built, if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -119,7 +119,7 @@ Optional:
 | taskId | The comma-separated list of task IDs for the tasks that need to be built. If the task id is specified then application, level, mname, and mtype are not required and will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
 | assignmentId | The id of the assignment to build the task in |
 | subAppl | The sub application name |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -150,7 +150,7 @@ Optional:
 
 |  Parameter | Description |
 | --- | --- |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -181,7 +181,7 @@ Optional:
 
 |  Parameter | Description |
 | --- | --- |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -212,7 +212,7 @@ Optional:
 
 |  Parameter | Description |
 | --- | --- |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -300,7 +300,7 @@ Optional:
 | --- | --- |
 | mtype | Components of this type in the assignment will be deployed if specified |
 | mname | Components with this name in the assignment will be deployed if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -333,7 +333,7 @@ Optional:
 |  Parameter | Description |
 | --- | --- |
 | taskId | The comma-separated list of task IDs for the tasks that need to be deployed. Example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -366,7 +366,7 @@ Optional:
 | --- | --- |
 | mtype | Component of this type in the assignment will fallback, if specified |
 | mname | Components with this name in the assignment will fallback, if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -400,7 +400,7 @@ Optional:
 |  Parameter | Description |
 | --- | --- |
 | taskId | A task with this task id will be generated. If the task id is specified then assignmentId and level will be ignored, example taskId= 7E3AB4B229E1,7E3A5B90B9A2|
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -435,7 +435,7 @@ Optional:
 | --- | --- |
 | mtype | Component of this type in the assignment will be generated, if specified |
 | mname | Components with this name in the assignment will be generated, if specified |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -465,7 +465,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -485,7 +485,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -515,7 +515,7 @@ Optional:
 | stream | The Code Pipeline stream name. Trailing wildcards are supported, i.e. BAR* |
 | tag | User-definable four-character field. Trailing wildcards are supported, i.e. TAG* (Case sensitive) |
 | userId | The owner or joined user for a container |
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -540,7 +540,7 @@ Optional:
 | setId | The set ID you want information on. This field is case sesitive. Wildcard * is only supported |
 | environment | The logical execution environment where the components will be deployed for this request. This field is not case sensitive. Wildcard * is only supported |
 | status | The overall current status of the deploy request, which may be Planned, Confirmed, Staged, Implemented, Completed, Failed, Pending, or Terminated. This field is not case sensitive. Wildcard * is only supported |
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -559,7 +559,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -578,7 +578,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -598,7 +598,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -618,7 +618,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -638,7 +638,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -657,7 +657,7 @@ Required:
 
 Optional:
 
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -692,7 +692,7 @@ Optional:
 | releaseId |Release a component belongs to. Trailing wildcards are supported, i.e. RELEASE1*|
 | stream |2- to 8-character code defines the application structure with which the application is associated. Trailing wildcards are supported, i.e. BAR*|
 | type |The one-to four-character acronym for the type of component, such as COB for a Cobol program or COPY for a copybook. Trailing wildcards are supported, i.e. C*|
-| rtConfig | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| rtConfig | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 
 Example:
 
@@ -715,7 +715,7 @@ Optional:
 | --- | --- |
 | mname | component with this name in the container will be promoted |
 | mtype | component with this type in the container will be promoted |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -749,7 +749,7 @@ Optional:
 | --- | --- |
 | mname | component with this name in the container will be regressed |
 | mtype | component with this type in the container will be regressed |
-| runtimeConfiguration | See ISPW administrator for valid value. If the value is empty, leave it blank |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
 | changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
 | executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
 | dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
@@ -767,6 +767,38 @@ Example:
 | Regress Assignment | Regress Release |
 | --- | --- |
 | assignmentId=PLAY000313  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB | releaseId=JKGENRELID  <br>level=STG2  <br>#optional  <br>mname=TPROG09  <br>mtype=COB |
+
+
+## **Release Deploy Operation**  
+
+Required:
+
+| Parameter | Description |
+| --- | --- |
+| releaseId | The container for which you intend to perform operation |
+| action | The action to be performed - Restart, Terminate |
+
+Optional:
+
+|  Parameter | Description |
+| --- | --- |
+| runtimeConfiguration | See Code Pipeline administrator for valid value. If the value is empty, leave it blank |
+| changeType | S for standard (default), I for incidental, or E for emergency. Default Value is "S" |
+| executionStatus |  I for immediate execution (or use a specified date/time), H to hold the execution.  Default Value is "I" |
+| dpenvlst | The DPENVLST parameter allows you to override the environments configured for deploy at that level. If you wish to deploy to only certain environments, you can list them here, separated by a space. The length of the field is limited to 255. Default Value is "" (blank) |
+| system | Allows you to specify a specific System for the Deploy. Default Value is "" (blank) |
+| autoDeploy | Indicate true to auto deploy if the deployment has been configured in your Code Pipeline instance. Indicate false or do not provide this parameter for no deployment (default). Default value is "false" |
+| deployActiveDate | Deploy active date, example = "2017-08-18". Default Value is "" (blank) |
+| deployActiveTime | Deploy active time, example = "17:51:24". Default Value is "" (blank) |
+| deployImplementationDate | Deploy implementation date, example = "2017-08-18". Default Value is "" (blank) |
+| deployImplementationTime | Deploy implementation time, example = "16:51:24". Default Value is "" (blank) |
+| taskId | List of Task Id, example taskId: ["7E3AB4B229E1","7E3A5B90B9A2"]|
+
+Example:
+
+| Release Deploy Operation |
+| --- |
+| releaseId=PLAYTEST <br> action=restart |
 
 
 ## **Remove From Release**  
