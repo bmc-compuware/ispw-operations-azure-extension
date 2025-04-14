@@ -37,6 +37,7 @@ const removeFromReleaseAction = require("./RemoveFromReleaseAction");
 const setOperationAction = require("./SetOperationAction");
 const taskLoadAction = require("./TaskLoadAction");
 const transferTaskAction = require("./TransferTaskAction");
+const releaseDeployAction = require("./ReleaseDeployAction");
 
 class ActionFactory {
   constructor() {}
@@ -120,6 +121,8 @@ class ActionFactory {
         return new taskLoadAction();
       case "TransferTask":
         return new transferTaskAction();
+      case "ReleaseDeployOperation":
+        return new releaseDeployAction();  
       default:
         new Error("Action Not supported!");
     }

@@ -9,7 +9,7 @@
   "author": "BMC Software",
   "version": {
     "Major": 2,
-    "Minor": 6,
+    "Minor": 7,
     "Patch": 0
   },
   "instanceNameFormat": "Code Pipeline Operations",
@@ -75,7 +75,7 @@
       "defaultValue": "$(cesToken)",
       "required": true,
       "helpMarkDown": "The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
-      "visibleRule": "operationType=CES && authenticationType!=CERT"
+      "visibleRule": "cesUrl NotStartsWith https: || authenticationType!=CERT"
     },
     {
       "name": "ConnectedServiceName",
@@ -85,7 +85,7 @@
       "type": "connectedService:AzureRM",
       "label": "Azure Subscription",
       "required": true,
-      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+      "visibleRule": "operationType=CES && cesUrl StartsWith https: && authenticationType=CERT"
     },
     {
       "name": "keyvaultName",
@@ -96,7 +96,7 @@
       "properties": {
         "EditableOptions": "True"
       },
-      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+      "visibleRule": "operationType=CES && cesUrl StartsWith https: && authenticationType=CERT"
     },
     {
       "name": "certificateName",
@@ -104,7 +104,7 @@
       "label": "Certificate Name",
       "required": true,
       "helpMarkDown": "Provide the name of certificate as added in Keyvault",
-      "visibleRule": "operationType=CES && cesUrl StartsWith https:"
+      "visibleRule": "operationType=CES && cesUrl StartsWith https: && authenticationType=CERT"
     },
     {
       "name": "action",
@@ -148,7 +148,8 @@
         "PromoteRelease": "Promote Release",
         "RegressAssignment": "Regress Assignment",
         "RegressRelease": "Regress Release",
-        "RemoveFromRelease": "Remove From Release",
+        "ReleaseDeployOperation": "Release Deploy Operation",
+        "RemoveFromRelease": "Remove From Release",        
         "SetOperation": "Set Operation",
         "TaskLoad": "Task Load",
         "TransferTask": "Transfer Task"

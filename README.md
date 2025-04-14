@@ -96,6 +96,7 @@ This Code Pipeline Operations task has following parameters:
     -   Promote Release
     -   Regress Assignment
     -   Regress Release
+    -   Release Deploy Operation
     -   Remove From Release
     -   Set Operation
     -   Task Load
