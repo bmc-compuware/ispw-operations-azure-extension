@@ -10,7 +10,7 @@
   "version": {
     "Major": 2,
     "Minor": 7,
-    "Patch": 0
+    "Patch": 1
   },
   "instanceNameFormat": "Code Pipeline Operations",
   "groups": [
@@ -75,7 +75,7 @@
       "defaultValue": "$(cesToken)",
       "required": true,
       "helpMarkDown": "The available CES secret token to perform Code Pipeline actions for Rest API call. In this feild, please pass pipeline variable name which is storing CES secret token as secret in Azure pipeline. Example $(cesToken).",
-      "visibleRule": "cesUrl NotStartsWith https: || authenticationType!=CERT"
+      "visibleRule": "cesUrl NotStartsWith https || authenticationType = TOKEN"
     },
     {
       "name": "ConnectedServiceName",
