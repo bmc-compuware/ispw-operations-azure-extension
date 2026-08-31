@@ -19,9 +19,6 @@ export async function getInputs(): Promise<IISPWSyncParms> {
   }
 
   gitLocalPath = path.resolve(gitLocalPath);
-
-  console.log("Git Local Path : ", gitLocalPath);
-
   try {
     fs.statSync(gitLocalPath);
   } catch (error) {
@@ -61,11 +58,8 @@ export async function getInputs(): Promise<IISPWSyncParms> {
   if (authenticationType == 'USER') {
     result.uid = tl.getInputRequired("ispwusername");
     const plainPass = tl.getInputRequired("ispwpassword");
-    console.log("*** Input Helper Plain Password: ", plainPass);
     const encryptedPass = PasswordCryptoUtil.encrypt(plainPass);
-    console.log("*** Input Helper Encrypted Password: ", encryptedPass);
     if (!encryptedPass) {
-      console.log("*** Input Helper Failed to encrypt Code Pipeline password.");
       throw new Error("Failed to encrypt Code Pipeline password.");
     }
     result.pass = encryptedPass;

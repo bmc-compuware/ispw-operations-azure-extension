@@ -8,13 +8,10 @@ export class PasswordCryptoUtil {
     "9yfqRswQr746fbRtfnsHjz+OCjOzITupz1xT2x9Lvkw=";
 
   public static encrypt(plainText: string | undefined | null): string | null {
-    console.log("*** PasswordCryptoUtil Encrypting Password: ", plainText);
     if (plainText == null) {
-      console.log("*** PasswordCryptoUtil Encrypting Password is null");
       return null;
     }
     if (plainText.startsWith(PasswordCryptoUtil.PREFIX)) {
-      console.log("*** PasswordCryptoUtil Encrypting Password is already encrypted");
       return plainText;
     }
 
