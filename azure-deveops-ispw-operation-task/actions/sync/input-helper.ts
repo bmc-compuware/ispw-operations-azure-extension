@@ -2,6 +2,7 @@ import tl = require("azure-pipelines-task-lib/task");
 import * as path from "path";
 import * as fs from "fs";
 import { IISPWSyncParms } from "./ispw-sync-parms";
+import { PasswordCryptoUtil } from "../../utils/PasswordCryptoUtil";
 const CertificateUtils = require("../../utils/CertificateUtils");
 
 export async function getInputs(): Promise<IISPWSyncParms> {
@@ -58,8 +59,16 @@ export async function getInputs(): Promise<IISPWSyncParms> {
   result.timeout = parseInt(tl.getInput("timeout", false) || "");
   var authenticationType = tl.getInputRequired("authenticationTypeIspwSync");
   if (authenticationType == 'USER') {
-    result.uid = tl.getInputRequired("ispwUsername");
-    result.pass = tl.getInputRequired("ispwPassword");
+    result.uid = tl.getInputRequired("ispwusername");
+    const plainPass = tl.getInputRequired("ispwpassword");
+    console.log("*** Input Helper Plain Password: ", plainPass);
+    const encryptedPass = PasswordCryptoUtil.encrypt(plainPass);
+    console.log("*** Input Helper Encrypted Password: ", encryptedPass);
+    if (!encryptedPass) {
+      console.log("*** Input Helper Failed to encrypt Code Pipeline password.");
+      throw new Error("Failed to encrypt Code Pipeline password.");
+    }
+    result.pass = encryptedPass;
   } else {
     const certUtils = new CertificateUtils();
     const connectedService = tl.getInputRequired("ConnectedServiceNameIspwSync");
