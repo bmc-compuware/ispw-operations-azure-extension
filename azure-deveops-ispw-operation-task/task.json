@@ -439,8 +439,9 @@
       "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
     }
   ],
+  "minimumAgentVersion": "4.265.1",
   "execution": {
-    "Node16": {
+    "Node24": {
       "target": "index.js"
     }
   }
