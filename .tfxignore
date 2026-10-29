@@ -1,0 +1,4 @@
+local-test/**
+**/local-test/**
+**/local-test-inputs*
+**/.local-test-temp/**
