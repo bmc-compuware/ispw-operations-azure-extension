@@ -1,0 +1,58 @@
+{
+  "_comment": "Copy this file to inputs.json and fill in real values. Do not commit inputs.json (may contain secrets).",
+
+  "options": {
+    "compile": true,
+    "bypassKeyVaultForToken": true
+  },
+
+  "variables": {
+    "Build.SourcesDirectory": "C:\\path\\to\\your\\git\\workspace",
+    "Build.Repository.Uri": "https://dev.azure.com/org/project/_git/repo",
+    "Build.SourceVersion": "abcdef1234567890"
+  },
+
+  "inputs": {
+    "connectionId": "host.example.com:29646#1047",
+    "operationType": "CES",
+    "cesUrl": "http://ces-host:48226/",
+    "authenticationType": "TOKEN",
+    "cesSecretToken": "YOUR_CES_TOKEN",
+    "ConnectedServiceName": "",
+    "keyvaultName": "",
+    "certificateName": "",
+    "action": "GetAssignmentInfo",
+    "buildAutomatically": "false",
+    "request": "assignmentId=PLAY031347",
+    "skipWaitingForSetCompletion": "true",
+    "showResponseBodyInConsole": "true",
+    "trustAllCerts": "true",
+    "windowsWorkbenchCliHome": "C:\\Program Files\\BMC Software\\AGM\\TopazCLI",
+    "linuxWorkbenchCliHome": "/opt/bmc/TopazCLI",
+    "runtimeConfiguration": "TPZP",
+    "authenticationTypeIspwSync": "USER",
+    "ispwusername": "",
+    "ispwpassword": "",
+    "ConnectedServiceNameIspwSync": "",
+    "keyvaultNameIspwSync": "",
+    "certificateNameIspwSync": "",
+    "stream": "PLAY",
+    "application": "PLAY",
+    "subApplication": "PLAY",
+    "yamlMappingFile": "",
+    "encryptionProtocol": "None",
+    "codePage": "1047 - Latin 1 / Open Systems",
+    "timeout": "0",
+    "branchMapping": "**/main => DEV1, per-branch"
+  },
+
+  "azureEndpoint": {
+    "_comment": "Only needed for CERT auth (or HTTPS without bypassKeyVaultForToken). Endpoint id must match ConnectedServiceName / ConnectedServiceNameIspwSync.",
+    "id": "local-azure-rm",
+    "scheme": "ServicePrincipal",
+    "servicePrincipalId": "",
+    "servicePrincipalKey": "",
+    "tenantId": "",
+    "AzureKeyVaultDnsSuffix": "vault.azure.net"
+  }
+}
