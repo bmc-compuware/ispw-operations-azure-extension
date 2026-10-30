@@ -2,3 +2,5 @@ node_modules
 .taskkey
 *.vsix
 *.js
+local-test/inputs.json
+**/.local-test-temp/
