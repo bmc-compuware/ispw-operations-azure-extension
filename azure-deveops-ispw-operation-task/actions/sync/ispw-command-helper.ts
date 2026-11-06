@@ -229,14 +229,53 @@ export async function execISPWSync(
       args.push(parms.yamlMappingFile);
     }
 
-    cwd = quoteArg(true, cwd);
-    cliPath = quoteArg(true, cliPath);
-    // we have replaced tl.execSync with spawnSync during implementation of story: ZENG-322671. 
-    // tl.execSync used to enclose the certificate content in double-quotes resulting in StackOverFlow error at CLI.
-    let syncResult = spawnSync(cliPath, args, {cwd});
-    console.log(syncResult.stdout.toString());
+    // spawnSync (vs tl.execSync) avoids wrapping certificate args in quotes (ZENG-322671).
+    // On Windows, bypass IspwCLI.bat (interactive -IN_CMD / start cmd /k wrapper) and call
+    // TopazWorkbenchCLI.bat the same way IspwCLI.bat does for the real run.
+    const spawnOpts = { cwd, encoding: "utf8" as const };
+    let syncResult;
+    if (tl.getPlatform() == 0) {
+      const launcherBat = path.join(
+        path.dirname(cliPath),
+        "TopazWorkbenchCLI.bat"
+      );
+      if (!existsSync(launcherBat)) {
+        throw new Error(
+          `Unable to locate TopazWorkbenchCLI.bat next to '${cliPath}'`
+        );
+      }
+      const launcherArgs = [
+        "workspace\\configuration\\ispw_logback.xml",
+        "com.compuware.ispw.cli.IspwCLI",
+        ...args,
+      ];
+      console.log("CLI launcher: ", launcherBat);
+      syncResult = spawnSync(
+        process.env.ComSpec || "cmd.exe",
+        ["/c", launcherBat, ...launcherArgs],
+        spawnOpts
+      );
+    } else {
+      syncResult = spawnSync(cliPath, args, spawnOpts);
+    }
+
+    const stdout = syncResult.stdout != null ? String(syncResult.stdout) : "";
+    const stderr = syncResult.stderr != null ? String(syncResult.stderr) : "";
+    if (stdout) {
+      console.log(stdout);
+    }
+    if (stderr) {
+      console.error(stderr);
+    }
+    if (syncResult.error) {
+      throw new Error(
+        `Failed to start Workbench CLI: ${syncResult.error.message}`
+      );
+    }
     if (syncResult.status != 0) {
-      throw new Error("Git to ISPW Sync Failed! Please see console logs.");
+      throw new Error(
+        `Git to ISPW Sync Failed! Exit code: ${syncResult.status}. Please see console logs.`
+      );
     }
   } catch (error) {
     if (error instanceof Error) {
