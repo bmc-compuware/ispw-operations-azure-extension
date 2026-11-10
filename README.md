@@ -9,6 +9,7 @@ The Code Pipeline Operations allows Azure DevOps users to execute Code Pipeline(
 The following are required to use this extension:
 - Azure Cloud or [On Premise Azure DevOps Server](https://learn.microsoft.com/en-us/azure/devops/server/download/azuredevopsserver?view=azure-devops)
 - [Azure Pipelines agents](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/agents?view=azure-devops&tabs=browser): Self Hosted Agents setup on which WorkBench CLI and BMC AMI Common Enterprise Services will be installed.
+  - **Agent version.** The Node 24 execution handler is available starting with agent **4.265.1**. This extension sets `minimumAgentVersion` to **5.281.1**, because that agent release bundles Node.js **24.22.1**, the version this task is built for. Agents older than 5.281.1 are upgraded automatically to meet that requirement.
 - [BMC AMI DevX Common Configuration Azure extension](https://marketplace.visualstudio.com/items?itemName=BMC.common-config-extension)
 - [BMC AMI DevX Code Pipeline](https://www.bmc.com/it-solutions/bmc-compuware-ispw.html)
 - [BMC AMI Common Enterprise Services](https://docs.bmc.com/docs/bces2010/introduction-to-bmc-compuware-enterprise-services-1068407133.html)
