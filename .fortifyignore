@@ -9,6 +9,7 @@ media
 images
 test
 __tests__
+local-test
 
 
 **/*.project
